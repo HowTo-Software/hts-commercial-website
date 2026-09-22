@@ -1,0 +1,37 @@
+@inject IStringLocalizer<AppStrings> L
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="#home" aria-label="HTS — HowTo.Software">
+            <img src="images/hts-logo-header.svg" alt="" />
+            <span>HowTo.Software</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+            <a class="active" href="#home">@L["NavHome"]</a>
+            <a href="#services">@L["NavServices"]</a>
+            <a href="#projects">@L["NavProjects"]</a>
+            <a href="#about">@L["NavAbout"]</a>
+            <a href="#blog">@L["NavBlog"]</a>
+            <a href="#quote">@L["NavContact"]</a>
+        </nav>
+
+        <a class="btn btn-outline header-cta" href="#quote">@L["RequestQuote"] <span>→</span></a>
+
+        <details class="mobile-menu" @key="_mobileMenuVersion">
+            <summary aria-label="Open menu">☰</summary>
+            <div class="mobile-menu-panel">
+                <a href="#home" @onclick="CloseMenu">@L["NavHome"]</a>
+                <a href="#services" @onclick="CloseMenu">@L["NavServices"]</a>
+                <a href="#projects" @onclick="CloseMenu">@L["NavProjects"]</a>
+                <a href="#about" @onclick="CloseMenu">@L["NavAbout"]</a>
+                <a href="#quote" @onclick="CloseMenu">@L["RequestQuote"]</a>
+            </div>
+        </details>
+    </div>
+</header>
+
+@code {
+    private int _mobileMenuVersion;
+    private void CloseMenu() => _mobileMenuVersion++;
+}

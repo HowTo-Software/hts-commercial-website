@@ -1,0 +1,24 @@
+@inject IStringLocalizer<AppStrings> L
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <img src="images/hts-logo.svg" alt="HTS" />
+            <span>HowTo.Software</span>
+        </div>
+        <p class="footer-tagline">@L["FooterTagline"]</p>
+        <nav>
+            <a href="#home">@L["NavHome"]</a>
+            <a href="#services">@L["NavServices"]</a>
+            <a href="#projects">@L["NavProjects"]</a>
+            <a href="#about">@L["NavAbout"]</a>
+            <a href="#quote">@L["NavContact"]</a>
+        </nav>
+        <div class="social-links" aria-label="Social networks">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Instagram">◎</a>
+            <a href="#" aria-label="YouTube">▶</a>
+        </div>
+        <p class="copyright">© @DateTime.UtcNow.Year HTS — HowTo.Software<br />@L["RightsReserved"]<span id="blog" class="footer-blog">@L["BlogComingSoon"]</span></p>
+    </div>
+</footer>

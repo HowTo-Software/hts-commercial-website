@@ -1,0 +1,17 @@
+<article class="project-card">
+    <img src="@Image" alt="@Title" />
+    <div class="project-overlay"></div>
+    <div class="project-copy">
+        <div>
+            <h3>@Title</h3>
+            <p>@Subtitle</p>
+        </div>
+        <span class="project-arrow">→</span>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired] public string Image { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Subtitle { get; set; } = string.Empty;
+}

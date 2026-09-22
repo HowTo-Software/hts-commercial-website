@@ -1,0 +1,86 @@
+@inject IStringLocalizer<AppStrings> L
+
+<section id="quote" class="section quote-section">
+    <div class="quote-background"></div>
+    <div class="container quote-grid">
+        <div class="quote-copy">
+            <p class="eyebrow"><span></span>@L["QuoteEyebrow"]</p>
+            <h2>@L["QuoteTitle"]</h2>
+            <p>@L["QuoteIntro"]</p>
+            <div class="quote-manifesto">@L["QuoteManifesto"]</div>
+        </div>
+
+        <div class="quote-panel">
+            <EditForm Model="Model" OnValidSubmit="SubmitAsync" FormName="quote-request">
+                <DataAnnotationsValidator />
+                <div class="form-grid">
+                    <label>
+                        <span>@L["FieldName"] *</span>
+                        <InputText @bind-Value="Model.FullName" />
+                        <ValidationMessage For="@(() => Model.FullName)" />
+                    </label>
+                    <label>
+                        <span>@L["FieldEmail"] *</span>
+                        <InputText @bind-Value="Model.Email" type="email" />
+                        <ValidationMessage For="@(() => Model.Email)" />
+                    </label>
+                    <label>
+                        <span>@L["FieldPhone"] *</span>
+                        <InputText @bind-Value="Model.Phone" />
+                        <ValidationMessage For="@(() => Model.Phone)" />
+                    </label>
+                    <label>
+                        <span>@L["FieldService"] *</span>
+                        <InputSelect @bind-Value="Model.ServiceType">
+                            <option value="">@L["SelectOption"]</option>
+                            <option value="website">@L["ServiceWebDev"]</option>
+                            <option value="business">@L["ServiceBusinessSites"]</option>
+                            <option value="landing">@L["ServiceLanding"]</option>
+                            <option value="maintenance">@L["ServiceMaintenance"]</option>
+                            <option value="custom">@L["ServiceCustom"]</option>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => Model.ServiceType)" />
+                    </label>
+                    <label class="form-span-2">
+                        <span>@L["FieldDescription"] *</span>
+                        <InputTextArea @bind-Value="Model.Description" placeholder="@L["DescriptionPlaceholder"]" />
+                        <ValidationMessage For="@(() => Model.Description)" />
+                    </label>
+                </div>
+
+
+                <button class="btn btn-primary submit-button" type="submit" disabled="@_sending">
+                    @(_sending ? L["Sending"] : L["SendRequest"]) <span>→</span>
+                </button>
+
+                @if (_submitted)
+                {
+                    <div class="success-message" role="status">@L["FrontendOnlyNotice"]</div>
+                }
+            </EditForm>
+        </div>
+
+        <aside class="quote-aside">
+            <div><span>◷</span><p>@L["Response24h"]</p></div>
+            <div><span>•••</span><p>@L["ConsultativeSupport"]</p></div>
+            <div class="handwritten">@L["ProjectStartsHere"]<span>↘</span></div>
+        </aside>
+    </div>
+</section>
+
+@code {
+    private QuoteRequest Model { get; set; } = new();
+    private bool _sending;
+    private bool _submitted;
+
+    private async Task SubmitAsync()
+    {
+        _sending = true;
+        _submitted = false;
+        await Task.Delay(450);
+        _sending = false;
+        _submitted = true;
+
+        // Frontend scaffold only. Replace this block with an API call when the backend is implemented.
+    }
+}

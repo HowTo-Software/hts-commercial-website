@@ -1,0 +1,36 @@
+# .NET build outputs
+**/bin/
+**/obj/
+**/TestResults/
+/coverage/
+*.log
+
+# Local QA output, including browser profiles and cached credentials
+/artifacts/
+
+# IDE and OS files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+.DS_Store
+Thumbs.db
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.Local.json
+appsettings.local.json
+appsettings.*.local.json
+**/secrets.json
+*.pfx
+*.pem
+*.key
+*.publishsettings
+*.pubxml.user

@@ -1,0 +1,23 @@
+@inject IStringLocalizer<AppStrings> L
+
+<section id="projects" class="section projects-section">
+    <div class="container">
+        <div class="section-heading split-heading projects-heading">
+            <div>
+                <p class="eyebrow"><span></span>@L["ProjectsEyebrow"]</p>
+                <h2>@L["ProjectsTitle"]</h2>
+            </div>
+            <div class="heading-aside">
+                <p>@L["ProjectsIntro"]</p>
+                <a class="text-link" href="#quote">@L["ViewAllProjects"] <span>→</span></a>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <ProjectCard Image="images/project-construction.png" Title="Almeida Construction" Subtitle="@L["ProjectCorporate"]" />
+            <ProjectCard Image="images/project-workshop.png" Title="Performance Workshop" Subtitle="@L["ProjectBooking"]" />
+            <ProjectCard Image="images/project-security.png" Title="Shield Security" Subtitle="@L["ProjectCorporate"]" />
+            <ProjectCard Image="images/project-consulting.png" Title="Ribeiro Consulting" Subtitle="@L["ProjectLanding"]" />
+        </div>
+    </div>
+</section>

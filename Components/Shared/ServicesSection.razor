@@ -1,0 +1,25 @@
+@inject IStringLocalizer<AppStrings> L
+
+<section id="services" class="section services-section">
+    <div class="container">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="eyebrow"><span></span>@L["ServicesEyebrow"]</p>
+                <h2>@L["ServicesTitle"]</h2>
+            </div>
+            <div class="heading-aside">
+                <p>@L["ServicesIntro"]</p>
+                <a class="text-link" href="#quote">@L["ViewAllServices"] <span>→</span></a>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <ServiceCard Icon="▣" Title="@L["ServiceWebDev"]" Description="@L["ServiceWebDevDesc"]" LinkText="@L["LearnMore"]" />
+            <ServiceCard Icon="⌂" Title="@L["ServiceBusinessSites"]" Description="@L["ServiceBusinessSitesDesc"]" LinkText="@L["LearnMore"]" />
+            <ServiceCard Icon="▤" Title="@L["ServiceLanding"]" Description="@L["ServiceLandingDesc"]" LinkText="@L["LearnMore"]" />
+            <ServiceCard Icon="⚙" Title="@L["ServiceMaintenance"]" Description="@L["ServiceMaintenanceDesc"]" LinkText="@L["LearnMore"]" />
+            <ServiceCard Icon="◎" Title="@L["ServiceConsulting"]" Description="@L["ServiceConsultingDesc"]" LinkText="@L["LearnMore"]" />
+            <ServiceCard Icon="⬡" Title="@L["ServiceCustom"]" Description="@L["ServiceCustomDesc"]" LinkText="@L["LearnMore"]" />
+        </div>
+    </div>
+</section>

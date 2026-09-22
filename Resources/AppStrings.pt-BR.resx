@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="NavHome" xml:space="preserve"><value>Início</value></data>
+  <data name="NavServices" xml:space="preserve"><value>Serviços</value></data>
+  <data name="NavProjects" xml:space="preserve"><value>Projetos</value></data>
+  <data name="NavAbout" xml:space="preserve"><value>Sobre</value></data>
+  <data name="NavBlog" xml:space="preserve"><value>Blog</value></data>
+  <data name="NavContact" xml:space="preserve"><value>Contato</value></data>
+  <data name="RequestQuote" xml:space="preserve"><value>Solicitar orçamento</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Sites profissionais. Resultados reais.</value></data>
+  <data name="HeroTitleLine1" xml:space="preserve"><value>Sua ideia.</value></data>
+  <data name="HeroTitleLine2" xml:space="preserve"><value>Um site</value></data>
+  <data name="HeroTitleAccent" xml:space="preserve"><value>que funciona.</value></data>
+  <data name="HeroText" xml:space="preserve"><value>Na HTS criamos sites e soluções digitais que fortalecem o seu negócio. Do planejamento ao lançamento, unimos tecnologia, design e suporte para você focar no que realmente importa: crescer.</value></data>
+  <data name="SeeHowItWorks" xml:space="preserve"><value>Veja como funciona</value></data>
+  <data name="BenefitPersonalized" xml:space="preserve"><value>Suporte personalizado</value></data>
+  <data name="BenefitOnTime" xml:space="preserve"><value>Entrega no prazo</value></data>
+  <data name="BenefitSupport" xml:space="preserve"><value>Suporte contínuo</value></data>
+  <data name="DigitalSolutions" xml:space="preserve"><value>Soluções digitais para negócios reais.</value></data>
+  <data name="MoreThanWebsites" xml:space="preserve"><value>Mais que sites. Parcerias para resultados de longo prazo.</value></data>
+  <data name="ServicesEyebrow" xml:space="preserve"><value>Nossos serviços</value></data>
+  <data name="ServicesTitle" xml:space="preserve"><value>Soluções digitais para o seu negócio</value></data>
+  <data name="ServicesIntro" xml:space="preserve"><value>Sites, sistemas e consultoria sob medida para profissionais e empresas que querem crescer.</value></data>
+  <data name="ViewAllServices" xml:space="preserve"><value>Ver todos os serviços</value></data>
+  <data name="LearnMore" xml:space="preserve"><value>Saiba mais</value></data>
+  <data name="ServiceWebDev" xml:space="preserve"><value>Desenvolvimento de Sites</value></data>
+  <data name="ServiceWebDevDesc" xml:space="preserve"><value>Sites institucionais, corporativos e e-commerce modernos, rápidos e profissionais.</value></data>
+  <data name="ServiceBusinessSites" xml:space="preserve"><value>Sites para Empresas</value></data>
+  <data name="ServiceBusinessSitesDesc" xml:space="preserve"><value>Soluções para oficinas, construtoras, consultorias e outros negócios, com segurança e escalabilidade.</value></data>
+  <data name="ServiceLanding" xml:space="preserve"><value>Landing Pages</value></data>
+  <data name="ServiceLandingDesc" xml:space="preserve"><value>Páginas focadas em conversão para campanhas, lançamentos de produtos e aquisição de clientes.</value></data>
+  <data name="ServiceMaintenance" xml:space="preserve"><value>Manutenção e Suporte</value></data>
+  <data name="ServiceMaintenanceDesc" xml:space="preserve"><value>Mantenha seu site atualizado, seguro e funcionando de forma estável, sem preocupação.</value></data>
+  <data name="ServiceConsulting" xml:space="preserve"><value>Consultoria Digital</value></data>
+  <data name="ServiceConsultingDesc" xml:space="preserve"><value>Orientação estratégica para seu projeto, com foco em resultados e crescimento sustentável.</value></data>
+  <data name="ServiceCustom" xml:space="preserve"><value>Soluções Personalizadas</value></data>
+  <data name="ServiceCustomDesc" xml:space="preserve"><value>Desenvolvimentos sob medida para necessidades específicas, automações e integrações.</value></data>
+  <data name="WhyEyebrow" xml:space="preserve"><value>Por que escolher a HTS</value></data>
+  <data name="WhyTitle" xml:space="preserve"><value>Diferenciais que entregam resultado</value></data>
+  <data name="WhyAgility" xml:space="preserve"><value>Agilidade</value></data>
+  <data name="WhyAgilityDesc" xml:space="preserve"><value>Processos objetivos e entrega dentro do prazo.</value></data>
+  <data name="WhyPersonalized" xml:space="preserve"><value>Suporte personalizado</value></data>
+  <data name="WhyPersonalizedDesc" xml:space="preserve"><value>Comunicação direta e entendimento real do seu negócio.</value></data>
+  <data name="WhyModern" xml:space="preserve"><value>Tecnologia moderna</value></data>
+  <data name="WhyModernDesc" xml:space="preserve"><value>Trabalhamos com boas ferramentas e práticas atuais de mercado.</value></data>
+  <data name="WhyClean" xml:space="preserve"><value>Entrega limpa e profissional</value></data>
+  <data name="WhyCleanDesc" xml:space="preserve"><value>Código organizado, acabamento consistente e foco em qualidade.</value></data>
+  <data name="WhyReliable" xml:space="preserve"><value>Suporte confiável</value></data>
+  <data name="WhyReliableDesc" xml:space="preserve"><value>Estamos ao seu lado antes, durante e depois do projeto.</value></data>
+  <data name="WhyQuote" xml:space="preserve"><value>Tecnologia a serviço de quem constrói o amanhã.</value></data>
+  <data name="ProjectsEyebrow" xml:space="preserve"><value>Projetos em destaque</value></data>
+  <data name="ProjectsTitle" xml:space="preserve"><value>Trabalhos que falam por nós</value></data>
+  <data name="ProjectsIntro" xml:space="preserve"><value>Cada projeto é uma nova parceria. Conheça alguns exemplos de trabalhos da HTS.</value></data>
+  <data name="ViewAllProjects" xml:space="preserve"><value>Ver todos os projetos</value></data>
+  <data name="ProjectCorporate" xml:space="preserve"><value>Site corporativo</value></data>
+  <data name="ProjectBooking" xml:space="preserve"><value>Site com agendamento online</value></data>
+  <data name="ProjectLanding" xml:space="preserve"><value>Landing page</value></data>
+  <data name="QuoteEyebrow" xml:space="preserve"><value>Vamos conversar</value></data>
+  <data name="QuoteTitle" xml:space="preserve"><value>Solicite um orçamento personalizado</value></data>
+  <data name="QuoteIntro" xml:space="preserve"><value>Conte sobre seu projeto. Nossa equipe analisará a necessidade e preparará uma proposta sob medida, sem compromisso.</value></data>
+  <data name="QuoteManifesto" xml:space="preserve"><value>Grandes ideias constroem grandes negócios.</value></data>
+  <data name="FieldName" xml:space="preserve"><value>Nome completo</value></data>
+  <data name="FieldEmail" xml:space="preserve"><value>E-mail</value></data>
+  <data name="FieldPhone" xml:space="preserve"><value>Telefone / WhatsApp</value></data>
+  <data name="FieldService" xml:space="preserve"><value>Tipo de serviço</value></data>
+  <data name="FieldProjectMode" xml:space="preserve"><value>Tipo de projeto</value></data>
+  <data name="FieldDescription" xml:space="preserve"><value>Conte sobre seu projeto</value></data>
+  <data name="SelectOption" xml:space="preserve"><value>Selecione...</value></data>
+  <data name="ProjectNew" xml:space="preserve"><value>Projeto novo</value></data>
+  <data name="ProjectReview" xml:space="preserve"><value>Revisão / melhoria de projeto existente</value></data>
+  <data name="DescriptionPlaceholder" xml:space="preserve"><value>Ex: preciso de um site para minha empresa, com serviços, portfólio e contato...</value></data>
+  <data name="AttachmentsTitle" xml:space="preserve"><value>Anexos preparados para a próxima etapa</value></data>
+  <data name="AttachmentsHint" xml:space="preserve"><value>Área reservada para imagens, PDFs e arquivos de referência.</value></data>
+  <data name="SendRequest" xml:space="preserve"><value>Enviar solicitação</value></data>
+  <data name="Sending" xml:space="preserve"><value>Enviando...</value></data>
+  <data name="FrontendOnlyNotice" xml:space="preserve"><value>O frontend validou o formulário. Na fase de backend, conecte esta ação à API de pedidos.</value></data>
+  <data name="Response24h" xml:space="preserve"><value>Resposta em até 24 horas</value></data>
+  <data name="ConsultativeSupport" xml:space="preserve"><value>Atendimento consultivo e sem compromisso</value></data>
+  <data name="ProjectStartsHere" xml:space="preserve"><value>Seu projeto começa aqui!</value></data>
+  <data name="FooterTagline" xml:space="preserve"><value>Soluções digitais para negócios reais.</value></data>
+  <data name="RightsReserved" xml:space="preserve"><value>Todos os direitos reservados.</value></data>
+  <data name="BlogComingSoon" xml:space="preserve"><value>Blog em breve.</value></data>
+</root>

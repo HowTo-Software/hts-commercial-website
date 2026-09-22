@@ -1,0 +1,32 @@
+@inject IStringLocalizer<AppStrings> L
+
+<section id="home" class="hero-section">
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="eyebrow"><span></span>@L["HeroEyebrow"]</p>
+            <h1>@L["HeroTitleLine1"]<br />@L["HeroTitleLine2"] <strong>@L["HeroTitleAccent"]</strong></h1>
+            <p class="hero-text">@L["HeroText"]</p>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#quote">@L["RequestQuote"] <span>→</span></a>
+                <a class="btn btn-ghost" href="#services"><span class="play-icon">▶</span>@L["SeeHowItWorks"]</a>
+            </div>
+
+            <div class="hero-benefits" aria-label="HTS benefits">
+                <div><span class="benefit-icon">◎</span><span>@L["BenefitPersonalized"]</span></div>
+                <div><span class="benefit-icon">◷</span><span>@L["BenefitOnTime"]</span></div>
+                <div><span class="benefit-icon">◌</span><span>@L["BenefitSupport"]</span></div>
+            </div>
+        </div>
+
+        <div class="hero-media">
+            <div class="hero-media-frame">
+                <img src="images/hero-laptop.png" alt="HTS website displayed on a laptop in a modern workspace" />
+                <div class="hero-media-shade"></div>
+            </div>
+        </div>
+    </div>
+</section>
