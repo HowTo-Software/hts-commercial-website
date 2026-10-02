@@ -1,0 +1,19 @@
+@* Adapted from Skiper UI TextRoll (skiper58). See docs/frontend-sources.md. *@
+<span class="rolling-text">
+    <span class="visually-hidden">@Text</span>
+    <span class="rolling-layer" aria-hidden="true">
+        @for (var i = 0; i < Text.Length; i++)
+        {
+            <span style="--letter-index: @i">@(Text[i] == ' ' ? "\u00a0" : Text[i].ToString())</span>
+        }
+    </span>
+    <span class="rolling-layer rolling-layer-copy" aria-hidden="true">
+        @for (var i = 0; i < Text.Length; i++)
+        {
+            <span style="--letter-index: @i">@(Text[i] == ' ' ? "\u00a0" : Text[i].ToString())</span>
+        }
+    </span>
+</span>
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; } = string.Empty;
+}

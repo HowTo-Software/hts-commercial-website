@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="NavHome" xml:space="preserve"><value>Inicio</value></data>
+  <data name="NavServices" xml:space="preserve"><value>Servicios</value></data>
+  <data name="NavProjects" xml:space="preserve"><value>Proyectos</value></data>
+  <data name="NavAbout" xml:space="preserve"><value>Nosotros</value></data>
+  <data name="NavBlog" xml:space="preserve"><value>Blog</value></data>
+  <data name="NavContact" xml:space="preserve"><value>Contacto</value></data>
+  <data name="RequestQuote" xml:space="preserve"><value>Solicitar presupuesto</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Estudio de creación digital</value></data>
+  <data name="HeroTitleLine1" xml:space="preserve"><value>Tu marca.</value></data>
+  <data name="HeroTitleLine2" xml:space="preserve"><value>A otro</value></data>
+  <data name="HeroTitleAccent" xml:space="preserve"><value>nivel digital</value></data>
+  <data name="HeroText" xml:space="preserve"><value>Creamos sitios desde cero, mejoramos proyectos existentes y nos encargamos del backend y el alojamiento. Diseño y tecnología para cada etapa de tu negocio.</value></data>
+  <data name="SeeHowItWorks" xml:space="preserve"><value>Descubre cómo funciona</value></data>
+  <data name="BenefitPersonalized" xml:space="preserve"><value>Atención personalizada</value></data>
+  <data name="BenefitOnTime" xml:space="preserve"><value>Entrega a tiempo</value></data>
+  <data name="BenefitSupport" xml:space="preserve"><value>Soporte continuo</value></data>
+  <data name="DigitalSolutions" xml:space="preserve"><value>Soluciones digitales para negocios reales.</value></data>
+  <data name="MoreThanWebsites" xml:space="preserve"><value>Más que sitios web. Colaboraciones para resultados a largo plazo.</value></data>
+  <data name="ServicesEyebrow" xml:space="preserve"><value>Nuestros servicios</value></data>
+  <data name="ServicesTitle" xml:space="preserve"><value>Cada negocio,</value></data>
+  <data name="ServicesIntro" xml:space="preserve"><value>Un sitio nuevo, un proyecto que mejorar o una solución lista para publicarse. HTS se encarga del diseño, el backend, el mantenimiento y el alojamiento.</value></data>
+  <data name="ViewAllServices" xml:space="preserve"><value>Ver todos los servicios</value></data>
+  <data name="LearnMore" xml:space="preserve"><value>Saber más</value></data>
+  <data name="ServiceWebDev" xml:space="preserve"><value>Creación de sitios desde cero</value></data>
+  <data name="ServiceWebDevDesc" xml:space="preserve"><value>Tu proyecto empieza con la identidad y los objetivos de tu negocio. Creamos sitios a medida, adaptables y bien estructurados, desde la planificación hasta la publicación.</value></data>
+  <data name="ServiceBusinessSites" xml:space="preserve"><value>Sitios corporativos</value></data>
+  <data name="ServiceBusinessSitesDesc" xml:space="preserve"><value>Presenta tu empresa, tus servicios y lo que te distingue con claridad. Una presencia profesional para generar confianza y facilitar el contacto con nuevos clientes.</value></data>
+  <data name="ServiceLanding" xml:space="preserve"><value>Landing pages</value></data>
+  <data name="ServiceLandingDesc" xml:space="preserve"><value>Una página, un objetivo. Organizamos tu oferta, contenido y llamadas a la acción para campañas, lanzamientos y nuevas oportunidades.</value></data>
+  <data name="ServiceMaintenance" xml:space="preserve"><value>Mantenimiento y mejora</value></data>
+  <data name="ServiceMaintenanceDesc" xml:space="preserve"><value>¿Tu sitio fue creado por HTS o por otro equipo? Evaluamos su estructura actual y nos encargamos de correcciones, actualizaciones y nuevas funciones, sin exigir un sitio desde cero.</value></data>
+  <data name="ServiceConsulting" xml:space="preserve"><value>Estrategia digital</value></data>
+  <data name="ServiceConsultingDesc" xml:space="preserve"><value>Entender antes de construir. Analizamos tus objetivos, tu público y tus necesidades para definir una dirección clara para tu proyecto digital.</value></data>
+  <data name="ServiceCustom" xml:space="preserve"><value>Aplicaciones web a medida</value></data>
+  <data name="ServiceCustomDesc" xml:space="preserve"><value>Áreas de clientes, herramientas internas y automatizaciones para el día a día de tu negocio. Desarrollamos aplicaciones web según tus procesos y necesidades.</value></data>
+  <data name="WhyEyebrow" xml:space="preserve"><value>Por qué elegir HTS</value></data>
+  <data name="WhyTitle" xml:space="preserve"><value>Diferencias que generan resultados</value></data>
+  <data name="WhyAgility" xml:space="preserve"><value>Agilidad</value></data>
+  <data name="WhyAgilityDesc" xml:space="preserve"><value>Procesos claros y entregas a tiempo.</value></data>
+  <data name="WhyPersonalized" xml:space="preserve"><value>Atención personalizada</value></data>
+  <data name="WhyPersonalizedDesc" xml:space="preserve"><value>Comunicación directa y una comprensión real de tu negocio.</value></data>
+  <data name="WhyModern" xml:space="preserve"><value>Tecnología moderna</value></data>
+  <data name="WhyModernDesc" xml:space="preserve"><value>Trabajamos con buenas herramientas y prácticas actuales.</value></data>
+  <data name="WhyClean" xml:space="preserve"><value>Entrega cuidada y profesional</value></data>
+  <data name="WhyCleanDesc" xml:space="preserve"><value>Código organizado, un acabado coherente y atención a la calidad.</value></data>
+  <data name="WhyReliable" xml:space="preserve"><value>Soporte de confianza</value></data>
+  <data name="WhyReliableDesc" xml:space="preserve"><value>Te acompañamos antes, durante y después del proyecto.</value></data>
+  <data name="WhyQuote" xml:space="preserve"><value>Tecnología al servicio de quienes construyen el mañana.</value></data>
+  <data name="ProjectsEyebrow" xml:space="preserve"><value>Ideas en acción</value></data>
+  <data name="ProjectsTitle" xml:space="preserve"><value>Diseño que se ve.</value></data>
+  <data name="ProjectsIntro" xml:space="preserve"><value>Explora conceptos de sitios para distintos negocios. Cada detalle pensado para una experiencia que tiene sentido.</value></data>
+  <data name="ViewAllProjects" xml:space="preserve"><value>Ver todos los proyectos</value></data>
+  <data name="ProjectCorporate" xml:space="preserve"><value>Sitio corporativo</value></data>
+  <data name="ProjectBooking" xml:space="preserve"><value>Sitio con reservas en línea</value></data>
+  <data name="ProjectLanding" xml:space="preserve"><value>Landing page</value></data>
+  <data name="QuoteEyebrow" xml:space="preserve"><value>Tu próximo capítulo</value></data>
+  <data name="QuoteTitle" xml:space="preserve"><value>Vamos a crear</value></data>
+  <data name="QuoteIntro" xml:space="preserve"><value>Cuéntanos si quieres crear desde cero, mejorar un proyecto existente o necesitas backend y alojamiento. El briefing ayuda a definir el próximo paso.</value></data>
+  <data name="QuoteManifesto" xml:space="preserve"><value>Grandes ideas construyen grandes negocios.</value></data>
+  <data name="FieldName" xml:space="preserve"><value>Nombre completo</value></data>
+  <data name="FieldEmail" xml:space="preserve"><value>Correo electrónico</value></data>
+  <data name="FieldPhone" xml:space="preserve"><value>Teléfono / WhatsApp</value></data>
+  <data name="FieldService" xml:space="preserve"><value>Tipo de servicio</value></data>
+  <data name="FieldProjectMode" xml:space="preserve"><value>Tipo de proyecto</value></data>
+  <data name="FieldDescription" xml:space="preserve"><value>Cuéntanos sobre tu proyecto</value></data>
+  <data name="SelectOption" xml:space="preserve"><value>Selecciona...</value></data>
+  <data name="ProjectNew" xml:space="preserve"><value>Empezar de cero</value></data>
+  <data name="ProjectReview" xml:space="preserve"><value>Proyecto existente / mantenimiento, mejora o alojamiento</value></data>
+  <data name="DescriptionPlaceholder" xml:space="preserve"><value>Ej.: crear el sitio de mi empresa, con servicios, contacto y alojamiento...</value></data>
+  <data name="AttachmentsTitle" xml:space="preserve"><value>Archivos adjuntos para la próxima etapa</value></data>
+  <data name="AttachmentsHint" xml:space="preserve"><value>Área reservada para imágenes, PDF y archivos de referencia.</value></data>
+  <data name="SendRequest" xml:space="preserve"><value>Enviar solicitud</value></data>
+  <data name="Sending" xml:space="preserve"><value>Enviando...</value></data>
+  <data name="FrontendOnlyNotice" xml:space="preserve"><value>El formulario se ha validado. El envío en línea estará disponible cuando se conecte el servicio de solicitudes.</value></data>
+  <data name="Response24h" xml:space="preserve"><value>Respuesta en un plazo de 24 horas</value></data>
+  <data name="ConsultativeSupport" xml:space="preserve"><value>Atención personalizada y sin compromiso</value></data>
+  <data name="ProjectStartsHere" xml:space="preserve"><value>¡Tu proyecto empieza aquí!</value></data>
+  <data name="FooterTagline" xml:space="preserve"><value>Creación, mantenimiento, backend y alojamiento para tu negocio.</value></data>
+  <data name="RightsReserved" xml:space="preserve"><value>Todos los derechos reservados.</value></data>
+  <data name="BlogComingSoon" xml:space="preserve"><value>Blog próximamente.</value></data>
+  <data name="NavProcess" xml:space="preserve"><value>Cómo funciona</value></data>
+  <data name="SkipContent" xml:space="preserve"><value>Ir al contenido</value></data>
+  <data name="PrimaryNavigation" xml:space="preserve"><value>Navegación principal</value></data>
+  <data name="FooterNavigation" xml:space="preserve"><value>Navegación del pie de página</value></data>
+  <data name="ChangeLanguage" xml:space="preserve"><value>Cambiar idioma</value></data>
+  <data name="OpenMenu" xml:space="preserve"><value>Abrir o cerrar el menú</value></data>
+  <data name="StartProject" xml:space="preserve"><value>Empezar un proyecto</value></data>
+  <data name="ExploreProjects" xml:space="preserve"><value>Explorar proyectos</value></data>
+  <data name="HeroNote" xml:space="preserve"><value>Desde la primera idea hasta el sitio publicado.</value></data>
+  <data name="HeroNoteStrong" xml:space="preserve"><value>Mejoras que continúan después.</value></data>
+  <data name="DemoNav" xml:space="preserve"><value>Proyectos</value></data>
+  <data name="DemoEyebrow" xml:space="preserve"><value>ARQUITECTURA CON INTENCIÓN</value></data>
+  <data name="DemoTitle1" xml:space="preserve"><value>Espacios para</value></data>
+  <data name="DemoTitle2" xml:space="preserve"><value>vivir mejor.</value></data>
+  <data name="DemoFooter" xml:space="preserve"><value>El próximo capítulo empieza aquí.</value></data>
+  <data name="ShowcaseTag" xml:space="preserve"><value>Más allá de la apariencia</value></data>
+  <data name="ShowcaseTagStrong" xml:space="preserve"><value>Diseño que funciona.</value></data>
+  <data name="ShowcaseCaption" xml:space="preserve"><value>DE LA IDEA A LA EXPERIENCIA.</value></data>
+  <data name="ShowcaseTry" xml:space="preserve"><value>Un sitio. Todas las pantallas.</value></data>
+  <data name="PreviewMode" xml:space="preserve"><value>Formato de la vista previa</value></data>
+  <data name="DesktopPreview" xml:space="preserve"><value>Ver vista previa de escritorio</value></data>
+  <data name="MobilePreview" xml:space="preserve"><value>Ver vista previa móvil</value></data>
+  <data name="ScrollDiscover" xml:space="preserve"><value>Desplázate para descubrir</value></data>
+  <data name="HeroBottom" xml:space="preserve"><value>Los buenos negocios merecen sitios a su altura.</value></data>
+  <data name="BandDesign" xml:space="preserve"><value>Sitios desde cero</value></data>
+  <data name="BandTechnology" xml:space="preserve"><value>Mantenimiento y mejora</value></data>
+  <data name="BandStrategy" xml:space="preserve"><value>Backend e integraciones</value></data>
+  <data name="BandPersonality" xml:space="preserve"><value>Alojamiento y publicación</value></data>
+  <data name="ProjectsTitleSecond" xml:space="preserve"><value>Calidad que se siente.</value></data>
+  <data name="FilterProjects" xml:space="preserve"><value>Filtrar conceptos de sitios</value></data>
+  <data name="FilterAll" xml:space="preserve"><value>Todos</value></data>
+  <data name="FilterBusiness" xml:space="preserve"><value>Corporativos</value></data>
+  <data name="FilterLanding" xml:space="preserve"><value>Landing pages</value></data>
+  <data name="FilterBooking" xml:space="preserve"><value>Reservas</value></data>
+  <data name="SelectedConcepts" xml:space="preserve"><value>Conceptos seleccionados</value></data>
+  <data name="ViewConcept" xml:space="preserve"><value>Explorar concepto</value></data>
+  <data name="ProjectConcept" xml:space="preserve"><value>Concepto de sitio</value></data>
+  <data name="ClosePreview" xml:space="preserve"><value>Cerrar vista previa</value></data>
+  <data name="DesignDevelopment" xml:space="preserve"><value>DISEÑO + DESARROLLO</value></data>
+  <data name="ConceptNotice" xml:space="preserve"><value>Esta es una propuesta visual de demostración, sin relación con una empresa real.</value></data>
+  <data name="WantSimilar" xml:space="preserve"><value>Quiero un sitio así</value></data>
+  <data name="ProjectsBottom" xml:space="preserve"><value>Tu negocio tiene una historia. Vamos a darle forma.</value></data>
+  <data name="CreateYours" xml:space="preserve"><value>Crear mi sitio</value></data>
+  <data name="ProjectAlmeidaAlt" xml:space="preserve"><value>Arquitectura contemporánea en un concepto de sitio para una constructora</value></data>
+  <data name="ProjectWorkshopAlt" xml:space="preserve"><value>Taller automotriz en un concepto de sitio con reservas</value></data>
+  <data name="ProjectShieldAlt" xml:space="preserve"><value>Profesional de seguridad en un concepto de sitio corporativo</value></data>
+  <data name="ProjectRibeiroAlt" xml:space="preserve"><value>Consultor en un concepto de landing page profesional</value></data>
+  <data name="ProjectAlmeidaHeadline" xml:space="preserve"><value>Diseñando el mañana.</value></data>
+  <data name="ProjectWorkshopHeadline" xml:space="preserve"><value>Precisión en cada detalle.</value></data>
+  <data name="ProjectShieldHeadline" xml:space="preserve"><value>Confianza que protege.</value></data>
+  <data name="ProjectRibeiroHeadline" xml:space="preserve"><value>Claridad para crecer.</value></data>
+  <data name="ProjectAlmeidaDescription" xml:space="preserve"><value>Una dirección visual para arquitectura y construcción: composición editorial, imágenes amplias y navegación clara para presentar proyectos y conectar con nuevos clientes.</value></data>
+  <data name="ProjectWorkshopDescription" xml:space="preserve"><value>Un concepto para servicios automotrices que combina personalidad, una presentación clara de los servicios y una propuesta de reservas sencilla.</value></data>
+  <data name="ProjectShieldDescription" xml:space="preserve"><value>Una presencia corporativa para el sector de seguridad, con una jerarquía clara, un lenguaje visual sobrio y atención a las soluciones y al contacto.</value></data>
+  <data name="ProjectRibeiroDescription" xml:space="preserve"><value>Una landing page para consultoría que destaca la propuesta del negocio, organiza la información esencial y guía al visitante hacia el siguiente paso.</value></data>
+  <data name="ServicesTitleSecond" xml:space="preserve"><value>una solución.</value></data>
+  <data name="ChooseService" xml:space="preserve"><value>Esto es lo que necesito</value></data>
+  <data name="ServicesFootnote" xml:space="preserve"><value>Proyectos nuevos o existentes. Del código a la publicación, con el alcance adecuado para ti.</value></data>
+  <data name="ProcessEyebrow" xml:space="preserve"><value>Sencillo de principio a fin</value></data>
+  <data name="ProcessTitle" xml:space="preserve"><value>Una buena alianza.</value></data>
+  <data name="ProcessTitleSecond" xml:space="preserve"><value>Un proceso claro.</value></data>
+  <data name="ProcessIntro" xml:space="preserve"><value>Ya sea desde cero o en un proyecto existente, participas en la evaluación, el desarrollo y la publicación.</value></data>
+  <data name="ProcessStep1" xml:space="preserve"><value>Escuchar y entender</value></data>
+  <data name="ProcessStep1Desc" xml:space="preserve"><value>Entendemos tus objetivos. Si ya tienes un sitio o sistema, evaluamos su estructura antes de proponer cambios.</value></data>
+  <data name="ProcessStep2" xml:space="preserve"><value>Planificar la solución</value></data>
+  <data name="ProcessStep2Desc" xml:space="preserve"><value>Definimos el alcance, las prioridades y la solución visual y técnica que necesita tu proyecto.</value></data>
+  <data name="ProcessStep3" xml:space="preserve"><value>Construir y perfeccionar</value></data>
+  <data name="ProcessStep3Desc" xml:space="preserve"><value>Desarrollamos o mejoramos las interfaces, el backend y las integraciones, con pruebas de funcionamiento.</value></data>
+  <data name="ProcessStep4" xml:space="preserve"><value>Lanzar y acompañar</value></data>
+  <data name="ProcessStep4Desc" xml:space="preserve"><value>Publicamos tu proyecto y acordamos el alojamiento, el mantenimiento y las mejoras según tus necesidades.</value></data>
+  <data name="ManifestoStart" xml:space="preserve"><value>Más que entregar un sitio.</value></data>
+  <data name="ManifestoStrong" xml:space="preserve"><value>Construir tu próximo paso.</value></data>
+  <data name="FaqEyebrow" xml:space="preserve"><value>Antes de empezar</value></data>
+  <data name="FaqTitle" xml:space="preserve"><value>Algunas respuestas.</value></data>
+  <data name="FaqQuestion1" xml:space="preserve"><value>¿Cuánto cuesta un sitio web?</value></data>
+  <data name="FaqAnswer1" xml:space="preserve"><value>Cada proyecto tiene su propio alcance. La inversión depende de las páginas, las funciones y las integraciones. El briefing ayuda a preparar una propuesta que se ajuste a tus necesidades.</value></data>
+  <data name="FaqQuestion2" xml:space="preserve"><value>¿Cuánto tarda un proyecto?</value></data>
+  <data name="FaqAnswer2" xml:space="preserve"><value>El plazo se acuerda después de entender el proyecto. La complejidad, la preparación del contenido y las etapas de aprobación se tienen en cuenta al planificar.</value></data>
+  <data name="FaqQuestion3" xml:space="preserve"><value>¿Mi sitio funcionará en el móvil?</value></data>
+  <data name="FaqAnswer3" xml:space="preserve"><value>Sí. El diseño se adapta a móviles, tabletas y computadoras, con navegación y contenido adecuados para cada tamaño de pantalla.</value></data>
+  <data name="FaqQuestion4" xml:space="preserve"><value>¿Mantienen sitios creados por otros equipos?</value></data>
+  <data name="FaqAnswer4" xml:space="preserve"><value>Sí. Mantenemos y mejoramos sitios desarrollados por HTS o por otros equipos. Evaluamos el código, la experiencia y la infraestructura para definir los ajustes necesarios.</value></data>
+  <data name="QuoteTitleSecond" xml:space="preserve"><value>algo tuyo.</value></data>
+  <data name="BriefTitle" xml:space="preserve"><value>Cuéntanos sobre tu proyecto</value></data>
+  <data name="ProjectReviewShort" xml:space="preserve"><value>Ya tengo un sitio</value></data>
+  <data name="NamePlaceholder" xml:space="preserve"><value>Tu nombre</value></data>
+  <data name="EmailPlaceholder" xml:space="preserve"><value>tu@empresa.com</value></data>
+  <data name="PhonePlaceholder" xml:space="preserve"><value>Tu número de teléfono</value></data>
+  <data name="PrepareBrief" xml:space="preserve"><value>Preparar mi briefing</value></data>
+  <data name="BriefNotice" xml:space="preserve"><value>Puedes descargar tu briefing. El envío en línea aún no está disponible.</value></data>
+  <data name="BriefReady" xml:space="preserve"><value>Tu briefing está listo.</value></data>
+  <data name="BriefReadyDescription" xml:space="preserve"><value>Descarga tu briefing para guardarlo y compartirlo cuando quieras.</value></data>
+  <data name="DownloadBrief" xml:space="preserve"><value>Descargar briefing</value></data>
+  <data name="ValidationRequired" xml:space="preserve"><value>Completa este campo.</value></data>
+  <data name="ValidationEmail" xml:space="preserve"><value>Introduce un correo electrónico válido.</value></data>
+  <data name="ValidationDescription" xml:space="preserve"><value>Escribe entre 15 y 2.500 caracteres.</value></data>
+  <data name="ValidationSummary" xml:space="preserve"><value>Revisa los campos destacados para preparar tu briefing.</value></data>
+  <data name="BackTop" xml:space="preserve"><value>Volver arriba</value></data>
+  <data name="MadeWith" xml:space="preserve"><value>Interacciones con</value></data>
+  <data name="ValidationNameLength" xml:space="preserve"><value>Usa hasta 100 caracteres.</value></data>
+  <data name="ValidationEmailLength" xml:space="preserve"><value>Usa hasta 160 caracteres.</value></data>
+  <data name="ValidationPhoneLength" xml:space="preserve"><value>Usa hasta 40 caracteres.</value></data>
+  <data name="MetaDescription" xml:space="preserve"><value>HTS — HowTo.Software. Creación de sitios desde cero, mantenimiento de proyectos existentes, backend y alojamiento para tu negocio.</value></data>
+  <data name="LanguageLabel" xml:space="preserve"><value>Idioma del sitio</value></data>
+  <data name="SwitchToLight" xml:space="preserve"><value>Activar tema claro</value></data>
+  <data name="SwitchToDark" xml:space="preserve"><value>Activar tema oscuro</value></data>
+  <data name="EditionLabel" xml:space="preserve"><value>DISEÑO + CÓDIGO / HTS</value></data>
+  <data name="StudioSignature" xml:space="preserve"><value>HTS / ESTUDIO DIGITAL</value></data>
+  <data name="ArtCaption" xml:space="preserve"><value>IDEA → DISEÑO → CÓDIGO</value></data>
+  <data name="BuiltWithPurpose" xml:space="preserve"><value>HECHO CON PROPÓSITO /</value></data>
+  <data name="FooterWordmark" xml:space="preserve"><value>CREEMOS</value></data>
+  <data name="ServiceBackend" xml:space="preserve"><value>Backend e integraciones</value></data>
+  <data name="ServiceBackendDesc" xml:space="preserve"><value>Lo que ocurre detrás de las interfaces también importa. Desarrollamos APIs, lógica de negocio, bases de datos e integraciones para conectar tu sitio con las herramientas que utilizas.</value></data>
+  <data name="ServiceHosting" xml:space="preserve"><value>Alojamiento y publicación</value></data>
+  <data name="ServiceHostingDesc" xml:space="preserve"><value>Tu proyecto listo para publicarse. Configuramos el alojamiento, el dominio y la publicación, o evaluamos la migración de un sitio existente a una infraestructura adecuada para tu negocio.</value></data>
+  <data name="FaqQuestion5" xml:space="preserve"><value>¿También desarrollan el backend?</value></data>
+  <data name="FaqAnswer5" xml:space="preserve"><value>Sí. Desarrollamos APIs, lógica de negocio e integraciones con bases de datos y servicios externos. Podemos trabajar en un proyecto nuevo o evaluar la estructura que ya utilizas.</value></data>
+  <data name="FaqQuestion6" xml:space="preserve"><value>¿Pueden alojar y publicar mi sitio?</value></data>
+  <data name="FaqAnswer6" xml:space="preserve"><value>Sí. Nos encargamos de configurar el alojamiento, el dominio y la publicación. La infraestructura, los costos recurrentes y el seguimiento se definen en la propuesta según las necesidades del proyecto.</value></data>
+  <data name="FieldExistingWebsite" xml:space="preserve"><value>Sitio actual</value></data>
+  <data name="WebsitePlaceholder" xml:space="preserve"><value>https://tusitio.com</value></data>
+  <data name="WebsiteHint" xml:space="preserve"><value>Opcional. Si tu sitio ya está publicado, comparte la dirección para que podamos evaluar el proyecto.</value></data>
+  <data name="ValidationWebsite" xml:space="preserve"><value>Introduce una dirección completa que empiece por https:// o http://.</value></data>
+  <data name="ValidationWebsiteLength" xml:space="preserve"><value>Usa hasta 2.048 caracteres para la dirección del sitio.</value></data>
+  <data name="ReviewDescriptionPlaceholder" xml:space="preserve"><value>Ej.: actualizar mi sitio, corregir las reservas o cambiar de alojamiento...</value></data>
+</root>

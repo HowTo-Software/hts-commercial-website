@@ -1,0 +1,18 @@
+@typeparam TValue
+@implements IDisposable
+@inject IStringLocalizer<AppStrings> L
+@using System.Linq.Expressions
+
+@foreach (var message in EditContext.GetValidationMessages(_field))
+{
+    <span class="validation-message">@L[message]</span>
+}
+@code {
+    [CascadingParameter] private EditContext EditContext { get; set; } = default!;
+    [Parameter, EditorRequired] public Expression<Func<TValue>> For { get; set; } = default!;
+    private FieldIdentifier _field;
+    protected override void OnInitialized() => EditContext.OnValidationStateChanged += OnValidationChanged;
+    protected override void OnParametersSet() => _field = FieldIdentifier.Create(For);
+    private void OnValidationChanged(object? sender, ValidationStateChangedEventArgs args) => _ = InvokeAsync(StateHasChanged);
+    public void Dispose() => EditContext.OnValidationStateChanged -= OnValidationChanged;
+}

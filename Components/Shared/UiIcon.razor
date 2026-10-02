@@ -1,0 +1,23 @@
+<svg class="ui-icon @Class" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    @switch (Name)
+    {
+        case "arrow": <path d="M5 12h14m-6-6 6 6-6 6" /> break;
+        case "diagonal": <path d="M6 18 18 6M6 6h12v12" /> break;
+        case "down": <path d="M12 4v16m-6-6 6 6 6-6" /> break;
+        case "star": <path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5" /> break;
+        case "check": <path d="m5 12 4 4L19 6" /> break;
+        case "desktop": <rect x="3" y="4" width="18" height="13" rx="2" /><path d="M8 21h8m-4-4v4" /> break;
+        case "mobile": <rect x="6" y="2" width="12" height="20" rx="3" /><path d="M10 18h4" /> break;
+        case "code": <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" /> break;
+        case "plus": <path d="M12 5v14M5 12h14" /> break;
+        case "close": <path d="m6 6 12 12M6 18 18 6" /> break;
+        case "chevron": <path d="m7 10 5 5 5-5" /> break;
+        case "sun": <circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /> break;
+        case "moon": <path d="M20.4 14.1A8.6 8.6 0 0 1 9.9 3.6 8.6 8.6 0 1 0 20.4 14.1Z" /> break;
+        default: <circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /> break;
+    }
+</svg>
+@code {
+    [Parameter] public string Name { get; set; } = "arrow";
+    [Parameter] public string? Class { get; set; }
+}

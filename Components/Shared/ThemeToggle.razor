@@ -1,0 +1,8 @@
+@inject IStringLocalizer<AppStrings> L
+
+<button type="button" class="theme-toggle" data-theme-toggle
+        data-light-label="@L["SwitchToLight"]" data-dark-label="@L["SwitchToDark"]"
+        aria-label="@L["SwitchToDark"]" title="@L["SwitchToDark"]">
+    <UiIcon Name="moon" Class="theme-icon-moon" />
+    <UiIcon Name="sun" Class="theme-icon-sun" />
+</button>

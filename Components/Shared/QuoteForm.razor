@@ -1,86 +1,133 @@
+@implements IDisposable
 @inject IStringLocalizer<AppStrings> L
+@inject ProjectBrief Brief
+@inject IJSRuntime JS
 
 <section id="quote" class="section quote-section">
-    <div class="quote-background"></div>
     <div class="container quote-grid">
         <div class="quote-copy">
-            <p class="eyebrow"><span></span>@L["QuoteEyebrow"]</p>
-            <h2>@L["QuoteTitle"]</h2>
+            <p class="eyebrow"><span class="section-number">04</span>@L["QuoteEyebrow"]</p>
+            <h2><MaskReveal>@L["QuoteTitle"]</MaskReveal><MaskReveal Delay="70"><span class="quote-title-accent">@L["QuoteTitleSecond"]</span></MaskReveal></h2>
             <p>@L["QuoteIntro"]</p>
-            <div class="quote-manifesto">@L["QuoteManifesto"]</div>
+            <div class="quote-decoration" aria-hidden="true"><UiIcon Name="diagonal" /></div>
+            <div class="quote-promise"><UiIcon Name="check" /><span>@L["ConsultativeSupport"]</span></div>
         </div>
-
         <div class="quote-panel">
-            <EditForm Model="Model" OnValidSubmit="SubmitAsync" FormName="quote-request">
+            <div class="form-heading"><span>@L["BriefTitle"]</span><span>HTS / 01</span></div>
+            <EditForm EditContext="_editContext" OnValidSubmit="PrepareBrief" FormName="quote-request" OnInvalidSubmit="HandleInvalid">
                 <DataAnnotationsValidator />
+                <fieldset class="project-mode">
+                    <legend>@L["FieldProjectMode"]</legend>
+                    <InputRadioGroup @bind-Value="Model.ProjectMode">
+                        <label><InputRadio Value="@("new")" /><span>@L["ProjectNew"] <UiIcon Name="plus" /></span></label>
+                        <label><InputRadio Value="@("review")" /><span>@L["ProjectReviewShort"] <UiIcon Name="arrow" /></span></label>
+                    </InputRadioGroup>
+                </fieldset>
                 <div class="form-grid">
-                    <label>
-                        <span>@L["FieldName"] *</span>
-                        <InputText @bind-Value="Model.FullName" />
-                        <ValidationMessage For="@(() => Model.FullName)" />
-                    </label>
-                    <label>
-                        <span>@L["FieldEmail"] *</span>
-                        <InputText @bind-Value="Model.Email" type="email" />
-                        <ValidationMessage For="@(() => Model.Email)" />
-                    </label>
-                    <label>
-                        <span>@L["FieldPhone"] *</span>
-                        <InputText @bind-Value="Model.Phone" />
-                        <ValidationMessage For="@(() => Model.Phone)" />
-                    </label>
-                    <label>
-                        <span>@L["FieldService"] *</span>
-                        <InputSelect @bind-Value="Model.ServiceType">
+                    <label class="form-span-2">
+                        <span>@L["FieldService"] <span aria-hidden="true">*</span></span>
+                        <InputSelect @bind-Value="Model.ServiceType" @bind-Value:after="ServiceChanged" aria-required="true" aria-describedby="service-error">
                             <option value="">@L["SelectOption"]</option>
                             <option value="website">@L["ServiceWebDev"]</option>
                             <option value="business">@L["ServiceBusinessSites"]</option>
                             <option value="landing">@L["ServiceLanding"]</option>
-                            <option value="maintenance">@L["ServiceMaintenance"]</option>
                             <option value="custom">@L["ServiceCustom"]</option>
+                            <option value="maintenance">@L["ServiceMaintenance"]</option>
+                            <option value="backend">@L["ServiceBackend"]</option>
+                            <option value="hosting">@L["ServiceHosting"]</option>
+                            <option value="consulting">@L["ServiceConsulting"]</option>
                         </InputSelect>
-                        <ValidationMessage For="@(() => Model.ServiceType)" />
+                        <span id="service-error"><FieldValidation For="@(() => Model.ServiceType)" /></span>
+                    </label>
+                    @if (Model.ProjectMode == "review")
+                    {
+                        <label class="form-span-2">
+                            <span>@L["FieldExistingWebsite"]</span>
+                            <InputText @bind-Value="Model.WebsiteUrl" type="url" inputmode="url" autocomplete="url" maxlength="2048" placeholder="@L["WebsitePlaceholder"]" aria-describedby="website-hint website-error" />
+                            <span id="website-error"><FieldValidation For="@(() => Model.WebsiteUrl)" /></span>
+                            <small class="form-hint" id="website-hint">@L["WebsiteHint"]</small>
+                        </label>
+                    }
+                    <label>
+                        <span>@L["FieldName"] <span aria-hidden="true">*</span></span>
+                        <InputText @bind-Value="Model.FullName" autocomplete="name" maxlength="100" placeholder="@L["NamePlaceholder"]" aria-required="true" aria-describedby="name-error" />
+                        <span id="name-error"><FieldValidation For="@(() => Model.FullName)" /></span>
+                    </label>
+                    <label>
+                        <span>@L["FieldEmail"] <span aria-hidden="true">*</span></span>
+                        <InputText @bind-Value="Model.Email" type="email" autocomplete="email" maxlength="160" placeholder="@L["EmailPlaceholder"]" aria-required="true" aria-describedby="email-error" />
+                        <span id="email-error"><FieldValidation For="@(() => Model.Email)" /></span>
                     </label>
                     <label class="form-span-2">
-                        <span>@L["FieldDescription"] *</span>
-                        <InputTextArea @bind-Value="Model.Description" placeholder="@L["DescriptionPlaceholder"]" />
-                        <ValidationMessage For="@(() => Model.Description)" />
+                        <span>@L["FieldPhone"] <span aria-hidden="true">*</span></span>
+                        <InputText @bind-Value="Model.Phone" type="tel" autocomplete="tel" maxlength="40" placeholder="@L["PhonePlaceholder"]" aria-required="true" aria-describedby="phone-error" />
+                        <span id="phone-error"><FieldValidation For="@(() => Model.Phone)" /></span>
+                    </label>
+                    <label class="form-span-2">
+                        <span>@L["FieldDescription"] <span aria-hidden="true">*</span></span>
+                        <InputTextArea @bind-Value="Model.Description" maxlength="2500" rows="3" placeholder="@L[Model.ProjectMode == "review" ? "ReviewDescriptionPlaceholder" : "DescriptionPlaceholder"]" aria-required="true" aria-describedby="description-error" />
+                        <span id="description-error"><FieldValidation For="@(() => Model.Description)" /></span>
                     </label>
                 </div>
-
-
-                <button class="btn btn-primary submit-button" type="submit" disabled="@_sending">
-                    @(_sending ? L["Sending"] : L["SendRequest"]) <span>→</span>
-                </button>
-
-                @if (_submitted)
+                <p class="form-note">@L["BriefNotice"]</p>
+                <button class="button button-dark submit-button" type="submit">@L["PrepareBrief"] <UiIcon Name="diagonal" /></button>
+                @if (_invalid)
                 {
-                    <div class="success-message" role="status">@L["FrontendOnlyNotice"]</div>
+                    <p class="form-feedback error-feedback" role="alert">@L["ValidationSummary"]</p>
+                }
+                @if (_prepared)
+                {
+                    <div class="form-feedback success-feedback" role="status"><UiIcon Name="check" /><div><strong>@L["BriefReady"]</strong><p>@L["BriefReadyDescription"]</p><button class="animated-link" type="button" @onclick="DownloadBrief">@L["DownloadBrief"] <UiIcon Name="down" /></button></div></div>
                 }
             </EditForm>
         </div>
-
-        <aside class="quote-aside">
-            <div><span>◷</span><p>@L["Response24h"]</p></div>
-            <div><span>•••</span><p>@L["ConsultativeSupport"]</p></div>
-            <div class="handwritten">@L["ProjectStartsHere"]<span>↘</span></div>
-        </aside>
     </div>
 </section>
-
 @code {
-    private QuoteRequest Model { get; set; } = new();
-    private bool _sending;
-    private bool _submitted;
-
-    private async Task SubmitAsync()
+    private QuoteRequest Model => Brief.Request;
+    private EditContext _editContext = default!;
+    private bool _prepared;
+    private bool _invalid;
+    private bool _focusInvalid;
+    protected override void OnInitialized()
     {
-        _sending = true;
-        _submitted = false;
-        await Task.Delay(450);
-        _sending = false;
-        _submitted = true;
-
-        // Frontend scaffold only. Replace this block with an API call when the backend is implemented.
+        _editContext = new EditContext(Model);
+        _editContext.OnFieldChanged += OnFieldChanged;
+        Brief.Changed += OnBriefChanged;
+    }
+    private void OnFieldChanged(object? sender, FieldChangedEventArgs args)
+    {
+        _prepared = false;
+        _ = InvokeAsync(StateHasChanged);
+    }
+    private void OnBriefChanged()
+    {
+        _prepared = false;
+        _editContext.NotifyFieldChanged(new FieldIdentifier(Model, nameof(Model.ServiceType)));
+        _editContext.NotifyFieldChanged(new FieldIdentifier(Model, nameof(Model.ProjectMode)));
+        _ = InvokeAsync(StateHasChanged);
+    }
+    private void ServiceChanged() => Brief.SelectService(Model.ServiceType);
+    private void PrepareBrief() { _prepared = true; _invalid = false; }
+    private void HandleInvalid(EditContext _) { _prepared = false; _invalid = true; _focusInvalid = true; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!_focusInvalid) return;
+        _focusInvalid = false;
+        await JS.InvokeVoidAsync("hts.focusInvalidForm");
+    }
+    private async Task DownloadBrief()
+    {
+        if (!_editContext.Validate()) { _prepared = false; _invalid = true; return; }
+        var serviceKey = Model.ServiceType switch { "website" => "ServiceWebDev", "business" => "ServiceBusinessSites", "landing" => "ServiceLanding", "custom" => "ServiceCustom", "maintenance" => "ServiceMaintenance", "backend" => "ServiceBackend", "hosting" => "ServiceHosting", _ => "ServiceConsulting" };
+        var existingWebsite = Model.ProjectMode == "review" && !string.IsNullOrWhiteSpace(Model.WebsiteUrl)
+            ? $"{L["FieldExistingWebsite"]}: {Model.WebsiteUrl.Trim()}\n" : string.Empty;
+        var text = $"HTS — HowTo.Software\n{L["BriefTitle"]}\n\n{L["FieldProjectMode"]}: {L[Model.ProjectMode == "new" ? "ProjectNew" : "ProjectReview"]}\n{L["FieldService"]}: {L[serviceKey]}\n{existingWebsite}{L["FieldName"]}: {Model.FullName}\n{L["FieldEmail"]}: {Model.Email}\n{L["FieldPhone"]}: {Model.Phone}\n\n{L["FieldDescription"]}:\n{Model.Description}\n\n{L["BriefNotice"]}";
+        await JS.InvokeVoidAsync("hts.downloadBrief", text);
+    }
+    public void Dispose()
+    {
+        Brief.Changed -= OnBriefChanged;
+        _editContext.OnFieldChanged -= OnFieldChanged;
     }
 }

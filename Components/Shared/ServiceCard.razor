@@ -1,13 +1,14 @@
-<article class="service-card">
-    <div class="card-icon" aria-hidden="true">@Icon</div>
-    <h3>@Title</h3>
-    <p>@Description</p>
-    <a href="#quote" class="text-link">@LinkText <span>→</span></a>
-</article>
+@inject ProjectBrief Brief
 
+<details class="service-row" name="hts-services" open="@InitiallyOpen" data-reveal>
+    <summary><span class="service-number">@Index</span><h3>@Title</h3><span class="service-expand"><UiIcon Name="plus" /></span></summary>
+    <div class="service-detail"><p>@Description</p><a href="#quote" class="animated-link" @onclick="() => Brief.SelectService(Service)">@LinkText <UiIcon Name="diagonal" /></a></div>
+</details>
 @code {
-    [Parameter, EditorRequired] public string Icon { get; set; } = string.Empty;
     [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
     [Parameter, EditorRequired] public string Description { get; set; } = string.Empty;
     [Parameter, EditorRequired] public string LinkText { get; set; } = string.Empty;
+    [Parameter] public string Index { get; set; } = "01";
+    [Parameter] public string Service { get; set; } = string.Empty;
+    [Parameter] public bool InitiallyOpen { get; set; }
 }

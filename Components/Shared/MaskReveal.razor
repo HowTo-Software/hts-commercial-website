@@ -1,0 +1,7 @@
+@* Independent Blazor implementation of OriginKit's documented clip-path reveal. *@
+<span class="mask-reveal" data-reveal data-direction="@Direction" style="--reveal-delay: @(Delay)ms"><span class="mask-content">@ChildContent</span></span>
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Direction { get; set; } = "bottom";
+    [Parameter] public int Delay { get; set; }
+}

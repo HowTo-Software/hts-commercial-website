@@ -1,37 +1,43 @@
 @inject IStringLocalizer<AppStrings> L
 
+<a class="skip-link" href="#main-content">@L["SkipContent"]</a>
 <header class="site-header">
     <div class="container header-inner">
         <a class="brand" href="#home" aria-label="HTS — HowTo.Software">
-            <img src="images/hts-logo-header.svg" alt="" />
-            <span>HowTo.Software</span>
+            <span class="brand-mark">HTS<span>/</span></span>
+            <span class="brand-name">HowTo.<br />Software</span>
         </a>
-
-        <nav class="desktop-nav" aria-label="Primary navigation">
-            <a class="active" href="#home">@L["NavHome"]</a>
-            <a href="#services">@L["NavServices"]</a>
-            <a href="#projects">@L["NavProjects"]</a>
-            <a href="#about">@L["NavAbout"]</a>
-            <a href="#blog">@L["NavBlog"]</a>
-            <a href="#quote">@L["NavContact"]</a>
+        <nav class="desktop-nav" aria-label="@L["PrimaryNavigation"]">
+            <a href="#projects"><RollingText Text="@L["NavProjects"]" /></a>
+            <a href="#services"><RollingText Text="@L["NavServices"]" /></a>
+            <a href="#about"><RollingText Text="@L["NavProcess"]" /></a>
         </nav>
-
-        <a class="btn btn-outline header-cta" href="#quote">@L["RequestQuote"] <span>→</span></a>
-
-        <details class="mobile-menu" @key="_mobileMenuVersion">
-            <summary aria-label="Open menu">☰</summary>
-            <div class="mobile-menu-panel">
-                <a href="#home" @onclick="CloseMenu">@L["NavHome"]</a>
-                <a href="#services" @onclick="CloseMenu">@L["NavServices"]</a>
-                <a href="#projects" @onclick="CloseMenu">@L["NavProjects"]</a>
-                <a href="#about" @onclick="CloseMenu">@L["NavAbout"]</a>
-                <a href="#quote" @onclick="CloseMenu">@L["RequestQuote"]</a>
-            </div>
-        </details>
+        <div class="header-actions">
+            <label class="language-control">
+                <span class="visually-hidden">@L["LanguageLabel"]</span>
+                <select class="language-switch" data-language-select aria-label="@L["LanguageLabel"]">
+                    <option value="pt-BR" selected="@(CurrentLanguage == "pt")">PT-BR</option>
+                    <option value="en" selected="@(CurrentLanguage == "en")">EN</option>
+                    <option value="es" selected="@(CurrentLanguage == "es")">ES</option>
+                </select>
+                <UiIcon Name="chevron" />
+            </label>
+            <ThemeToggle />
+            <a class="button button-dark header-cta" href="#quote">@L["StartProject"] <UiIcon Name="diagonal" /></a>
+            <details class="mobile-menu">
+                <summary aria-label="@L["OpenMenu"]"><span></span><span></span></summary>
+                <nav class="mobile-menu-panel" aria-label="@L["PrimaryNavigation"]">
+                    <span class="menu-eyebrow">HTS / HOWTO.SOFTWARE</span>
+                    <a href="#projects">@L["NavProjects"] <UiIcon Name="diagonal" /></a>
+                    <a href="#services">@L["NavServices"] <UiIcon Name="diagonal" /></a>
+                    <a href="#about">@L["NavProcess"] <UiIcon Name="diagonal" /></a>
+                    <a href="#quote">@L["StartProject"] <UiIcon Name="diagonal" /></a>
+                </nav>
+            </details>
+        </div>
     </div>
+    <div class="reading-progress" aria-hidden="true"></div>
 </header>
-
 @code {
-    private int _mobileMenuVersion;
-    private void CloseMenu() => _mobileMenuVersion++;
+    private string CurrentLanguage => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 }

@@ -1,16 +1,21 @@
+@inject IStringLocalizer<AppStrings> L
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentUICulture.Name">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#091116" />
-    <meta name="description" content="HTS — HowTo.Software. Websites, systems and digital solutions for real businesses." />
+    <meta name="theme-color" content="#f5f3ee" />
+    <meta name="description" content="@L["MetaDescription"]" />
     <base href="/" />
+    <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="fonts/manrope-variable.ttf" as="font" type="font/ttf" crossorigin />
     <HeadOutlet @rendermode="InteractiveServer" />
 </head>
 <body>
     <Routes @rendermode="InteractiveServer" />
+    <script src="js/interactions.js"></script>
     <script src="_framework/blazor.web.js"></script>
 </body>
 </html>
