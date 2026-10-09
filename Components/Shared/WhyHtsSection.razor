@@ -10,10 +10,10 @@
             }
         </div>
         <div class="manifesto" data-reveal><span class="manifesto-symbol"><UiIcon Name="star" /></span><p>@L["ManifestoStart"] <strong>@L["ManifestoStrong"]</strong></p><span class="manifesto-signature">HTS /<br />HOWTO.SOFTWARE</span></div>
-        <div class="faq-layout"><div><p class="eyebrow">@L["FaqEyebrow"]</p><h3>@L["FaqTitle"]</h3></div><div class="faq-list">
+        <div class="faq-layout"><div data-reveal><p class="eyebrow">@L["FaqEyebrow"]</p><h3>@L["FaqTitle"]</h3></div><div class="faq-list">
             @for (var i = 1; i <= 6; i++)
             {
-                <details class="faq-item" name="hts-faq"><summary>@L[$"FaqQuestion{i}"]<UiIcon Name="plus" /></summary><p>@L[$"FaqAnswer{i}"]</p></details>
+                <details class="faq-item" name="hts-faq" data-reveal style="--reveal-delay: @((i - 1) % 3 * 55)ms"><summary>@L[$"FaqQuestion{i}"]<UiIcon Name="plus" /></summary><p>@L[$"FaqAnswer{i}"]</p></details>
             }
         </div></div>
     </div>

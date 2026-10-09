@@ -12,119 +12,500 @@
             <div class="quote-decoration" aria-hidden="true"><UiIcon Name="diagonal" /></div>
             <div class="quote-promise"><UiIcon Name="check" /><span>@L["ConsultativeSupport"]</span></div>
         </div>
-        <div class="quote-panel">
-            <div class="form-heading"><span>@L["BriefTitle"]</span><span>HTS / 01</span></div>
-            <EditForm EditContext="_editContext" OnValidSubmit="PrepareBrief" FormName="quote-request" OnInvalidSubmit="HandleInvalid">
-                <DataAnnotationsValidator />
-                <fieldset class="project-mode">
-                    <legend>@L["FieldProjectMode"]</legend>
-                    <InputRadioGroup @bind-Value="Model.ProjectMode">
-                        <label><InputRadio Value="@("new")" /><span>@L["ProjectNew"] <UiIcon Name="plus" /></span></label>
-                        <label><InputRadio Value="@("review")" /><span>@L["ProjectReviewShort"] <UiIcon Name="arrow" /></span></label>
-                    </InputRadioGroup>
-                </fieldset>
-                <div class="form-grid">
-                    <label class="form-span-2">
-                        <span>@L["FieldService"] <span aria-hidden="true">*</span></span>
-                        <InputSelect @bind-Value="Model.ServiceType" @bind-Value:after="ServiceChanged" aria-required="true" aria-describedby="service-error">
-                            <option value="">@L["SelectOption"]</option>
-                            <option value="website">@L["ServiceWebDev"]</option>
-                            <option value="business">@L["ServiceBusinessSites"]</option>
-                            <option value="landing">@L["ServiceLanding"]</option>
-                            <option value="custom">@L["ServiceCustom"]</option>
-                            <option value="maintenance">@L["ServiceMaintenance"]</option>
-                            <option value="backend">@L["ServiceBackend"]</option>
-                            <option value="hosting">@L["ServiceHosting"]</option>
-                            <option value="consulting">@L["ServiceConsulting"]</option>
-                        </InputSelect>
-                        <span id="service-error"><FieldValidation For="@(() => Model.ServiceType)" /></span>
-                    </label>
-                    @if (Model.ProjectMode == "review")
+        <div class="quote-panel" data-reveal>
+            <div class="form-heading"><span>@L["BriefTitle"]</span><span>HTS / @((_step + 1).ToString("00"))</span></div>
+            <nav class="wizard-navigation" aria-label="@L["BriefTitle"]">
+                <ol class="wizard-steps">
+                    @for (var i = 0; i < StepCount; i++)
                     {
-                        <label class="form-span-2">
-                            <span>@L["FieldExistingWebsite"]</span>
-                            <InputText @bind-Value="Model.WebsiteUrl" type="url" inputmode="url" autocomplete="url" maxlength="2048" placeholder="@L["WebsitePlaceholder"]" aria-describedby="website-hint website-error" />
-                            <span id="website-error"><FieldValidation For="@(() => Model.WebsiteUrl)" /></span>
-                            <small class="form-hint" id="website-hint">@L["WebsiteHint"]</small>
-                        </label>
+                        var target = i;
+                        <li class="@(target == _step ? "active" : target < _step ? "completed" : "")">
+                            <button type="button" @onclick="() => NavigateTo(target)" disabled="@(target > _furthestStep)" aria-current="@(target == _step ? "step" : null)" aria-label="@L[$"WizardStep{target + 1}"]">
+                                <span class="wizard-step-number">@(target + 1)</span><span class="wizard-step-name">@L[$"WizardStep{target + 1}"]</span>
+                            </button>
+                        </li>
                     }
-                    <label>
-                        <span>@L["FieldName"] <span aria-hidden="true">*</span></span>
-                        <InputText @bind-Value="Model.FullName" autocomplete="name" maxlength="100" placeholder="@L["NamePlaceholder"]" aria-required="true" aria-describedby="name-error" />
-                        <span id="name-error"><FieldValidation For="@(() => Model.FullName)" /></span>
-                    </label>
-                    <label>
-                        <span>@L["FieldEmail"] <span aria-hidden="true">*</span></span>
-                        <InputText @bind-Value="Model.Email" type="email" autocomplete="email" maxlength="160" placeholder="@L["EmailPlaceholder"]" aria-required="true" aria-describedby="email-error" />
-                        <span id="email-error"><FieldValidation For="@(() => Model.Email)" /></span>
-                    </label>
-                    <label class="form-span-2">
-                        <span>@L["FieldPhone"] <span aria-hidden="true">*</span></span>
-                        <InputText @bind-Value="Model.Phone" type="tel" autocomplete="tel" maxlength="40" placeholder="@L["PhonePlaceholder"]" aria-required="true" aria-describedby="phone-error" />
-                        <span id="phone-error"><FieldValidation For="@(() => Model.Phone)" /></span>
-                    </label>
-                    <label class="form-span-2">
-                        <span>@L["FieldDescription"] <span aria-hidden="true">*</span></span>
-                        <InputTextArea @bind-Value="Model.Description" maxlength="2500" rows="3" placeholder="@L[Model.ProjectMode == "review" ? "ReviewDescriptionPlaceholder" : "DescriptionPlaceholder"]" aria-required="true" aria-describedby="description-error" />
-                        <span id="description-error"><FieldValidation For="@(() => Model.Description)" /></span>
-                    </label>
+                </ol>
+                <p class="wizard-progress" role="status">@L["WizardProgress", _step + 1, StepCount]</p>
+            </nav>
+            <EditForm EditContext="_editContext" OnSubmit="HandleSubmit" FormName="quote-request" novalidate>
+                <div class="wizard-stage" data-step="@_step" @key="_step">
+                    <div class="wizard-stage-heading">
+                        <h3 id="wizard-step-heading" tabindex="-1">@L[$"WizardStep{_step + 1}"]</h3>
+                        <p>@L[$"WizardStep{_step + 1}Hint"]</p>
+                        @if (_step < StepCount - 1) { <p class="form-hint wizard-required-hint">@L["WizardRequiredHint"]</p> }
+                    </div>
+                    @if (_step == 0)
+                    {
+                        <fieldset class="project-mode">
+                            <legend>@L["FieldProjectMode"]</legend>
+                            <InputRadioGroup @bind-Value="Model.ProjectMode">
+                                <label><InputRadio Value="@("new")" /><span>@L["ProjectNew"] <UiIcon Name="plus" /></span></label>
+                                <label><InputRadio Value="@("review")" /><span>@L["ProjectReviewShort"] <UiIcon Name="arrow" /></span></label>
+                            </InputRadioGroup>
+                            <FieldValidation For="@(() => Model.ProjectMode)" />
+                        </fieldset>
+                        <div class="form-grid">
+                            <label class="form-span-2">
+                                <span>@L["FieldService"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-service" @bind-Value="Model.ServiceType" @bind-Value:after="ServiceChanged" aria-required="true" aria-describedby="service-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Services) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="service-error"><FieldValidation For="@(() => Model.ServiceType)" /></span>
+                            </label>
+                            @if (Model.ProjectMode == "review")
+                            {
+                                <label class="form-span-2">
+                                    <span>@L["FieldExistingWebsite"] <small>@L["WizardOptional"]</small></span>
+                                    <InputText id="quote-existing-website" @bind-Value="Model.WebsiteUrl" type="url" inputmode="url" autocomplete="url" maxlength="2048" placeholder="@L["WebsitePlaceholder"]" aria-describedby="website-hint website-error" />
+                                    <span id="website-error"><FieldValidation For="@(() => Model.WebsiteUrl)" /></span>
+                                    <small class="form-hint" id="website-hint">@L["WebsiteHint"]</small>
+                                </label>
+                            }
+                            <label>
+                                <span>@L["FieldName"] <span aria-hidden="true">*</span></span>
+                                <InputText id="quote-name" @bind-Value="Model.FullName" autocomplete="name" maxlength="100" placeholder="@L["NamePlaceholder"]" aria-required="true" aria-describedby="name-error" />
+                                <span id="name-error"><FieldValidation For="@(() => Model.FullName)" /></span>
+                            </label>
+                            <label>
+                                <span>@L["FieldEmail"] <span aria-hidden="true">*</span></span>
+                                <InputText id="quote-email" @bind-Value="Model.Email" type="email" autocomplete="email" maxlength="160" placeholder="@L["EmailPlaceholder"]" aria-required="true" aria-describedby="email-error" />
+                                <span id="email-error"><FieldValidation For="@(() => Model.Email)" /></span>
+                            </label>
+                            <label>
+                                <span>@L["FieldPhone"] <span aria-hidden="true">*</span></span>
+                                <InputText id="quote-phone" @bind-Value="Model.Phone" type="tel" autocomplete="tel" maxlength="40" placeholder="@L["PhonePlaceholder"]" aria-required="true" aria-describedby="phone-error" />
+                                <span id="phone-error"><FieldValidation For="@(() => Model.Phone)" /></span>
+                            </label>
+                            <label>
+                                <span>@L["FieldBusinessName"] <span aria-hidden="true">*</span></span>
+                                <InputText id="quote-business" @bind-Value="Model.BusinessName" autocomplete="organization" maxlength="120" placeholder="@L["BusinessNamePlaceholder"]" aria-required="true" aria-describedby="business-error" />
+                                <span id="business-error"><FieldValidation For="@(() => Model.BusinessName)" /></span>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldBusinessActivity"] <small>@L["WizardOptional"]</small></span>
+                                <InputText id="quote-activity" @bind-Value="Model.BusinessActivity" maxlength="300" aria-describedby="activity-hint activity-error" />
+                                <span id="activity-error"><FieldValidation For="@(() => Model.BusinessActivity)" /></span>
+                                <small id="activity-hint" class="form-hint">@L["BusinessActivityHint"]</small>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldSiteType"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-site-type" @bind-Value="Model.SiteType" aria-required="true" aria-describedby="site-type-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.SiteTypes) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="site-type-error"><FieldValidation For="@(() => Model.SiteType)" /></span>
+                            </label>
+                        </div>
+                    }
+                    else if (_step == 1)
+                    {
+                        <div class="form-grid">
+                            <label class="form-span-2">
+                                <span>@L["FieldDescription"] <span aria-hidden="true">*</span></span>
+                                <InputTextArea id="quote-description" @bind-Value="Model.Description" maxlength="2500" rows="3" placeholder="@L[Model.ProjectMode == "review" ? "ReviewDescriptionPlaceholder" : "DescriptionPlaceholder"]" aria-required="true" aria-describedby="description-error" />
+                                <span id="description-error"><FieldValidation For="@(() => Model.Description)" /></span>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldAudience"] <span aria-hidden="true">*</span></span>
+                                <InputTextArea id="quote-audience" @bind-Value="Model.Audience" maxlength="400" rows="2" placeholder="@L["AudiencePlaceholder"]" aria-required="true" aria-describedby="audience-hint audience-error" />
+                                <span id="audience-error"><FieldValidation For="@(() => Model.Audience)" /></span>
+                                <small id="audience-hint" class="form-hint">@L["AudienceHint"]</small>
+                            </label>
+                        </div>
+                        <fieldset class="wizard-choice-group" aria-describedby="pages-hint pages-error" aria-invalid="@(HasFieldError(nameof(Model.Pages)) ? "true" : null)">
+                            <legend>@L["FieldPages"] <span aria-hidden="true">*</span></legend>
+                            <p id="pages-hint" class="form-hint">@L["PagesHint"]</p>
+                            <div class="wizard-choices">
+                                @foreach (var choice in BriefOptions.Pages)
+                                {
+                                    <label><input id="page-@choice.Value" type="checkbox" checked="@Model.Pages.Contains(choice.Value)" @onchange="e => ToggleChoice(Model.Pages, choice.Value, nameof(Model.Pages), e)" /><span>@L[choice.ResourceKey]</span></label>
+                                }
+                            </div>
+                            <span id="pages-error"><FieldValidation For="@(() => Model.Pages)" /></span>
+                        </fieldset>
+                        @if (Model.Pages.Contains("other"))
+                        {
+                            <div class="form-grid">
+                                <label class="form-span-2">
+                                    <span>@L["FieldOtherPages"] <span aria-hidden="true">*</span></span>
+                                    <InputText id="quote-other-pages" @bind-Value="Model.OtherPages" maxlength="400" placeholder="@L["OtherPagesPlaceholder"]" aria-required="true" aria-describedby="other-pages-error" />
+                                    <span id="other-pages-error"><FieldValidation For="@(() => Model.OtherPages)" /></span>
+                                </label>
+                            </div>
+                        }
+                        <fieldset class="wizard-choice-group" aria-describedby="features-hint features-error">
+                            <legend>@L["FieldFeatures"] <small>@L["WizardOptional"]</small></legend>
+                            <p id="features-hint" class="form-hint">@L["FeaturesHint"]</p>
+                            <div class="wizard-choices">
+                                @foreach (var choice in BriefOptions.Features)
+                                {
+                                    <label><input id="feature-@choice.Value" type="checkbox" checked="@Model.Features.Contains(choice.Value)" @onchange="e => ToggleChoice(Model.Features, choice.Value, nameof(Model.Features), e)" /><span>@L[choice.ResourceKey]</span></label>
+                                }
+                            </div>
+                            <span id="features-error"><FieldValidation For="@(() => Model.Features)" /></span>
+                        </fieldset>
+                    }
+                    else if (_step == 2)
+                    {
+                        <div class="form-grid">
+                            <label class="form-span-2">
+                                <span>@L["FieldStyle"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-style" @bind-Value="Model.Style" aria-required="true" aria-describedby="style-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Styles) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="style-error"><FieldValidation For="@(() => Model.Style)" /></span>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldBrandColors"] <small>@L["WizardOptional"]</small></span>
+                                <InputText id="quote-brand-colors" @bind-Value="Model.BrandColors" maxlength="160" placeholder="@L["BrandColorsPlaceholder"]" aria-describedby="colors-hint colors-error" />
+                                <span id="colors-error"><FieldValidation For="@(() => Model.BrandColors)" /></span>
+                                <small id="colors-hint" class="form-hint">@L["BrandColorsHint"]</small>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldReferences"] <small>@L["WizardOptional"]</small></span>
+                                <InputTextArea id="quote-references" @bind-Value="Model.References" maxlength="1000" rows="3" placeholder="@L["ReferencesPlaceholder"]" aria-describedby="references-hint references-error" />
+                                <span id="references-error"><FieldValidation For="@(() => Model.References)" /></span>
+                                <small id="references-hint" class="form-hint">@L["ReferencesHint"]</small>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldContentReadiness"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-content" @bind-Value="Model.ContentReadiness" aria-required="true" aria-describedby="content-hint content-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.ContentStatuses) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="content-error"><FieldValidation For="@(() => Model.ContentReadiness)" /></span>
+                                <small id="content-hint" class="form-hint">@L["ContentReadinessHint"]</small>
+                            </label>
+                        </div>
+                        <fieldset class="wizard-choice-group" aria-describedby="languages-error" aria-invalid="@(HasFieldError(nameof(Model.Languages)) ? "true" : null)">
+                            <legend>@L["FieldLanguages"] <span aria-hidden="true">*</span></legend>
+                            <div class="wizard-choices">
+                                @foreach (var choice in BriefOptions.Languages)
+                                {
+                                    <label><input id="language-@choice.Value" type="checkbox" checked="@Model.Languages.Contains(choice.Value)" @onchange="e => ToggleChoice(Model.Languages, choice.Value, nameof(Model.Languages), e)" /><span>@L[choice.ResourceKey]</span></label>
+                                }
+                            </div>
+                            <span id="languages-error"><FieldValidation For="@(() => Model.Languages)" /></span>
+                        </fieldset>
+                        @if (Model.Languages.Contains("other"))
+                        {
+                            <div class="form-grid">
+                                <label class="form-span-2">
+                                    <span>@L["FieldOtherLanguage"] <span aria-hidden="true">*</span></span>
+                                    <InputText id="quote-other-language" @bind-Value="Model.OtherLanguage" maxlength="120" aria-required="true" aria-describedby="other-language-error" />
+                                    <span id="other-language-error"><FieldValidation For="@(() => Model.OtherLanguage)" /></span>
+                                </label>
+                            </div>
+                        }
+                    }
+                    else if (_step == 3)
+                    {
+                        <div class="form-grid">
+                            <label class="form-span-2">
+                                <span>@L["FieldIntegrations"] <small>@L["WizardOptional"]</small></span>
+                                <InputTextArea id="quote-integrations" @bind-Value="Model.Integrations" maxlength="800" rows="2" placeholder="@L["IntegrationsPlaceholder"]" aria-describedby="integrations-hint integrations-error" />
+                                <span id="integrations-error"><FieldValidation For="@(() => Model.Integrations)" /></span>
+                                <small id="integrations-hint" class="form-hint">@L["IntegrationsHint"]</small>
+                            </label>
+                            <label>
+                                <span>@L["FieldDomainStatus"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-domain" @bind-Value="Model.DomainStatus" aria-required="true" aria-describedby="domain-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Domains) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="domain-error"><FieldValidation For="@(() => Model.DomainStatus)" /></span>
+                            </label>
+                            <label>
+                                <span>@L["FieldHostingNeed"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-hosting" @bind-Value="Model.HostingNeed" aria-required="true" aria-describedby="hosting-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Hosting) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="hosting-error"><FieldValidation For="@(() => Model.HostingNeed)" /></span>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldBudgetRange"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-budget" @bind-Value="Model.BudgetRange" aria-required="true" aria-describedby="budget-hint budget-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Budgets) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="budget-error"><FieldValidation For="@(() => Model.BudgetRange)" /></span>
+                                <small id="budget-hint" class="form-hint">@L["BudgetHint"]</small>
+                            </label>
+                            @if (Model.BudgetRange == "defined")
+                            {
+                                <label class="form-span-2">
+                                    <span>@L["FieldBudgetDetails"] <span aria-hidden="true">*</span></span>
+                                    <InputText id="quote-budget-details" @bind-Value="Model.BudgetDetails" maxlength="160" placeholder="@L["BudgetDetailsPlaceholder"]" aria-required="true" aria-describedby="budget-details-error" />
+                                    <span id="budget-details-error"><FieldValidation For="@(() => Model.BudgetDetails)" /></span>
+                                </label>
+                            }
+                            <label class="form-span-2">
+                                <span>@L["FieldTiming"] <span aria-hidden="true">*</span></span>
+                                <InputSelect id="quote-timing" @bind-Value="Model.Timing" aria-required="true" aria-describedby="timing-hint timing-error">
+                                    <option value="">@L["SelectOption"]</option>
+                                    @foreach (var choice in BriefOptions.Timelines) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="timing-error"><FieldValidation For="@(() => Model.Timing)" /></span>
+                                <small id="timing-hint" class="form-hint">@L["TimingHint"]</small>
+                            </label>
+                            @if (Model.Timing == "specific")
+                            {
+                                <label class="form-span-2">
+                                    <span>@L["FieldLaunchDate"] <span aria-hidden="true">*</span></span>
+                                    <BriefDateInput id="quote-launch-date" @bind-Value="Model.LaunchDate" ParsingErrorMessage="@L["ValidationLaunchDate"]" aria-required="true" aria-describedby="launch-date-error" />
+                                    <span id="launch-date-error"><FieldValidation For="@(() => Model.LaunchDate)" /></span>
+                                </label>
+                            }
+                            <label class="form-span-2">
+                                <span>@L["FieldContactPreference"]</span>
+                                <InputSelect id="quote-contact-method" @bind-Value="Model.ContactPreference" aria-describedby="contact-method-error">
+                                    @foreach (var choice in BriefOptions.ContactMethods) { <option value="@choice.Value">@L[choice.ResourceKey]</option> }
+                                </InputSelect>
+                                <span id="contact-method-error"><FieldValidation For="@(() => Model.ContactPreference)" /></span>
+                            </label>
+                            <label class="form-span-2">
+                                <span>@L["FieldExtraNotes"] <small>@L["WizardOptional"]</small></span>
+                                <InputTextArea id="quote-notes" @bind-Value="Model.ExtraNotes" maxlength="1000" rows="2" placeholder="@L["ExtraNotesPlaceholder"]" aria-describedby="notes-hint notes-error" />
+                                <span id="notes-error"><FieldValidation For="@(() => Model.ExtraNotes)" /></span>
+                                <small id="notes-hint" class="form-hint">@L["ExtraNotesHint"]</small>
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="brief-review">
+                            @for (var i = 0; i < 4; i++)
+                            {
+                                var section = i;
+                                <section class="brief-review-section" aria-labelledby="review-heading-@section">
+                                    <div class="brief-review-heading"><h4 id="review-heading-@section">@L[$"WizardStep{section + 1}"]</h4><button type="button" class="animated-link" data-edit-step="@section" @onclick="() => NavigateTo(section)">@L["WizardEdit"] <UiIcon Name="arrow" /></button></div>
+                                    <dl>
+                                        @foreach (var answer in GetReviewAnswers(section))
+                                        {
+                                            <div><dt>@L[answer.Key]</dt><dd>@answer.Value</dd></div>
+                                        }
+                                    </dl>
+                                </section>
+                            }
+                        </div>
+                    }
                 </div>
-                <p class="form-note">@L["BriefNotice"]</p>
-                <button class="button button-dark submit-button" type="submit">@L["PrepareBrief"] <UiIcon Name="diagonal" /></button>
                 @if (_invalid)
                 {
                     <p class="form-feedback error-feedback" role="alert">@L["ValidationSummary"]</p>
                 }
+                <p class="form-note">@L["WizardSaveNotice"]</p>
+                <div class="wizard-actions">
+                    @if (_step > 0) { <button class="button wizard-back" type="button" @onclick="() => NavigateTo(_step - 1)">@L["WizardBack"]</button> }
+                    @if (_step < StepCount - 1)
+                    {
+                        <button class="button button-dark wizard-next" type="submit">@L[_step == 3 ? "WizardReview" : "WizardNext"] <UiIcon Name="arrow" /></button>
+                    }
+                    else
+                    {
+                        <button class="button button-dark submit-button" type="submit">@L["PrepareBrief"] <UiIcon Name="diagonal" /></button>
+                    }
+                </div>
                 @if (_prepared)
                 {
                     <div class="form-feedback success-feedback" role="status"><UiIcon Name="check" /><div><strong>@L["BriefReady"]</strong><p>@L["BriefReadyDescription"]</p><button class="animated-link" type="button" @onclick="DownloadBrief">@L["DownloadBrief"] <UiIcon Name="down" /></button></div></div>
                 }
+                @if (_downloadError) { <p class="form-feedback error-feedback" role="alert">@L["WizardDownloadError"]</p> }
             </EditForm>
         </div>
     </div>
 </section>
+
 @code {
+    private const int StepCount = 5;
     private QuoteRequest Model => Brief.Request;
     private EditContext _editContext = default!;
+    private ValidationMessageStore _messages = default!;
+    private int _step;
+    private int _furthestStep;
     private bool _prepared;
     private bool _invalid;
     private bool _focusInvalid;
+    private bool _focusStep;
+    private bool _downloadError;
+
     protected override void OnInitialized()
     {
         _editContext = new EditContext(Model);
+        _messages = new ValidationMessageStore(_editContext);
         _editContext.OnFieldChanged += OnFieldChanged;
         Brief.Changed += OnBriefChanged;
     }
+
     private void OnFieldChanged(object? sender, FieldChangedEventArgs args)
     {
         _prepared = false;
+        _downloadError = false;
+        _messages.Clear(args.FieldIdentifier);
+        var dependent = args.FieldIdentifier.FieldName switch
+        {
+            nameof(Model.ProjectMode) => nameof(Model.WebsiteUrl),
+            nameof(Model.Pages) => nameof(Model.OtherPages),
+            nameof(Model.Languages) => nameof(Model.OtherLanguage),
+            nameof(Model.BudgetRange) => nameof(Model.BudgetDetails),
+            nameof(Model.Timing) => nameof(Model.LaunchDate),
+            _ => null
+        };
+        if (dependent is not null) _messages.Clear(new FieldIdentifier(Model, dependent));
+        _editContext.NotifyValidationStateChanged();
         _ = InvokeAsync(StateHasChanged);
     }
+
     private void OnBriefChanged()
     {
         _prepared = false;
         _editContext.NotifyFieldChanged(new FieldIdentifier(Model, nameof(Model.ServiceType)));
         _editContext.NotifyFieldChanged(new FieldIdentifier(Model, nameof(Model.ProjectMode)));
+        if (_step != 0) SetStep(0);
         _ = InvokeAsync(StateHasChanged);
     }
+
     private void ServiceChanged() => Brief.SelectService(Model.ServiceType);
-    private void PrepareBrief() { _prepared = true; _invalid = false; }
-    private void HandleInvalid(EditContext _) { _prepared = false; _invalid = true; _focusInvalid = true; }
+
+    private void ToggleChoice(HashSet<string> choices, string value, string field, ChangeEventArgs args)
+    {
+        if (args.Value is true) choices.Add(value); else choices.Remove(value);
+        _editContext.NotifyFieldChanged(new FieldIdentifier(Model, field));
+    }
+
+    private void HandleSubmit(EditContext _)
+    {
+        if (_step < StepCount - 1)
+        {
+            if (ApplyValidation(BriefValidation.ValidateStep(Model, _step))) SetStep(_step + 1);
+            return;
+        }
+        _prepared = ApplyValidation(BriefValidation.Validate(Model));
+    }
+
+    private bool ApplyValidation(IReadOnlyList<ValidationResult> results)
+    {
+        _messages.Clear();
+        foreach (var result in results)
+            foreach (var member in result.MemberNames)
+                _messages.Add(new FieldIdentifier(Model, member), result.ErrorMessage ?? "ValidationRequired");
+        _editContext.NotifyValidationStateChanged();
+        // InputDate can hold a parsing error even when its last model value was
+        // valid. Include InputBase messages before allowing the next step.
+        _invalid = _editContext.GetValidationMessages().Any();
+        if (_invalid)
+        {
+            _prepared = false;
+            var firstField = results.FirstOrDefault()?.MemberNames.FirstOrDefault();
+            if (firstField is not null && _step == StepCount - 1) _step = BriefValidation.StepForField(firstField);
+            _focusInvalid = true;
+        }
+        return !_invalid;
+    }
+
+    private void NavigateTo(int target)
+    {
+        if (target < 0 || target > _furthestStep || target == _step) return;
+        if (target > _step)
+        {
+            var errors = Enumerable.Range(0, target).SelectMany(step => BriefValidation.ValidateStep(Model, step)).ToList();
+            if (!ApplyValidation(errors))
+            {
+                var firstField = errors.FirstOrDefault()?.MemberNames.FirstOrDefault();
+                if (firstField is not null) _step = BriefValidation.StepForField(firstField);
+                return;
+            }
+        }
+        _messages.Clear();
+        _editContext.NotifyValidationStateChanged();
+        SetStep(target);
+    }
+
+    private void SetStep(int target)
+    {
+        _step = target;
+        _furthestStep = Math.Max(_furthestStep, target);
+        _prepared = false;
+        _invalid = false;
+        _downloadError = false;
+        _focusStep = true;
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!_focusInvalid) return;
-        _focusInvalid = false;
-        await JS.InvokeVoidAsync("hts.focusInvalidForm");
+        if (!_focusInvalid && !_focusStep) return;
+        var method = _focusInvalid ? "hts.focusInvalidForm" : "hts.focusWizardStep";
+        _focusInvalid = _focusStep = false;
+        try { await JS.InvokeVoidAsync(method); }
+        catch (JSDisconnectedException)
+        {
+            // Navigation or disposal may disconnect the Blazor circuit;
+            // best-effort focus can safely be skipped in that case.
+        }
     }
+
     private async Task DownloadBrief()
     {
-        if (!_editContext.Validate()) { _prepared = false; _invalid = true; return; }
-        var serviceKey = Model.ServiceType switch { "website" => "ServiceWebDev", "business" => "ServiceBusinessSites", "landing" => "ServiceLanding", "custom" => "ServiceCustom", "maintenance" => "ServiceMaintenance", "backend" => "ServiceBackend", "hosting" => "ServiceHosting", _ => "ServiceConsulting" };
-        var existingWebsite = Model.ProjectMode == "review" && !string.IsNullOrWhiteSpace(Model.WebsiteUrl)
-            ? $"{L["FieldExistingWebsite"]}: {Model.WebsiteUrl.Trim()}\n" : string.Empty;
-        var text = $"HTS — HowTo.Software\n{L["BriefTitle"]}\n\n{L["FieldProjectMode"]}: {L[Model.ProjectMode == "new" ? "ProjectNew" : "ProjectReview"]}\n{L["FieldService"]}: {L[serviceKey]}\n{existingWebsite}{L["FieldName"]}: {Model.FullName}\n{L["FieldEmail"]}: {Model.Email}\n{L["FieldPhone"]}: {Model.Phone}\n\n{L["FieldDescription"]}:\n{Model.Description}\n\n{L["BriefNotice"]}";
-        await JS.InvokeVoidAsync("hts.downloadBrief", text);
+        if (!ApplyValidation(BriefValidation.Validate(Model))) return;
+        _downloadError = false;
+        try { await JS.InvokeVoidAsync("hts.downloadBrief", BriefFormatter.Format(Model, key => L[key].Value)); }
+        catch (JSException) { _downloadError = true; }
     }
+
+    private bool HasFieldError(string field) => _editContext.GetValidationMessages(new FieldIdentifier(Model, field)).Any();
+    private string Answer(string? value) => string.IsNullOrWhiteSpace(value) ? L["WizardNotProvided"].Value : value.Trim();
+    private string Choice(IReadOnlyList<BriefChoice> options, string value) => BriefOptions.Label(options, value, key => L[key].Value);
+    private string Choices(IReadOnlyList<BriefChoice> options, HashSet<string> values) => values.Count == 0
+        ? L["WizardNotProvided"].Value : string.Join(", ", options.Where(option => values.Contains(option.Value)).Select(option => L[option.ResourceKey].Value));
+
+    private IEnumerable<(string Key, string Value)> GetReviewAnswers(int step)
+    {
+        switch (step)
+        {
+            case 0:
+                yield return ("FieldProjectMode", L[Model.ProjectMode == "new" ? "ProjectNew" : "ProjectReview"].Value);
+                yield return ("FieldService", Choice(BriefOptions.Services, Model.ServiceType));
+                if (Model.ProjectMode == "review") yield return ("FieldExistingWebsite", Answer(Model.WebsiteUrl));
+                yield return ("FieldName", Answer(Model.FullName));
+                yield return ("FieldEmail", Answer(Model.Email));
+                yield return ("FieldPhone", Answer(Model.Phone));
+                yield return ("FieldBusinessName", Answer(Model.BusinessName));
+                yield return ("FieldBusinessActivity", Answer(Model.BusinessActivity));
+                yield return ("FieldSiteType", Choice(BriefOptions.SiteTypes, Model.SiteType));
+                break;
+            case 1:
+                yield return ("FieldDescription", Answer(Model.Description));
+                yield return ("FieldAudience", Answer(Model.Audience));
+                yield return ("FieldPages", Choices(BriefOptions.Pages, Model.Pages));
+                if (Model.Pages.Contains("other")) yield return ("FieldOtherPages", Answer(Model.OtherPages));
+                yield return ("FieldFeatures", Choices(BriefOptions.Features, Model.Features));
+                break;
+            case 2:
+                yield return ("FieldStyle", Choice(BriefOptions.Styles, Model.Style));
+                yield return ("FieldBrandColors", Answer(Model.BrandColors));
+                yield return ("FieldReferences", Answer(Model.References));
+                yield return ("FieldContentReadiness", Choice(BriefOptions.ContentStatuses, Model.ContentReadiness));
+                yield return ("FieldLanguages", Choices(BriefOptions.Languages, Model.Languages));
+                if (Model.Languages.Contains("other")) yield return ("FieldOtherLanguage", Answer(Model.OtherLanguage));
+                break;
+            case 3:
+                yield return ("FieldIntegrations", Answer(Model.Integrations));
+                yield return ("FieldDomainStatus", Choice(BriefOptions.Domains, Model.DomainStatus));
+                yield return ("FieldHostingNeed", Choice(BriefOptions.Hosting, Model.HostingNeed));
+                yield return ("FieldBudgetRange", Choice(BriefOptions.Budgets, Model.BudgetRange));
+                if (Model.BudgetRange == "defined") yield return ("FieldBudgetDetails", Answer(Model.BudgetDetails));
+                yield return ("FieldTiming", Choice(BriefOptions.Timelines, Model.Timing));
+                if (Model.Timing == "specific") yield return ("FieldLaunchDate", Model.LaunchDate?.ToString("d", CultureInfo.CurrentCulture) ?? L["WizardNotProvided"].Value);
+                yield return ("FieldContactPreference", Choice(BriefOptions.ContactMethods, Model.ContactPreference));
+                yield return ("FieldExtraNotes", Answer(Model.ExtraNotes));
+                break;
+        }
+    }
+
     public void Dispose()
     {
         Brief.Changed -= OnBriefChanged;

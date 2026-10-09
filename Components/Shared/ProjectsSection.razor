@@ -6,20 +6,20 @@
             <div><p class="eyebrow"><span class="section-number">01</span>@L["ProjectsEyebrow"]</p><h2><MaskReveal>@L["ProjectsTitle"]</MaskReveal><MaskReveal Delay="70"><span class="muted-heading">@L["ProjectsTitleSecond"]</span></MaskReveal></h2></div>
             <p class="heading-aside" data-reveal>@L["ProjectsIntro"]</p>
         </div>
-        <div class="project-filters" role="group" aria-label="@L["FilterProjects"]">
+        <div class="project-filters" data-reveal role="group" aria-label="@L["FilterProjects"]">
             @foreach (var filter in Filters)
             {
-                <button type="button" class="@(_filter == filter.Value ? "is-active" : "")" aria-pressed="@(_filter == filter.Value)" @onclick="() => _filter = filter.Value">@L[filter.Label]<span>@Projects.Count(p => filter.Value == "all" || p.Category == filter.Value)</span></button>
+                <button type="button" class="@(_filter == filter.Value ? "is-active" : "")" aria-pressed="@(_filter == filter.Value ? "true" : "false")" @onclick="() => _filter = filter.Value">@L[filter.Label]<span>@Projects.Count(p => filter.Value == "all" || p.Category == filter.Value)</span></button>
             }
             <span class="filter-caption">@L["SelectedConcepts"] / 2026</span>
         </div>
         <div class="projects-grid" aria-live="polite" aria-atomic="false">
             @foreach (var project in Projects.Where(p => _filter == "all" || p.Category == _filter))
             {
-                <ProjectCard @key="project.Index" Image="@project.Image" ImageAlt="@L[project.Alt]" Title="@project.Title" Subtitle="@L[project.Subtitle]" Description="@L[project.Description]" Theme="@project.Theme" Index="@project.Index" Domain="@project.Domain" DisplayBrand="@project.Brand" Headline="@L[project.Headline]" Service="@project.Service" />
+                <ProjectCard @key="(project.Index, _filter)" RevealDelay="@((int.Parse(project.Index, CultureInfo.InvariantCulture) - 1) % 2 * 90)" Image="@project.Image" ImageAlt="@L[project.Alt]" Title="@project.Title" Subtitle="@L[project.Subtitle]" Description="@L[project.Description]" Theme="@project.Theme" Index="@project.Index" Domain="@project.Domain" DisplayBrand="@project.Brand" Headline="@L[project.Headline]" Service="@project.Service" />
             }
         </div>
-        <div class="projects-bottom"><span>@L["ProjectsBottom"]</span><a class="animated-link" href="#quote">@L["CreateYours"] <UiIcon Name="diagonal" /></a></div>
+        <div class="projects-bottom" data-reveal><span>@L["ProjectsBottom"]</span><a class="animated-link" href="#quote">@L["CreateYours"] <UiIcon Name="diagonal" /></a></div>
     </div>
 </section>
 @code {

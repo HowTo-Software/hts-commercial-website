@@ -1,7 +1,7 @@
 @inject IStringLocalizer<AppStrings> L
 @inject ProjectBrief Brief
 
-<article class="project-card" data-reveal>
+<article class="project-card" data-reveal style="--reveal-delay: @(RevealDelay)ms">
     <button class="project-visual @Theme" type="button" data-open-dialog="@DialogId" aria-label="@(L["ViewConcept"] + ": " + Title)" aria-haspopup="dialog">
         <span class="project-visual-label">@L["ProjectConcept"] <span>@Index / HTS</span></span>
         <span class="project-mini-browser">
@@ -34,5 +34,6 @@
     [Parameter] public string DisplayBrand { get; set; } = string.Empty;
     [Parameter] public string Headline { get; set; } = string.Empty;
     [Parameter] public string Service { get; set; } = "business";
+    [Parameter] public int RevealDelay { get; set; }
     private string DialogId => $"project-{Index}";
 }

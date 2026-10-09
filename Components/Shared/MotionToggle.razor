@@ -1,0 +1,12 @@
+@inject IStringLocalizer<AppStrings> L
+
+<button type="button" class="motion-toggle @(ShowText ? "motion-toggle-text" : "")" data-motion-toggle
+        data-pause-label="@L["PauseAnimations"]" data-resume-label="@L["ResumeAnimations"]" data-reduced-label="@L["ReducedAnimations"]"
+        aria-label="@L["PauseAnimations"]" title="@L["PauseAnimations"]" aria-pressed="false">
+    <UiIcon Name="pause" Class="motion-icon-pause" /><UiIcon Name="play" Class="motion-icon-play" />
+    @if (ShowText) { <span data-motion-label>@L["PauseAnimations"]</span> }
+</button>
+
+@code {
+    [Parameter] public bool ShowText { get; set; }
+}
