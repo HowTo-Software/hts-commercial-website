@@ -1,6 +1,6 @@
 @inject ProjectBrief Brief
 
-<details class="service-row" name="hts-services" open="@InitiallyOpen" data-reveal>
+<details class="service-row" name="hts-services" open="@InitiallyOpen" data-reveal style="--reveal-delay: @(RevealDelay)ms">
     <summary><span class="service-number">@Index</span><h3>@Title</h3><span class="service-expand"><UiIcon Name="plus" /></span></summary>
     <div class="service-detail"><p>@Description</p><a href="#quote" class="animated-link" @onclick="() => Brief.SelectService(Service)">@LinkText <UiIcon Name="diagonal" /></a></div>
 </details>
@@ -11,4 +11,5 @@
     [Parameter] public string Index { get; set; } = "01";
     [Parameter] public string Service { get; set; } = string.Empty;
     [Parameter] public bool InitiallyOpen { get; set; }
+    [Parameter] public int RevealDelay { get; set; }
 }

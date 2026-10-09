@@ -333,4 +333,7 @@ https://another-example.com</value></data>
   <data name="ValidationChooseAtLeastOne" xml:space="preserve"><value>Choose at least one option.</value></data>
   <data name="ValidationReferences" xml:space="preserve"><value>Enter up to 5 full http:// or https:// addresses, one per line, without credentials.</value></data>
   <data name="ValidationLaunchDate" xml:space="preserve"><value>Enter a valid preferred launch date.</value></data>
+  <data name="PauseAnimations" xml:space="preserve"><value>Pause animations</value></data>
+  <data name="ResumeAnimations" xml:space="preserve"><value>Resume animations</value></data>
+  <data name="ReducedAnimations" xml:space="preserve"><value>Reduced motion enabled on your device</value></data>
 </root>

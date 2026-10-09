@@ -6,17 +6,19 @@
         <div class="hero-grid">
             <div class="hero-copy">
                 <h1><MaskReveal>@L["HeroTitleLine1"]</MaskReveal><MaskReveal Delay="90">@L["HeroTitleLine2"]</MaskReveal><MaskReveal Delay="180"><em>@L["HeroTitleAccent"]</em><span class="hero-period">.</span></MaskReveal></h1>
-                <p class="hero-text" data-reveal>@L["HeroText"]</p>
-                <div class="hero-actions" data-reveal>
+                <p class="hero-text" data-reveal style="--reveal-delay: 210ms">@L["HeroText"]</p>
+                <div class="hero-actions" data-reveal style="--reveal-delay: 280ms">
                     <a class="button button-orange" href="#quote">@L["StartProject"] <UiIcon Name="diagonal" /></a>
                     <a class="animated-link" href="#projects">@L["ExploreProjects"] <UiIcon Name="arrow" /></a>
                 </div>
-                <div class="hero-note" data-reveal><span class="note-lines" aria-hidden="true"><i></i><i></i><i></i></span><span>@L["HeroNote"]<br /><strong>@L["HeroNoteStrong"]</strong></span></div>
+                <div class="hero-note" data-reveal style="--reveal-delay: 340ms"><span class="note-lines" aria-hidden="true"><i></i><i></i><i></i></span><span>@L["HeroNote"]<br /><strong>@L["HeroNoteStrong"]</strong></span></div>
             </div>
-            <div class="hero-showcase" data-reveal>
+            <div class="hero-showcase" data-reveal data-motion-scene style="--reveal-delay: 140ms">
                 <div class="showcase-canvas @(_mobilePreview ? "is-mobile-preview" : "")" data-tilt>
-                    <div class="showcase-top"><span>@L["StudioSignature"]</span><UiIcon Name="star" /></div>
+                    <div class="showcase-glow ambient-motion" aria-hidden="true"></div>
+                    <div class="showcase-top"><span>@L["StudioSignature"]</span><UiIcon Name="star" Class="ambient-motion" /></div>
                     <span class="showcase-watermark" aria-hidden="true">h/</span>
+                    <div class="preview-float ambient-motion">
                     <div class="browser-preview" aria-hidden="true">
                         <div class="browser-chrome"><div class="browser-dots"><i></i><i></i><i></i></div><span>almeida.studio</span><UiIcon Name="plus" /></div>
                         <div class="demo-site">
@@ -26,14 +28,18 @@
                             <div class="demo-site-bottom"><span>@L["DemoFooter"]</span><span>01 — 04 <UiIcon Name="diagonal" /></span></div>
                         </div>
                     </div>
-                    <div class="showcase-tag"><span class="tag-icon"><UiIcon Name="code" /></span><span>@L["ShowcaseTag"]<strong>@L["ShowcaseTagStrong"]</strong></span><span class="tag-check"><UiIcon Name="check" /></span></div>
+                    </div>
+                    <div class="showcase-tag ambient-motion"><span class="tag-icon"><UiIcon Name="code" /></span><span>@L["ShowcaseTag"]<strong>@L["ShowcaseTagStrong"]</strong></span><span class="tag-check"><UiIcon Name="check" /></span></div>
                     <div class="showcase-bottom"><span>@L["ShowcaseCaption"]</span><span>↗</span></div>
                 </div>
                 <div class="showcase-controls">
                     <span><span class="small-cross">+</span> @L["ShowcaseTry"]</span>
+                    <div class="showcase-actions">
+                    <MotionToggle />
                     <div class="preview-toggle" role="group" aria-label="@L["PreviewMode"]">
-                        <button type="button" aria-label="@L["DesktopPreview"]" aria-pressed="@(!_mobilePreview)" class="@(!_mobilePreview ? "selected" : "")" @onclick="() => _mobilePreview = false"><UiIcon Name="desktop" /></button>
-                        <button type="button" aria-label="@L["MobilePreview"]" aria-pressed="@_mobilePreview" class="@(_mobilePreview ? "selected" : "")" @onclick="() => _mobilePreview = true"><UiIcon Name="mobile" /></button>
+                        <button type="button" aria-label="@L["DesktopPreview"]" aria-pressed="@(!_mobilePreview ? "true" : "false")" class="@(!_mobilePreview ? "selected" : "")" @onclick="() => _mobilePreview = false"><UiIcon Name="desktop" /></button>
+                        <button type="button" aria-label="@L["MobilePreview"]" aria-pressed="@(_mobilePreview ? "true" : "false")" class="@(_mobilePreview ? "selected" : "")" @onclick="() => _mobilePreview = true"><UiIcon Name="mobile" /></button>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -41,7 +47,19 @@
         <div class="hero-bottom"><a href="#projects" class="scroll-cue"><UiIcon Name="down" />@L["ScrollDiscover"]</a><p>@L["HeroBottom"]</p><span class="hero-index">01 / 05</span></div>
     </div>
 </section>
-<div class="capabilities-band"><div class="container"><span>@L["BandDesign"]</span><UiIcon Name="star" /><span>@L["BandTechnology"]</span><UiIcon Name="star" /><span>@L["BandStrategy"]</span><UiIcon Name="star" /><span>@L["BandPersonality"]</span></div></div>
+<div class="capabilities-band" data-motion-scene>
+    <div class="capabilities-window">
+        <div class="capabilities-track ambient-motion">
+            @for (var copy = 0; copy < 2; copy++)
+            {
+                <div class="capabilities-group" aria-hidden="@(copy == 1 ? "true" : null)">
+                    <span>@L["BandDesign"]</span><UiIcon Name="star" /><span>@L["BandTechnology"]</span><UiIcon Name="star" /><span>@L["BandStrategy"]</span><UiIcon Name="star" /><span>@L["BandPersonality"]</span><UiIcon Name="star" />
+                </div>
+            }
+        </div>
+    </div>
+    <div class="capabilities-controls"><MotionToggle ShowText="true" /></div>
+</div>
 @code {
     private bool _mobilePreview;
 }
