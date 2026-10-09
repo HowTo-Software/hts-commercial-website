@@ -441,7 +441,11 @@
         var method = _focusInvalid ? "hts.focusInvalidForm" : "hts.focusWizardStep";
         _focusInvalid = _focusStep = false;
         try { await JS.InvokeVoidAsync(method); }
-        catch (JSDisconnectedException) { }
+        catch (JSDisconnectedException)
+        {
+            // Navigation or disposal may disconnect the Blazor circuit;
+            // best-effort focus can safely be skipped in that case.
+        }
     }
 
     private async Task DownloadBrief()

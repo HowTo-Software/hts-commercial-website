@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace HowToSoftware.Site.Models;
 
@@ -26,10 +27,9 @@ public static class BriefValidation
         ArgumentOutOfRangeException.ThrowIfGreaterThan(step, StepFields.Length - 1);
 
         var results = new List<ValidationResult>();
-        foreach (var field in StepFields[step])
+        // Exclude hidden conditional fields from property validation.
+        foreach (var field in StepFields[step].Where(field => Applies(request, field)))
         {
-            // Hidden conditional values never enter the exported brief.
-            if (!Applies(request, field)) continue;
             var context = new ValidationContext(request) { MemberName = field };
             var value = typeof(QuoteRequest).GetProperty(field)!.GetValue(request);
             Validator.TryValidateProperty(value, context, results);
