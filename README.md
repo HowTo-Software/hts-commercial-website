@@ -1,66 +1,91 @@
 # HTS — HowTo.Software
 
-Site de criação de sites e soluções digitais da HTS, construído com **Blazor Web App, ASP.NET Core e .NET 8**.
+> Status: Unreleased documentation, website-request wizard and motion refinement; pending HTS review. Owner: HTS team. Historical baseline: 2026-09-22; frontend baseline: 2026-10-02.
 
-O frontend combina tipografia editorial, temas claro e black, detalhes em laranja, prévias de sites e animações que acompanham a navegação. As interações foram adaptadas para Razor, CSS e JavaScript nativo.
+HTS is a commercial website for custom website development and digital services, built with **Blazor Web App, ASP.NET Core and .NET 8**. Visitors explore demonstrative concepts, choose services and prepare a guided project brief in Portuguese, English or Spanish. The wizard uses the current editorial layout, orange accents and light/black themes.
 
-![Prévia desktop da HTS](docs/preview-desktop.png)
+[Português brasileiro](README.pt-BR.md) · [Documentation index](docs/README.md) · [Changelog](CHANGELOG.md)
 
-[Prévia mobile](docs/preview-mobile.png) · [Página completa](docs/preview-desktop-full.png) · [Fontes dos componentes e adaptações](docs/frontend-sources.md)
+![HTS desktop preview](docs/preview-desktop.png)
 
-[Tema black](docs/preview-black.png) · [Black no celular](docs/preview-black-mobile.png) · [Prévia em espanhol](docs/preview-es.png)
+[Mobile preview](docs/preview-mobile.png) · [Full-page preview](docs/preview-desktop-full.png) · [Black theme](docs/preview-black.png) · [Black mobile](docs/preview-black-mobile.png) · [Spanish preview](docs/preview-es.png) · [Frontend sources and attribution](docs/frontend-sources.md)
 
-## Executar
+These images document the frontend baseline. They do not establish release approval or certify the current wizard.
 
-Instale o SDK do .NET 8 ou posterior e execute:
+## Quick start
+
+Install the .NET 8 SDK, then run from this directory:
 
 ```powershell
 dotnet restore
+dotnet build -c Release
 dotnet run --no-launch-profile --urls http://localhost:5093
 ```
 
-Acesse <http://localhost:5093>. Não é necessário instalar Node, React ou pacotes npm para executar o site.
+Open <http://localhost:5093>. Node, React and npm are not required. Localization resources and images are included in the repository; the Manrope font is served locally.
 
-O cabeçalho oferece **PT-BR, EN e ES**, além do botão para alternar entre os temas claro e black. A escolha do idioma fica em cookie, e a do tema fica no navegador, inclusive depois de trocar o idioma. O tema claro continua sendo o padrão na primeira visita.
+## Website-request wizard
 
-Português brasileiro é o idioma padrão quando não há outra preferência do navegador. Também é possível usar `/culture?culture=pt-BR&returnUrl=%2F`, `/culture?culture=en&returnUrl=%2F` ou `/culture?culture=es&returnUrl=%2F`. A troca pelo seletor mantém a seção atual da página.
+The request follows five steps:
 
-## Funcionalidades
+1. **Contact and project:** contact details, business, service, website type, new or existing project and optional existing website address.
+2. **Goals and scope:** desired outcome, target audience, pages and features.
+3. **Visual direction:** style, colors, reference websites, available brand/content assets and site languages.
+4. **Technical needs and planning:** integrations, domain/hosting, estimated budget and desired timing.
+5. **Review:** check the answers, return to edit a step and download the brief as UTF-8 text.
 
-- Hero com prévia interativa de desktop e celular.
-- Projetos com filtros e prévias em diálogos acessíveis pelo teclado.
-- Serviços expansíveis para criação do zero, manutenção de projetos existentes, sistemas, backend, hospedagem e estratégia digital. A seleção preenche o briefing.
-- Processo de trabalho, perguntas frequentes e menu responsivo.
-- Briefing com projeto novo ou melhoria, validação em português, inglês e espanhol e download de TXT em UTF-8.
-- Ao escolher manutenção, o briefing indica um projeto existente e oferece um campo opcional para o endereço do site. Backend e hospedagem também podem ser selecionados e aparecem no download.
-- Tema black com contraste próprio para textos, formulários, prévias e estados de foco.
-- Animações de entrada, links e texto da navegação; indicador de seção e progresso de leitura.
-- Suporte à preferência de reduzir movimentos e conteúdo visível sem o JavaScript de animação.
-- Fonte variável Manrope e imagens hospedadas localmente, sem CDN em tempo de execução.
+Choosing a service or project concept prefills the shared brief. Maintenance retains the existing-project mode. A provided existing-site address must use HTTP or HTTPS. A successful download means the brief was prepared; it does **not** mean HTS received the request.
 
-## Estrutura
+The application currently has **no request-delivery API, database, email delivery, authentication or payment workflow**. Answers live in a scoped Blazor circuit and can be lost after a reload, restart or expired session. Downloading creates a file on the visitor's device. Integration planning is documented separately from implemented behavior.
 
-| Caminho | Responsabilidade |
+## Other features
+
+- Interactive desktop/mobile hero, project filters and keyboard-accessible preview dialogs.
+- Expandable services covering websites, business sites, landing pages, custom systems, maintenance, backend, hosting and consultancy.
+- PT-BR, EN and ES interface and validation resources. Culture preference uses a cookie; theme preference uses browser storage.
+- Responsive navigation, active-section indicator, scroll progress and reduced-motion support.
+- Demonstrative projects are explicitly identified as concepts, without claims of real clients or commercial results.
+
+## Motion refinement — Unreleased
+
+The motion direction extends the existing frontend with a gently floating hero preview, restrained decorative highlights, a moving capabilities band, slow service-art orbits, staged section/card entrances and short wizard-step feedback. Text, inputs and actions must remain stable and usable; no animation library, remote asset or additional frontend runtime is required.
+
+Visible animation controls beside the hero preview and on the capabilities band share one persistent pause/resume preference (`hts-motion`), with the operating system's reduced-motion preference taking priority. Continuous scenes pause outside the viewport and while the tab is hidden. The capabilities band also pauses for hover/focus; its repeated visual copy is hidden from assistive technology, and the paused/reduced-motion view exposes the complete original content in a static wrapping layout.
+
+Without JavaScript, the fallback keeps page content and capability labels visible; it does not replace the interactive Blazor runtime. Wizard navigation, validation feedback and download still require JavaScript and a live server connection.
+
+Motion QA passed a fresh Release build, 37 isolated controller checks, 19 browser behavior assertions and 48 combinations with 192 section-layout checks. Pause, reduced motion, hidden-tab/offscreen behavior, static fallback and relevant interactions are detailed in [the local verification record](docs/phase-4-testing/verification.md); native zoom, memory profiling and production capacity are not certified. Read the [technical motion contract](docs/phase-2-design/technical-design.md#motion-refinement--unreleased) for interaction, accessibility and performance boundaries.
+
+## Project map
+
+| Path | Responsibility |
 | --- | --- |
-| Components/Pages/Home.razor | Composição da página |
-| Components/Shared | Seções, ícones, animação de texto e validação localizada |
-| wwwroot/css/app.css | Identidade visual, estados e responsividade |
-| wwwroot/js/interactions.js | Animações, diálogos, idioma, menu, progresso e download |
-| wwwroot/js/theme.js | Tema salvo, aplicado antes do CSS, e botão acessível de alternância |
-| Models/ProjectBrief.cs | Rascunho compartilhado no circuito Blazor |
-| Resources | Textos em português brasileiro, inglês e espanhol |
-| docs/reference-sources | Código público original coletado do Skiper UI |
+| `Program.cs` | Server setup, localization, antiforgery and culture selection |
+| `Components/Pages/Home.razor` | One-page composition |
+| `Components/Shared/QuoteForm.razor` | Guided request flow, validation, review and export |
+| `Components/Shared/MotionToggle.razor` | Reusable localized global animation control |
+| `Models/QuoteRequest.cs` | Request fields and validation |
+| `Models/ProjectBrief.cs` | Draft scoped to the current Blazor circuit |
+| `Models/BriefOptions.cs` | Allowed wizard choice values and localization keys |
+| `Models/BriefValidation.cs` | Per-step and complete-request validation |
+| `Models/BriefFormatter.cs` | Localized, complete text export |
+| `Resources` | PT-BR, EN and ES copy |
+| `wwwroot/css/app.css` | Visual system, themes and responsive layout |
+| `wwwroot/js` | Theme preference, dialogs, navigation and text-file download |
+| `docs` | Requirements, architecture, development, testing, deployment and operations |
 
-## Fontes e escopo
+## Verification and release
 
-Os componentes gratuitos Text roll navigation e CssLink do **Skiper UI** foram coletados do registry oficial e portados para Razor/CSS. A atribuição está no rodapé.
+Run `dotnet build -c Release` and follow the [test cases](docs/phase-4-testing/test-cases.md). There is no checked-in automated test project or CI/CD workflow in the baseline. Browser checks and deployment guidance are described as required procedures, rather than a claim that production has been deployed or load-tested.
 
-O **Mask Text Reveal do OriginKit** foi usado como referência de comportamento. O código original exige autenticação e não foi obtido; a implementação em Blazor é própria. Os detalhes e links estão em [frontend-sources.md](docs/frontend-sources.md).
+The wizard iteration before the motion refinement passed a Release build, 629 model assertions and 150 browser layout combinations. The motion revision has separate fresh checks; see [local verification and its limits](docs/phase-4-testing/verification.md). Neither run certifies a production deployment.
 
-O briefing é validado e pode ser baixado, mas **não é enviado, armazenado em banco ou encaminhado por e-mail**. A integração com uma API permanece para a etapa de backend. Os projetos apresentados são conceitos demonstrativos, identificados como tal.
+The history dates come from Git: initial site `7b3f5ec` on **2026-09-22** and frontend reformulation `319f047` on **2026-10-02**. This documentation adaptation and wizard belong to **Unreleased**; no historical release or reviewer approval has been invented.
 
-## Validation / English
+## Attribution, contribution and security
 
-Build with `dotnet build`. Browser validation covers desktop and mobile widths from 320 to 1440 px, both themes, Portuguese, English and Spanish, project filters, dialogs, service selection, form errors and valid submissions, brief download, keyboard controls, reduced motion and visible scroll reveals. Theme and language persistence, translated downloads and browser language detection were also checked. Maintenance, backend and hosting were verified in all three languages, including the existing-project mode, optional website URL, URL validation and downloaded brief content.
+Free Skiper UI components were adapted to Razor/CSS with footer attribution. OriginKit supplied a public behavior reference for an independent implementation. See [frontend-sources.md](docs/frontend-sources.md) and [licensing guidance](docs/security/compliance.md). Manrope's SIL Open Font License is included in `wwwroot/fonts/OFL.txt`.
 
-This is a Blazor/.NET 8 site. It runs without npm dependencies. Quote drafts can be downloaded; there is currently no request delivery or storage backend. OriginKit behavior is independently implemented from public documentation; free Skiper UI source was obtained and adapted with attribution.
+The documentation structure adapts the local `best-document` lifecycle template. Its `LICENSE` file is an unfilled choice-of-license prompt, not a license grant for this project. No project-wide open-source license is declared here; HTS must decide the distribution terms before reuse or publication under a license.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md). The HTS team owns review, hosting decisions and the future request-delivery channel.

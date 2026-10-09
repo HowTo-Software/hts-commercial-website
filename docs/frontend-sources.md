@@ -1,6 +1,6 @@
 # Frontend HTS — fontes e adaptações
 
-Reformulação realizada em 2 de outubro de 2026, mantendo Blazor Web App e .NET 8.
+Reformulação histórica realizada em 2 de outubro de 2026, mantendo Blazor Web App e .NET 8. Assistente e refinamento de movimento atuais estão em Unreleased; esta data não representa uma publicação ou aprovação dessas alterações.
 
 ## Skiper UI: código coletado e adaptado
 
@@ -48,6 +48,33 @@ As imagens já incluídas no projeto foram reaproveitadas. Os projetos são apre
 
 Fonte Manrope variável hospedada localmente, obtida do [repositório oficial Google Fonts](https://github.com/google/fonts/tree/main/ofl/manrope). Licença SIL Open Font License em wwwroot/fonts/OFL.txt. Nenhum CDN é necessário em tempo de execução.
 
-## Validação
+## Validação da base histórica
 
 Build .NET e revisão em Chrome headless: português/inglês/espanhol, temas claro e black, formatos responsivos, persistência das preferências, filtros, diálogos, teclado, serviços expansíveis, seleção de serviço, mensagens de validação, download do briefing, redução de movimento e visibilidade das animações. Manutenção, backend e hospedagem foram verificados nos três idiomas, incluindo o preenchimento do briefing, endereço opcional, validação de URL e conteúdo dos arquivos baixados. Foram revisadas 30 combinações de tema, idioma e largura, de 320 a 1440 px. As prévias estão em docs/preview-desktop.png, docs/preview-mobile.png, docs/preview-black.png, docs/preview-black-mobile.png e docs/preview-es.png.
+
+## Assistente de pedido — Unreleased
+
+O formulário de briefing foi ampliado para cinco etapas: contato e projeto, objetivos e funcionalidades, visual e conteúdo, lançamento e investimento, e revisão. A alteração mantém os componentes Razor, a identidade visual e os temas existentes, sem dependências de UI adicionais.
+
+- `QuoteForm.razor` controla progresso, avanço validado, retorno, edição e revisão.
+- `BriefOptions`, `BriefValidation` e `BriefFormatter` centralizam escolhas, regras e o TXT localizado.
+- `BriefDateInput` limpa mensagens de uma data desmontada, preservando o último valor válido; erros de data no campo ativo continuam bloqueando o avanço.
+- Há perguntas sobre negócio, público, páginas, funcionalidades, estilo, cores, referências, materiais, idiomas, integrações, domínio, hospedagem, orçamento e prazo.
+- Campos condicionais ocultos não aparecem no resumo ou arquivo. Referências aceitam até cinco URLs HTTP/HTTPS sem credenciais; o servidor não visita esses endereços.
+- O fluxo mantém seleção de serviço e modo de manutenção. O cliente revisa e baixa o briefing; ainda não existe envio à HTS nem persistência do pedido.
+
+As verificações desta edição estão em [verification.md](phase-4-testing/verification.md). As datas de criação (22/09/2026) e reformulação (02/10/2026) identificam o histórico Git; não datam retroativamente esta atualização.
+
+## Motion refinement — Unreleased
+
+The current refinement extends HTS's own CSS/JavaScript motion: a subtle hero preview float, restrained decorative accents, a capabilities marquee, slow service-art orbits, staged card/section entrances and brief wizard-step transitions. Existing Skiper UI adaptations and the independent OriginKit behavior reference retain their attribution. No additional animation library or remote runtime asset is introduced.
+
+`MotionToggle.razor` provides visible global pause/resume controls at the hero and capabilities band, sharing the `hts-motion` preference (`full`/`paused`). The operating system's reduced-motion preference has priority. `data-motion`, `data-page-hidden` and observed `[data-motion-scene]` visibility govern continuous loops, so offscreen scenes and hidden tabs pause. The capabilities track additionally pauses for hover/focus, has one semantic copy and hides decorative repetition from assistive technology. Paused/reduced-motion and no-JavaScript views display the complete original group in a static wrapping layout. The no-script fallback preserves visible content/labels, not interactive wizard functionality; wizard navigation, validation feedback and download require JavaScript and the server circuit.
+
+The hero scene is observed on the stable `.hero-showcase` parent, while canvas tilt and the `preview-float` transform remain independent. Switching desktop/mobile preview must retain scene visibility. Preview/filter controls render explicit `aria-pressed` strings; focused reveal content skips its entrance delay immediately.
+
+Hover/focus pause complements the explicit stop control; it cannot replace a pause that persists while navigating elsewhere. See the [W3C Pause, Stop, Hide explanation](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html) and the [motion technical design](phase-2-design/technical-design.md#motion-refinement--unreleased). These references guide implementation and review; they do not certify the site.
+
+Fresh motion verification passed a Release build with zero warnings/errors, both script syntax checks, 37 isolated controller checks, 19 browser behavior assertions and a matrix of 48 combinations/192 section-layout checks. Pause/persistence, runtime reduced-motion changes, offscreen/hidden-tab suspension, independent transforms, preview switching, focus and relevant interactions were checked locally. Static no-script visibility, controls under unavailable storage and reduced-motion labels at 320 px in all three languages also passed. See [verification.md](phase-4-testing/verification.md) for exact scope; this is not native zoom, memory profiling or production certification. Historical frontend and earlier wizard results remain scoped to their own iterations.
+
+**PT-BR:** o refinamento mantém a identidade atual e usa CSS/JavaScript próprios, com pausa persistida, prioridade para redução de movimento e cenas suspensas quando não estão em uso. Build, sintaxe, 37 verificações isoladas, 19 checks de comportamento e 48 combinações/192 checks de seção passaram, incluindo as verificações específicas de fallback/armazenamento. Os limites estão no registro. Nenhuma data histórica foi atribuída ficticiamente a esta atualização.
