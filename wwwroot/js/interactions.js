@@ -147,7 +147,20 @@
 
     window.hts = {
         focusInvalidForm() {
-            document.querySelector("#quote .invalid")?.focus();
+            const invalid = document.querySelector("#quote .invalid, #quote [aria-invalid='true']");
+            if (invalid) {
+                const field = invalid.matches("input, select, textarea") ? invalid : invalid.querySelector("input, select, textarea");
+                (field || invalid).focus();
+                return;
+            }
+            // Checkbox sets use a fieldset, rather than a Blazor InputBase.
+            const group = Array.from(document.querySelectorAll("#quote .wizard-choice-group"))
+                .find(element => element.querySelector(".validation-message"));
+            group?.querySelector("input")?.focus();
+        },
+        focusWizardStep() {
+            document.querySelector("#wizard-step-heading")?.focus({ preventScroll: true });
+            document.querySelector("#quote .quote-panel")?.scrollIntoView({ behavior: "instant", block: "start" });
         },
         downloadBrief(text) {
             const url = URL.createObjectURL(new Blob(["\ufeff", text], { type: "text/plain;charset=utf-8" }));

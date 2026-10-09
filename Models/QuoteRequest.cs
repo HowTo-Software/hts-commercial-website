@@ -20,18 +20,73 @@ public sealed class QuoteRequest : IValidatableObject
 
     public string WebsiteUrl { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "ValidationRequired"), StringLength(120, ErrorMessage = "ValidationLength120")]
+    public string BusinessName { get; set; } = string.Empty;
+
+    [StringLength(300, ErrorMessage = "ValidationLength300")]
+    public string BusinessActivity { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string SiteType { get; set; } = string.Empty;
+
     [Required(ErrorMessage = "ValidationRequired"), StringLength(2500, MinimumLength = 15, ErrorMessage = "ValidationDescription")]
     public string Description { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "ValidationRequired"), StringLength(400, ErrorMessage = "ValidationLength400")]
+    public string Audience { get; set; } = string.Empty;
+
+    public HashSet<string> Pages { get; set; } = [];
+
+    [StringLength(400, ErrorMessage = "ValidationLength400")]
+    public string OtherPages { get; set; } = string.Empty;
+
+    public HashSet<string> Features { get; set; } = [];
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string Style { get; set; } = string.Empty;
+
+    [StringLength(160, ErrorMessage = "ValidationLength160")]
+    public string BrandColors { get; set; } = string.Empty;
+
+    [StringLength(1000, ErrorMessage = "ValidationLength1000")]
+    public string References { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string ContentReadiness { get; set; } = string.Empty;
+
+    public HashSet<string> Languages { get; set; } = ["pt-BR"];
+
+    [StringLength(120, ErrorMessage = "ValidationLength120")]
+    public string OtherLanguage { get; set; } = string.Empty;
+
+    [StringLength(800, ErrorMessage = "ValidationLength800")]
+    public string Integrations { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string DomainStatus { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string HostingNeed { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string BudgetRange { get; set; } = string.Empty;
+
+    [StringLength(160, ErrorMessage = "ValidationLength160")]
+    public string BudgetDetails { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string Timing { get; set; } = string.Empty;
+
+    public DateTime? LaunchDate { get; set; }
+
+    [StringLength(1000, ErrorMessage = "ValidationLength1000")]
+    public string ExtraNotes { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "ValidationRequired")]
+    public string ContactPreference { get; set; } = "email";
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-        if (ProjectMode != "review" || string.IsNullOrWhiteSpace(WebsiteUrl)) yield break;
-
-        var address = WebsiteUrl.Trim();
-        if (address.Length > 2048)
-            yield return new ValidationResult("ValidationWebsiteLength", new[] { nameof(WebsiteUrl) });
-        else if (!Uri.TryCreate(address, UriKind.Absolute, out var uri) ||
-                 (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
-            yield return new ValidationResult("ValidationWebsite", new[] { nameof(WebsiteUrl) });
+        return BriefValidation.Validate(this);
     }
 }

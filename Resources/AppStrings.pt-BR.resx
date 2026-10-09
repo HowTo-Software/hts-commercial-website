@@ -209,4 +209,128 @@
   <data name="ValidationWebsite" xml:space="preserve"><value>Informe um endereço completo, começando com https:// ou http://.</value></data>
   <data name="ValidationWebsiteLength" xml:space="preserve"><value>Use até 2.048 caracteres no endereço do site.</value></data>
   <data name="ReviewDescriptionPlaceholder" xml:space="preserve"><value>Ex.: atualizar meu site, corrigir o agendamento ou mudar a hospedagem...</value></data>
+  <data name="WizardProgress" xml:space="preserve"><value>Etapa {0} de {1}</value></data>
+  <data name="WizardStep1" xml:space="preserve"><value>Você e seu negócio</value></data>
+  <data name="WizardStep2" xml:space="preserve"><value>Objetivos e funcionalidades</value></data>
+  <data name="WizardStep3" xml:space="preserve"><value>Visual e conteúdo</value></data>
+  <data name="WizardStep4" xml:space="preserve"><value>Lançamento e investimento</value></data>
+  <data name="WizardStep5" xml:space="preserve"><value>Revise seu briefing</value></data>
+  <data name="WizardStep1Hint" xml:space="preserve"><value>Conte quem você é e qual tipo de projeto precisa.</value></data>
+  <data name="WizardStep2Hint" xml:space="preserve"><value>Defina o que o site deve alcançar e o que os visitantes poderão fazer.</value></data>
+  <data name="WizardStep3Hint" xml:space="preserve"><value>Escolha uma direção visual e conte quais conteúdos você já tem.</value></data>
+  <data name="WizardStep4Hint" xml:space="preserve"><value>Planeje domínio, hospedagem, orçamento e prazo desejado.</value></data>
+  <data name="WizardStep5Hint" xml:space="preserve"><value>Confira suas respostas antes de baixar o briefing do projeto.</value></data>
+  <data name="WizardNext" xml:space="preserve"><value>Continuar</value></data>
+  <data name="WizardBack" xml:space="preserve"><value>Voltar</value></data>
+  <data name="WizardReview" xml:space="preserve"><value>Revisar briefing</value></data>
+  <data name="WizardEdit" xml:space="preserve"><value>Editar respostas</value></data>
+  <data name="WizardNotProvided" xml:space="preserve"><value>Não informado</value></data>
+  <data name="WizardSelectionHint" xml:space="preserve"><value>Selecione todas as opções que se aplicam.</value></data>
+  <data name="WizardOptional" xml:space="preserve"><value>opcional</value></data>
+  <data name="WizardSaveNotice" xml:space="preserve"><value>Suas respostas ficam nesta página enquanto você preenche o briefing. Baixe para guardar uma cópia; ele não é enviado automaticamente.</value></data>
+  <data name="WizardDownloadError" xml:space="preserve"><value>Não foi possível iniciar o download. Tente novamente.</value></data>
+  <data name="WizardRequiredHint" xml:space="preserve"><value>Os campos marcados com * são obrigatórios.</value></data>
+  <data name="FieldBusinessName" xml:space="preserve"><value>Nome do negócio ou projeto</value></data>
+  <data name="FieldBusinessActivity" xml:space="preserve"><value>O que seu negócio faz?</value></data>
+  <data name="FieldSiteType" xml:space="preserve"><value>Que tipo de site você precisa?</value></data>
+  <data name="FieldAudience" xml:space="preserve"><value>Quem esse site deve alcançar?</value></data>
+  <data name="FieldPages" xml:space="preserve"><value>Quais páginas você precisa?</value></data>
+  <data name="FieldOtherPages" xml:space="preserve"><value>Outras páginas</value></data>
+  <data name="FieldFeatures" xml:space="preserve"><value>O que os visitantes poderão fazer?</value></data>
+  <data name="FieldStyle" xml:space="preserve"><value>Qual estilo visual combina com sua marca?</value></data>
+  <data name="FieldBrandColors" xml:space="preserve"><value>Cores da marca ou preferências</value></data>
+  <data name="FieldReferences" xml:space="preserve"><value>Sites que você gosta</value></data>
+  <data name="FieldContentReadiness" xml:space="preserve"><value>Você já tem textos, fotos e identidade visual?</value></data>
+  <data name="FieldLanguages" xml:space="preserve"><value>Idiomas do site</value></data>
+  <data name="FieldOtherLanguage" xml:space="preserve"><value>Outro idioma</value></data>
+  <data name="FieldIntegrations" xml:space="preserve"><value>Ferramentas ou sistemas para integrar</value></data>
+  <data name="FieldDomainStatus" xml:space="preserve"><value>Você já tem um domínio?</value></data>
+  <data name="FieldHostingNeed" xml:space="preserve"><value>O que precisa para hospedagem?</value></data>
+  <data name="FieldBudgetRange" xml:space="preserve"><value>Você já definiu um orçamento?</value></data>
+  <data name="FieldBudgetDetails" xml:space="preserve"><value>Orçamento previsto e moeda</value></data>
+  <data name="FieldTiming" xml:space="preserve"><value>Quando você gostaria de lançar?</value></data>
+  <data name="FieldLaunchDate" xml:space="preserve"><value>Data desejada de lançamento</value></data>
+  <data name="FieldExtraNotes" xml:space="preserve"><value>Algo mais que devemos saber?</value></data>
+  <data name="FieldContactPreference" xml:space="preserve"><value>Como prefere ser contatado?</value></data>
+  <data name="BusinessActivityHint" xml:space="preserve"><value>Uma breve descrição ajuda a entender seus serviços ou produtos.</value></data>
+  <data name="AudienceHint" xml:space="preserve"><value>Conte quem são seus clientes, onde estão e o que procuram.</value></data>
+  <data name="PagesHint" xml:space="preserve"><value>Escolha ao menos uma página. Podemos refinar a estrutura juntos.</value></data>
+  <data name="FeaturesHint" xml:space="preserve"><value>Selecione as funcionalidades esperadas. Deixe em branco se precisar de orientação.</value></data>
+  <data name="ReferencesHint" xml:space="preserve"><value>Até 5 endereços completos com http:// ou https://, um por linha. Não inclua links privados ou credenciais.</value></data>
+  <data name="BrandColorsHint" xml:space="preserve"><value>Pode informar nomes de cores ou códigos HEX. Não precisa de um manual de marca completo.</value></data>
+  <data name="ContentReadinessHint" xml:space="preserve"><value>Isso ajuda a planejar textos, escolha de imagens e produção de conteúdo.</value></data>
+  <data name="IntegrationsHint" xml:space="preserve"><value>Exemplos: CRM, serviço de pagamento, newsletter ou agenda. Informe apenas os nomes; nunca compartilhe senhas, tokens ou chaves de API.</value></data>
+  <data name="BudgetHint" xml:space="preserve"><value>Sua resposta orienta a proposta. Este formulário não gera preço nem compromisso de entrega.</value></data>
+  <data name="TimingHint" xml:space="preserve"><value>Este é seu prazo desejado. Escopo e entrega serão combinados após a análise.</value></data>
+  <data name="ExtraNotesHint" xml:space="preserve"><value>Conte necessidades de acessibilidade, prioridades ou restrições. Não inclua dados sensíveis nem credenciais de acesso.</value></data>
+  <data name="BusinessNamePlaceholder" xml:space="preserve"><value>Nome do seu negócio ou projeto</value></data>
+  <data name="AudiencePlaceholder" xml:space="preserve"><value>Ex.: clientes locais que querem agendar nossos serviços...</value></data>
+  <data name="BrandColorsPlaceholder" xml:space="preserve"><value>Ex.: azul e branco, #1D4ED8...</value></data>
+  <data name="ReferencesPlaceholder" xml:space="preserve"><value>https://exemplo.com
+https://outro-exemplo.com</value></data>
+  <data name="IntegrationsPlaceholder" xml:space="preserve"><value>Ex.: Stripe, Mailchimp, um CRM existente...</value></data>
+  <data name="OtherPagesPlaceholder" xml:space="preserve"><value>Ex.: depoimentos, equipe, trabalhe conosco...</value></data>
+  <data name="ExtraNotesPlaceholder" xml:space="preserve"><value>Suas prioridades, necessidades ou limitações...</value></data>
+  <data name="BudgetDetailsPlaceholder" xml:space="preserve"><value>Valor ou faixa, com a moeda</value></data>
+  <data name="SiteTypeBusiness" xml:space="preserve"><value>Site institucional</value></data>
+  <data name="SiteTypeLanding" xml:space="preserve"><value>Landing page ou página de campanha</value></data>
+  <data name="SiteTypeStore" xml:space="preserve"><value>Loja virtual</value></data>
+  <data name="SiteTypePortfolio" xml:space="preserve"><value>Portfólio</value></data>
+  <data name="SiteTypeBlog" xml:space="preserve"><value>Blog ou site de conteúdo</value></data>
+  <data name="SiteTypePlatform" xml:space="preserve"><value>Plataforma ou aplicação web</value></data>
+  <data name="ChoiceNeedGuidance" xml:space="preserve"><value>Preciso de orientação</value></data>
+  <data name="ChoiceOther" xml:space="preserve"><value>Outro</value></data>
+  <data name="PageHome" xml:space="preserve"><value>Início</value></data>
+  <data name="PageAbout" xml:space="preserve"><value>Sobre</value></data>
+  <data name="PageServices" xml:space="preserve"><value>Serviços</value></data>
+  <data name="PageProducts" xml:space="preserve"><value>Produtos</value></data>
+  <data name="PagePortfolio" xml:space="preserve"><value>Portfólio</value></data>
+  <data name="PageBlog" xml:space="preserve"><value>Blog</value></data>
+  <data name="PageFaq" xml:space="preserve"><value>Perguntas frequentes</value></data>
+  <data name="PageContact" xml:space="preserve"><value>Contato</value></data>
+  <data name="FeatureContactForm" xml:space="preserve"><value>Formulário de contato</value></data>
+  <data name="FeatureWhatsApp" xml:space="preserve"><value>Contato via WhatsApp</value></data>
+  <data name="FeatureBooking" xml:space="preserve"><value>Agendamento online</value></data>
+  <data name="FeatureStore" xml:space="preserve"><value>Loja virtual</value></data>
+  <data name="FeaturePayments" xml:space="preserve"><value>Pagamentos online</value></data>
+  <data name="FeatureLogin" xml:space="preserve"><value>Login ou área do cliente</value></data>
+  <data name="FeatureBlog" xml:space="preserve"><value>Blog ou notícias</value></data>
+  <data name="FeatureCms" xml:space="preserve"><value>Painel para editar conteúdo</value></data>
+  <data name="FeatureSearch" xml:space="preserve"><value>Busca no site</value></data>
+  <data name="FeatureAnalytics" xml:space="preserve"><value>Análise de visitantes</value></data>
+  <data name="StyleMinimal" xml:space="preserve"><value>Limpo e minimalista</value></data>
+  <data name="StyleBold" xml:space="preserve"><value>Marcante e impactante</value></data>
+  <data name="StyleElegant" xml:space="preserve"><value>Elegante e refinado</value></data>
+  <data name="StyleCorporate" xml:space="preserve"><value>Profissional e corporativo</value></data>
+  <data name="StyleCreative" xml:space="preserve"><value>Criativo e expressivo</value></data>
+  <data name="ContentReady" xml:space="preserve"><value>Sim, o conteúdo está pronto</value></data>
+  <data name="ContentPartial" xml:space="preserve"><value>Tenho parte do conteúdo</value></data>
+  <data name="ContentNeedHelp" xml:space="preserve"><value>Preciso de ajuda para criar o conteúdo</value></data>
+  <data name="LanguagePortuguese" xml:space="preserve"><value>Português (Brasil)</value></data>
+  <data name="LanguageEnglish" xml:space="preserve"><value>Inglês</value></data>
+  <data name="LanguageSpanish" xml:space="preserve"><value>Espanhol</value></data>
+  <data name="DomainHave" xml:space="preserve"><value>Já tenho um domínio</value></data>
+  <data name="DomainNeed" xml:space="preserve"><value>Preciso de um domínio</value></data>
+  <data name="HostingHts" xml:space="preserve"><value>Quero hospedagem gerenciada pela HTS</value></data>
+  <data name="HostingExisting" xml:space="preserve"><value>Já tenho hospedagem</value></data>
+  <data name="HostingRecommendation" xml:space="preserve"><value>Preciso de uma recomendação</value></data>
+  <data name="BudgetDefined" xml:space="preserve"><value>Tenho um orçamento definido</value></data>
+  <data name="BudgetAdvice" xml:space="preserve"><value>Preciso de ajuda para definir o orçamento</value></data>
+  <data name="TimingFlexible" xml:space="preserve"><value>Meu prazo é flexível</value></data>
+  <data name="TimingOneMonth" xml:space="preserve"><value>Em até um mês</value></data>
+  <data name="TimingOneThreeMonths" xml:space="preserve"><value>Entre um e três meses</value></data>
+  <data name="TimingSpecific" xml:space="preserve"><value>Tenho uma data específica</value></data>
+  <data name="ContactEmail" xml:space="preserve"><value>E-mail</value></data>
+  <data name="ContactPhone" xml:space="preserve"><value>Ligação telefônica</value></data>
+  <data name="ContactWhatsApp" xml:space="preserve"><value>WhatsApp</value></data>
+  <data name="ValidationLength120" xml:space="preserve"><value>Use até 120 caracteres.</value></data>
+  <data name="ValidationLength160" xml:space="preserve"><value>Use até 160 caracteres.</value></data>
+  <data name="ValidationLength300" xml:space="preserve"><value>Use até 300 caracteres.</value></data>
+  <data name="ValidationLength400" xml:space="preserve"><value>Use até 400 caracteres.</value></data>
+  <data name="ValidationLength800" xml:space="preserve"><value>Use até 800 caracteres.</value></data>
+  <data name="ValidationLength1000" xml:space="preserve"><value>Use até 1.000 caracteres.</value></data>
+  <data name="ValidationSelection" xml:space="preserve"><value>Escolha uma opção válida na lista.</value></data>
+  <data name="ValidationChooseAtLeastOne" xml:space="preserve"><value>Escolha ao menos uma opção.</value></data>
+  <data name="ValidationReferences" xml:space="preserve"><value>Informe até 5 endereços completos com http:// ou https://, um por linha, sem credenciais.</value></data>
+  <data name="ValidationLaunchDate" xml:space="preserve"><value>Informe uma data válida para o lançamento desejado.</value></data>
 </root>
