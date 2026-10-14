@@ -54,11 +54,8 @@
   <data name="WhyQuote" xml:space="preserve"><value>Technology at the service of those who build tomorrow.</value></data>
   <data name="ProjectsEyebrow" xml:space="preserve"><value>Ideas in action</value></data>
   <data name="ProjectsTitle" xml:space="preserve"><value>Design you can see.</value></data>
-  <data name="ProjectsIntro" xml:space="preserve"><value>Explore website concepts for different businesses. Every detail considered for an experience that makes sense.</value></data>
+  <data name="ProjectsIntro" xml:space="preserve"><value>Real websites and platforms running on our own servers today, from publishing and storefronts to communities and SaaS.</value></data>
   <data name="ViewAllProjects" xml:space="preserve"><value>View all projects</value></data>
-  <data name="ProjectCorporate" xml:space="preserve"><value>Corporate website</value></data>
-  <data name="ProjectBooking" xml:space="preserve"><value>Website with online booking</value></data>
-  <data name="ProjectLanding" xml:space="preserve"><value>Landing page</value></data>
   <data name="QuoteEyebrow" xml:space="preserve"><value>Your next chapter</value></data>
   <data name="QuoteTitle" xml:space="preserve"><value>Let’s create</value></data>
   <data name="QuoteIntro" xml:space="preserve"><value>Tell us whether you want to build from scratch, improve an existing project or need backend development and hosting. Your brief helps define the next step.</value></data>
@@ -113,32 +110,46 @@
   <data name="BandStrategy" xml:space="preserve"><value>Backend &amp; integrations</value></data>
   <data name="BandPersonality" xml:space="preserve"><value>Hosting &amp; deployment</value></data>
   <data name="ProjectsTitleSecond" xml:space="preserve"><value>Care you can feel.</value></data>
-  <data name="FilterProjects" xml:space="preserve"><value>Filter website concepts</value></data>
+  <data name="FilterProjects" xml:space="preserve"><value>Filter projects</value></data>
   <data name="FilterAll" xml:space="preserve"><value>All</value></data>
-  <data name="FilterBusiness" xml:space="preserve"><value>Business</value></data>
-  <data name="FilterLanding" xml:space="preserve"><value>Landing pages</value></data>
-  <data name="FilterBooking" xml:space="preserve"><value>Booking</value></data>
-  <data name="SelectedConcepts" xml:space="preserve"><value>Selected concepts</value></data>
-  <data name="ViewConcept" xml:space="preserve"><value>Explore concept</value></data>
-  <data name="ProjectConcept" xml:space="preserve"><value>Website concept</value></data>
   <data name="ClosePreview" xml:space="preserve"><value>Close preview</value></data>
   <data name="DesignDevelopment" xml:space="preserve"><value>DESIGN + DEVELOPMENT</value></data>
-  <data name="ConceptNotice" xml:space="preserve"><value>This is a demonstration concept, with no connection to a real business.</value></data>
   <data name="WantSimilar" xml:space="preserve"><value>I want a site like this</value></data>
   <data name="ProjectsBottom" xml:space="preserve"><value>Your business has a story. Let’s give it shape.</value></data>
+  <data name="FilterPlatforms" xml:space="preserve"><value>Platforms</value></data>
+  <data name="FilterCommerce" xml:space="preserve"><value>Commerce</value></data>
+  <data name="FilterCommunities" xml:space="preserve"><value>Brands &amp; communities</value></data>
+  <data name="SelectedWork" xml:space="preserve"><value>Selected work</value></data>
+  <data name="ViewProject" xml:space="preserve"><value>View project</value></data>
+  <data name="VisitSite" xml:space="preserve"><value>Visit site</value></data>
+  <data name="OpensNewTab" xml:space="preserve"><value>(opens in a new tab)</value></data>
+  <data name="ProjectHostedNotice" xml:space="preserve"><value>Running on HTS-managed servers.</value></data>
+  <data name="ProjectStatusLive" xml:space="preserve"><value>Live site</value></data>
+  <data name="ProjectStatusSignIn" xml:space="preserve"><value>Live platform · sign-in</value></data>
+  <data name="ProjectStatusInDevelopment" xml:space="preserve"><value>In development</value></data>
+  <data name="ProjectTypePublishing" xml:space="preserve"><value>Publishing platform</value></data>
+  <data name="ProjectTypeHosting" xml:space="preserve"><value>Game hosting storefront</value></data>
+  <data name="ProjectTypeCollection" xml:space="preserve"><value>Collection &amp; marketplace</value></data>
+  <data name="ProjectTypeCommunity" xml:space="preserve"><value>Creative community</value></data>
+  <data name="ProjectTypeAffiliate" xml:space="preserve"><value>Creator affiliate platform</value></data>
+  <data name="ProjectTypePortfolio" xml:space="preserve"><value>Engineering portfolio</value></data>
+  <data name="ProjectHowtoAlt" xml:space="preserve"><value>HowToSoftware homepage with featured posts</value></data>
+  <data name="ProjectHostingAlt" xml:space="preserve"><value>HTS game hosting homepage with the Project Zomboid plan</value></data>
+  <data name="ProjectMarksAlt" xml:space="preserve"><value>Mark's Baseball Cards homepage with the 1991 collection</value></data>
+  <data name="ProjectUnorthodoxAlt" xml:space="preserve"><value>Unorthodox Ways homepage</value></data>
+  <data name="ProjectHowtoHeadline" xml:space="preserve"><value>Thoughts, stories and ideas.</value></data>
+  <data name="ProjectHostingHeadline" xml:space="preserve"><value>Choose your game.</value></data>
+  <data name="ProjectMarksHeadline" xml:space="preserve"><value>For the love of the game.</value></data>
+  <data name="ProjectUnorthodoxHeadline" xml:space="preserve"><value>Art is survival.</value></data>
+  <data name="ProjectLinkturaHeadline" xml:space="preserve"><value>Creators and brands, connected.</value></data>
+  <data name="ProjectLegacyHeadline" xml:space="preserve"><value>Engineering, built to last.</value></data>
+  <data name="ProjectHowtoDescription" xml:space="preserve"><value>Our own publication, rebuilt from scratch on ASP.NET Core 10 and SQL Server: posts, memberships, Stripe subscriptions, newsletters and comments, with a Blazor admin panel replacing the original Ghost install.</value></data>
+  <data name="ProjectHostingDescription" xml:space="preserve"><value>A game-server storefront on .NET 10 and Blazor: visitors pick a game and a plan, pay with Stripe and receive a server provisioned automatically through Pterodactyl on hardware we own, with verified 24-hour trials.</value></data>
+  <data name="ProjectMarksDescription" xml:space="preserve"><value>An editorial home for Mark's 1991 Topps collection with live sale listings, Stripe Checkout and staff inventory tools, in English, Portuguese and Spanish with light and dark themes.</value></data>
+  <data name="ProjectUnorthodoxDescription" xml:space="preserve"><value>A home for creative production and artist support: studio session booking, an artist community and weekly classes and workshops, with separate member and staff access.</value></data>
+  <data name="ProjectLinkturaDescription" xml:space="preserve"><value>An affiliate platform connecting creators and brands: a Blazor dashboard with secure sign-in, a Shopify integration, Stripe payments and SQL Server settlement, deployed as four coordinated services.</value></data>
+  <data name="ProjectLegacyDescription" xml:space="preserve"><value>A new site in development: an engineering portfolio with confidential idea intake and a role-based CMS, built with Next.js, an ASP.NET Core API and SQL Server. The domain is already live while the full site is completed.</value></data>
   <data name="CreateYours" xml:space="preserve"><value>Create my website</value></data>
-  <data name="ProjectAlmeidaAlt" xml:space="preserve"><value>Contemporary architecture in a construction company website concept</value></data>
-  <data name="ProjectWorkshopAlt" xml:space="preserve"><value>Automotive workshop in a website concept with booking</value></data>
-  <data name="ProjectShieldAlt" xml:space="preserve"><value>Security professional in a corporate website concept</value></data>
-  <data name="ProjectRibeiroAlt" xml:space="preserve"><value>Consultant in a professional landing page concept</value></data>
-  <data name="ProjectAlmeidaHeadline" xml:space="preserve"><value>Designing tomorrow.</value></data>
-  <data name="ProjectWorkshopHeadline" xml:space="preserve"><value>Precision in every detail.</value></data>
-  <data name="ProjectShieldHeadline" xml:space="preserve"><value>Trust that protects.</value></data>
-  <data name="ProjectRibeiroHeadline" xml:space="preserve"><value>Clarity for growth.</value></data>
-  <data name="ProjectAlmeidaDescription" xml:space="preserve"><value>A visual direction for architecture and construction: editorial composition, generous imagery and clear navigation to showcase projects and connect with new clients.</value></data>
-  <data name="ProjectWorkshopDescription" xml:space="preserve"><value>An automotive services concept combining personality, clear service information and a proposed simple booking flow.</value></data>
-  <data name="ProjectShieldDescription" xml:space="preserve"><value>A corporate presence for the security sector with clear hierarchy, a restrained visual language and a focus on solutions and contact.</value></data>
-  <data name="ProjectRibeiroDescription" xml:space="preserve"><value>A consulting landing page that highlights the business proposition, organizes essential information and guides visitors to the next step.</value></data>
   <data name="ServicesTitleSecond" xml:space="preserve"><value>its own solution.</value></data>
   <data name="ChooseService" xml:space="preserve"><value>This is what I need</value></data>
   <data name="ServicesFootnote" xml:space="preserve"><value>New or existing projects. From code to launch, with the right scope for you.</value></data>

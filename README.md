@@ -2,7 +2,7 @@
 
 > Status: Unreleased documentation, website-request wizard and motion refinement; pending HTS review. Owner: HTS team. Historical baseline: 2026-09-22; frontend baseline: 2026-10-02.
 
-HTS is a commercial website for custom website development and digital services, built with **Blazor Web App, ASP.NET Core and .NET 8**. Visitors explore demonstrative concepts, choose services and prepare a guided project brief in Portuguese, English or Spanish. The wizard uses the current editorial layout, orange accents and light/black themes.
+HTS is a commercial website for custom website development and digital services, built with **Blazor Web App, ASP.NET Core and .NET 8**. Visitors explore live projects running on HTS servers, choose services and prepare a guided project brief in Portuguese, English or Spanish. The wizard uses the current editorial layout, orange accents and light/black themes.
 
 [Português brasileiro](README.pt-BR.md) · [Documentation index](docs/README.md) · [Changelog](CHANGELOG.md)
 
@@ -34,7 +34,7 @@ The request follows five steps:
 4. **Technical needs and planning:** integrations, domain/hosting, estimated budget and desired timing.
 5. **Review:** check the answers, return to edit a step and download the brief as UTF-8 text.
 
-Choosing a service or project concept prefills the shared brief. Maintenance retains the existing-project mode. A provided existing-site address must use HTTP or HTTPS. A successful download means the brief was prepared; it does **not** mean HTS received the request.
+Choosing a service or a project's "I want a site like this" action prefills the shared brief. Maintenance retains the existing-project mode. A provided existing-site address must use HTTP or HTTPS. A successful download means the brief was prepared; it does **not** mean HTS received the request.
 
 The application currently has **no request-delivery API, database, email delivery, authentication or payment workflow**. Answers live in a scoped Blazor circuit and can be lost after a reload, restart or expired session. Downloading creates a file on the visitor's device. Integration planning is documented separately from implemented behavior.
 
@@ -44,7 +44,7 @@ The application currently has **no request-delivery API, database, email deliver
 - Expandable services covering websites, business sites, landing pages, custom systems, maintenance, backend, hosting and consultancy.
 - PT-BR, EN and ES interface and validation resources. Culture preference uses a cookie; theme preference uses browser storage.
 - Responsive navigation, active-section indicator, scroll progress and reduced-motion support.
-- Demonstrative projects are explicitly identified as concepts, without claims of real clients or commercial results.
+- "Ideas in action" showcases six live sites on HTS servers: howtoosoftware.com, host.howto.software, marks-baseballcards.com, unorthodox-ways.com, linktura.org and legacy-asset-group.com. Each card links to the live site and uses a homepage screenshot, or a branded monogram where the public page is a sign-in screen or a placeholder. Screenshots are refreshed manually.
 
 ## Motion refinement — Unreleased
 

@@ -10,7 +10,7 @@
 | US-04 | “I want to revise my answers.” | Back and review edit controls preserve answers in the same circuit |
 | US-05 | “I need a complete file to discuss with HTS.” | Validated UTF-8 download includes each step and says no automatic delivery occurred |
 | US-06 | “I use a phone, keyboard or another language.” | Mobile layout, focus, error messages and PT-BR/EN/ES work in light/black themes |
-| US-07 | “I selected a service while browsing.” | Wizard keeps the service-prefill behavior from cards and project concepts |
+| US-07 | “I selected a service while browsing.” | Wizard keeps the service-prefill behavior from service cards and the project dialogs' "I want a site like this" action |
 
 ## Primary use case
 

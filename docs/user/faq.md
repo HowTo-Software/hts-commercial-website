@@ -4,7 +4,7 @@
 
 ## Does this tool build my website automatically?
 
-No. It prepares a structured custom-website brief for a later discussion with HTS. The site describes services and demonstrative concepts, not completed customer work or automatic generation.
+No. It prepares a structured custom-website brief for a later discussion with HTS. The site describes services and links to live projects running on HTS servers; it does not generate websites automatically.
 
 ## Did HTS receive my request after I downloaded the brief?
 

@@ -2,7 +2,7 @@
 
 > Status: Draft guide, pending HTS review. Owner: HTS team. Historical frontend baseline: 2026-10-02. Current edition: Unreleased.
 
-The HTS site helps you describe a custom website before discussing a proposal. You do not need an account. Start from a service card, a project concept or the brief section. Examples shown in the portfolio are demonstrative concepts.
+The HTS site helps you describe a custom website before discussing a proposal. You do not need an account. Start from a service card, a project in "Ideas in action" or the brief section. The projects shown there are live sites running on HTS servers; each card links to the site.
 
 ## Answer the wizard
 
