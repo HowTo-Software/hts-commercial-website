@@ -1,0 +1,29 @@
+# Site block for the edge Caddy on 192.168.1.210 (/home/htsadmin/caddy/Caddyfile).
+# Cloudflare -> Caddy (TLS) -> HTS commercial site container on 192.168.1.206:5180.
+# Caddy proxies WebSockets natively (needed by the Blazor Server circuit) and sets
+# X-Forwarded-Proto/For, which the app honours via ASPNETCORE_FORWARDEDHEADERS_ENABLED.
+# HSTS deliberately omits includeSubDomains so other *.howto.software hosts are unaffected.
+
+# www.howto.software -> apex redirect
+www.howto.software {
+	redir https://howto.software{uri} permanent
+}
+
+# howto.software -> HTS commercial site (Blazor Server) on 192.168.1.206:5180
+howto.software {
+	reverse_proxy 192.168.1.206:5180
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	encode gzip zstd
+
+	log {
+		output stdout
+	}
+}

@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    # main is built by the CD workflow, which calls this workflow before deploying.
+    branches-ignore: [main]
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Build and check
+    # Public repository: never run untrusted pull request code on the self-hosted runner.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore HowToSoftware.Site.csproj
+
+      - name: Build
+        run: dotnet build HowToSoftware.Site.csproj -c Release --no-restore -warnaserror
+
+      - name: Check localization keys
+        run: python3 .github/scripts/check-localization.py
+
+      - name: Publish
+        run: dotnet publish HowToSoftware.Site.csproj -c Release --no-build -o artifacts/publish
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-${{ github.sha }}
+          path: artifacts/publish
+          retention-days: 14
+          if-no-files-found: error
+
+  container:
+    name: Container build and smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build image
+        run: docker build --pull --build-arg SOURCE_REVISION="$GITHUB_SHA" -t hts-commercial-website:ci .
+
+      - name: Run container with production settings
+        run: |
+          docker run -d --name hts-ci -p 8080:8080 \
+            --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges:true \
+            -v hts-ci-keys:/home/app/.aspnet/DataProtection-Keys \
+            -e ASPNETCORE_FORWARDEDHEADERS_ENABLED=true -e "AllowedHosts=127.0.0.1;localhost" \
+            hts-commercial-website:ci
+
+      - name: Smoke test
+        run: bash .github/scripts/smoke-test.sh http://127.0.0.1:8080
+
+      - name: Container logs
+        if: always()
+        run: docker logs hts-ci || true

@@ -21,7 +21,7 @@ flowchart LR
 
 `ProjectBrief` is scoped to the circuit and publishes service-selection changes to the form. There is no durable database, object storage, email client or quote endpoint. Customer answers must not be logged or added to browser preference storage. Razor encoding and model validation remain the boundary for untrusted input.
 
-Each connected visitor consumes server circuit resources. Production scaling must account for connection support, memory, reconnect behavior and session affinity; adding replicas alone does not make in-memory state durable. Hosting and CI/CD are [proposed guidance](../phase-5-deployment/deployment-guide.md), not provisioned infrastructure.
+Each connected visitor consumes server circuit resources. Production scaling must account for connection support, memory, reconnect behavior and session affinity; adding replicas alone does not make in-memory state durable. Hosting and CI/CD are described in the [deployment guide](../phase-5-deployment/deployment-guide.md). The site deploys as a single Docker container on `192.168.1.206`, published as `howto.software` through the edge Caddy proxy on `192.168.1.210`.
 
 See [diagrams](diagrams.md), [data model](data-model.md) and [ADR index](adr/README.md). Risks include interrupted drafts, incomplete production error handling and future delivery claims exceeding implemented behavior.
 

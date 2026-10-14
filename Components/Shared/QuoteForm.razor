@@ -280,11 +280,11 @@
                         <div class="brief-review">
                             @for (var i = 0; i < 4; i++)
                             {
-                                var section = i;
-                                <section class="brief-review-section" aria-labelledby="review-heading-@section">
-                                    <div class="brief-review-heading"><h4 id="review-heading-@section">@L[$"WizardStep{section + 1}"]</h4><button type="button" class="animated-link" data-edit-step="@section" @onclick="() => NavigateTo(section)">@L["WizardEdit"] <UiIcon Name="arrow" /></button></div>
+                                var reviewStep = i;
+                                <section class="brief-review-section" aria-labelledby="review-heading-@reviewStep">
+                                    <div class="brief-review-heading"><h4 id="review-heading-@reviewStep">@L[$"WizardStep{reviewStep + 1}"]</h4><button type="button" class="animated-link" data-edit-step="@reviewStep" @onclick="() => NavigateTo(reviewStep)">@L["WizardEdit"] <UiIcon Name="arrow" /></button></div>
                                     <dl>
-                                        @foreach (var answer in GetReviewAnswers(section))
+                                        @foreach (var answer in GetReviewAnswers(reviewStep))
                                         {
                                             <div><dt>@L[answer.Key]</dt><dd>@answer.Value</dd></div>
                                         }

@@ -1,0 +1,83 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Rollback: existing image tag on the web host to redeploy (commit SHA). Leave empty to build and deploy the selected ref."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: CI
+    if: ${{ !inputs.image_tag }}
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy to web host
+    needs: ci
+    if: ${{ !cancelled() && (needs.ci.result == 'success' || (needs.ci.result == 'skipped' && inputs.image_tag)) }}
+    # Self-hosted Linux runner on 192.168.1.210 (registered with the "hts-deploy" label).
+    runs-on: [self-hosted, linux, hts-deploy]
+    timeout-minutes: 30
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://howto.software/
+    env:
+      # SSH alias defined in the runner user's ~/.ssh/config on 192.168.1.210 (htsadmin@192.168.1.206).
+      DEPLOY_SSH: ${{ vars.DEPLOY_SSH || 'hts-site-deploy-206' }}
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST || '192.168.1.206' }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/opt/hts-commercial-website' }}
+      HOST_PORT: ${{ vars.HOST_PORT || '5180' }}
+      IMAGE_NAME: hts-commercial-website
+      IMAGE_TAG: ${{ inputs.image_tag || github.sha }}
+      BUILD_IMAGE: ${{ inputs.image_tag && 'false' || 'true' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Validate deployment settings
+        run: |
+          [[ "$IMAGE_TAG" =~ ^[A-Za-z0-9_.-]{1,128}$ ]] || { echo "::error::Invalid image tag"; exit 1; }
+          [[ "$HOST_PORT" =~ ^[0-9]{1,5}$ ]] || { echo "::error::Invalid HOST_PORT"; exit 1; }
+          [[ "$DEPLOY_PATH" =~ ^/[A-Za-z0-9_./-]+$ ]] || { echo "::error::Invalid DEPLOY_PATH"; exit 1; }
+          [[ "$DEPLOY_SSH" =~ ^[A-Za-z0-9_.@-]+$ ]] || { echo "::error::Invalid DEPLOY_SSH"; exit 1; }
+          if ! ssh -o BatchMode=yes "$DEPLOY_SSH" "test -d '$DEPLOY_PATH' && test -w '$DEPLOY_PATH'"; then
+            echo "::error::$DEPLOY_PATH must exist on the web host and be writable by the deploy user (sudo install -d -o htsadmin -g htsadmin -m 750 $DEPLOY_PATH)."
+            exit 1
+          fi
+
+      - name: Build image
+        if: env.BUILD_IMAGE == 'true'
+        run: docker build --pull --build-arg SOURCE_REVISION="$GITHUB_SHA" -t "$IMAGE_NAME:$IMAGE_TAG" .
+
+      - name: Copy deployment files
+        run: scp -o BatchMode=yes deploy/docker-compose.yml deploy/deploy.sh "$DEPLOY_SSH:$DEPLOY_PATH/"
+
+      - name: Transfer image to web host
+        if: env.BUILD_IMAGE == 'true'
+        run: docker save "$IMAGE_NAME:$IMAGE_TAG" | gzip | ssh -o BatchMode=yes "$DEPLOY_SSH" 'gunzip | docker load'
+
+      - name: Deploy (with automatic rollback)
+        id: deploy
+        run: ssh -o BatchMode=yes "$DEPLOY_SSH" "chmod +x '$DEPLOY_PATH/deploy.sh' && HOST_PORT='$HOST_PORT' '$DEPLOY_PATH/deploy.sh' '$IMAGE_TAG'"
+
+      - name: Smoke test from runner
+        run: bash .github/scripts/smoke-test.sh "http://${DEPLOY_HOST}:${HOST_PORT}"
+
+      - name: Roll back after failed smoke test
+        if: failure() && steps.deploy.outcome == 'success'
+        run: |
+          ssh -o BatchMode=yes "$DEPLOY_SSH" "cd '$DEPLOY_PATH' && test -s .previous-tag && HOST_PORT='$HOST_PORT' ./deploy.sh \"\$(cat .previous-tag)\""
+
+      - name: Remove local image from runner
+        if: always() && env.BUILD_IMAGE == 'true'
+        run: docker image rm "$IMAGE_NAME:$IMAGE_TAG" || true
