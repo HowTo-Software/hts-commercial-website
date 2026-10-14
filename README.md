@@ -76,7 +76,7 @@ Motion QA passed a fresh Release build, 37 isolated controller checks, 19 browse
 
 ## Verification and release
 
-Run `dotnet build -c Release` and follow the [test cases](docs/phase-4-testing/test-cases.md). There is no checked-in automated test project or CI/CD workflow in the baseline. Browser checks and deployment guidance are described as required procedures, rather than a claim that production has been deployed or load-tested.
+Run `dotnet build -c Release` and follow the [test cases](docs/phase-4-testing/test-cases.md). There is no automated test project yet. GitHub Actions [CI/CD](docs/phase-5-deployment/ci-cd.md) builds every pull request with warnings treated as errors, checks localization keys and smoke-tests the Docker image. Pushes to `main` are deployed through the self-hosted runner `192.168.1.210` to the Docker host `192.168.1.206` (`/opt/hts-commercial-website`). Browser checks remain manual procedures, and the site has not been load-tested.
 
 The wizard iteration before the motion refinement passed a Release build, 629 model assertions and 150 browser layout combinations. The motion revision has separate fresh checks; see [local verification and its limits](docs/phase-4-testing/verification.md). Neither run certifies a production deployment.
 

@@ -10,6 +10,7 @@
 - Project-specific lifecycle documentation based on the local `best-document` structure, including requirements, design, development, testing, deployment, operations, security and user guidance.
 - English-first documentation with PT-BR guidance and a Portuguese README.
 - Motion-refinement scope: subtle hero float/decorative accents, capabilities marquee, service-art orbits, staged entrances and wizard-step transitions, with no additional animation dependency. / Escopo do refinamento: hero suave, faixa de capacidades, órbitas decorativas, entradas graduais e transições entre etapas.
+- GitHub Actions CI (Release build with warnings as errors, localization key check, publish artifact, Docker image smoke test) and CD to the Docker host `192.168.1.206:/opt/hts-commercial-website` through the self-hosted runner `192.168.1.210`, with automatic rollback. The site is published as `howto.software` through Caddy. See [CI/CD](docs/phase-5-deployment/ci-cd.md). / CI no GitHub Actions e CD com Docker para `192.168.1.206` via runner `192.168.1.210`, com rollback automático e publicação em `howto.software` via Caddy.
 - Persistent animation pause/resume, operating-system reduced-motion priority, offscreen/hidden-tab suspension and marquee hover/focus pause. Repetitions remain decorative; static content remains available. / Pausa persistida, prioridade à redução de movimento, suspensão fora da área visível/em abas ocultas e pausa da faixa no hover/foco.
 
 ### Local verification / Verificação local
@@ -27,6 +28,7 @@
 - Preview-mode and project-filter controls render explicit `aria-pressed` values. / Controles da prévia e filtros informam explicitamente seu estado acessível.
 - The hero observes a stable parent so changing desktop/mobile preview does not remove viewport motion state. / A cena do hero usa um pai estável para manter o estado de movimento ao trocar a prévia.
 - Focusing revealed content bypasses a pending entrance delay immediately. / Foco em conteúdo revelado cancela a espera da animação de entrada.
+- The brief review loop no longer names a variable `section`, which the .NET 8 Razor compiler parses as the `@section` directive; the project now builds on the .NET 8 SDK. / A revisão do pedido não usa mais a variável `section`, interpretada como diretiva pelo Razor do .NET 8.
 
 ## Frontend baseline — 2026-10-02
 

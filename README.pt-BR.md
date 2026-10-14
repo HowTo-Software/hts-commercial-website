@@ -48,7 +48,7 @@ A estrutura de `best-document` foi adaptada ao projeto em seis fases: requisitos
 
 As datas históricas são verificadas no Git: criação em **22/09/2026** (`7b3f5ec`) e reformulação do frontend em **02/10/2026** (`319f047`). Esta atualização permanece em **Unreleased**, sem atribuir uma data antiga fictícia ou aprovação inexistente.
 
-Antes de publicar, execute o build, a matriz de [testes](docs/phase-4-testing/test-cases.md), revise hospedagem e conexão Blazor e defina o canal real de recebimento. CI/CD e monitoramento estão documentados como propostas, pois não há pipeline ou infraestrutura de produção confirmados no repositório.
+Antes de publicar, execute o build, a matriz de [testes](docs/phase-4-testing/test-cases.md), revise hospedagem e conexão Blazor e defina o canal real de recebimento. O [CI/CD](docs/phase-5-deployment/ci-cd.md) no GitHub Actions valida cada PR e publica `main` via runner self-hosted `192.168.1.210` no host Docker `192.168.1.206` (`/opt/hts-commercial-website`). O monitoramento continua documentado como proposta.
 
 O assistente, antes do refinamento de movimento, passou pelo build Release, 629 verificações do modelo e 150 combinações de layout no navegador. O movimento tem resultados novos e separados no [registro de verificação local](docs/phase-4-testing/verification.md). Nenhuma dessas execuções representa homologação de produção.
 

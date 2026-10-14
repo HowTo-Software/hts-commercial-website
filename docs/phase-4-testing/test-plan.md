@@ -16,6 +16,6 @@ The Release build checks Razor/C# compilation. Browser tests check actual intera
 
 Exit requires a passing build and all high-priority [cases](test-cases.md), with no missing wizard answers, false submission message or unreachable controls. Failed cases need reproduction steps and a linked fix/retest record. Screenshots alone cannot verify export contents or data validation.
 
-Cloud readiness additionally requires staging smoke tests, disconnect/reconnect checks and measured load against the chosen deployment. No capacity, concurrency target or production uptime is asserted by this plan. The [CI guide](../phase-5-deployment/ci-cd.md) describes a proposed pipeline.
+Cloud readiness additionally requires staging smoke tests, disconnect/reconnect checks and measured load against the chosen deployment. No capacity, concurrency target or production uptime is asserted by this plan. The [CI/CD guide](../phase-5-deployment/ci-cd.md) describes the installed pipeline and its container smoke test.
 
 **PT-BR:** este é o plano de testes, não resultados inventados. Registre build, navegação real e conteúdo do TXT.
