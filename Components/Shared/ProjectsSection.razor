@@ -11,12 +11,12 @@
             {
                 <button type="button" class="@(_filter == filter.Value ? "is-active" : "")" aria-pressed="@(_filter == filter.Value ? "true" : "false")" @onclick="() => _filter = filter.Value">@L[filter.Label]<span>@Projects.Count(p => filter.Value == "all" || p.Category == filter.Value)</span></button>
             }
-            <span class="filter-caption">@L["SelectedConcepts"] / 2026</span>
+            <span class="filter-caption">@L["SelectedWork"] / 2026</span>
         </div>
         <div class="projects-grid" aria-live="polite" aria-atomic="false">
             @foreach (var project in Projects.Where(p => _filter == "all" || p.Category == _filter))
             {
-                <ProjectCard @key="(project.Index, _filter)" RevealDelay="@((int.Parse(project.Index, CultureInfo.InvariantCulture) - 1) % 2 * 90)" Image="@project.Image" ImageAlt="@L[project.Alt]" Title="@project.Title" Subtitle="@L[project.Subtitle]" Description="@L[project.Description]" Theme="@project.Theme" Index="@project.Index" Domain="@project.Domain" DisplayBrand="@project.Brand" Headline="@L[project.Headline]" Service="@project.Service" />
+                <ProjectCard @key="(project.Index, _filter)" RevealDelay="@((int.Parse(project.Index, CultureInfo.InvariantCulture) - 1) % 2 * 90)" Url="@project.Url" Image="@project.Image" ImageAlt="@(project.Alt is null ? string.Empty : L[project.Alt].Value)" Monogram="@project.Monogram" Title="@project.Title" Subtitle="@L[project.Type]" Description="@L[project.Description]" Status="@L[project.Status]" Theme="@project.Theme" Index="@project.Index" DisplayBrand="@project.Brand" Headline="@L[project.Headline]" Service="@project.Service" />
             }
         </div>
         <div class="projects-bottom" data-reveal><span>@L["ProjectsBottom"]</span><a class="animated-link" href="#quote">@L["CreateYours"] <UiIcon Name="diagonal" /></a></div>
@@ -24,12 +24,25 @@
 </section>
 @code {
     private string _filter = "all";
-    private static readonly (string Value, string Label)[] Filters = [("all", "FilterAll"), ("business", "FilterBusiness"), ("landing", "FilterLanding"), ("booking", "FilterBooking")];
-    private sealed record Project(string Index, string Title, string Brand, string Domain, string Image, string Alt, string Subtitle, string Description, string Headline, string Theme, string Category, string Service);
+    private static readonly (string Value, string Label)[] Filters = [("all", "FilterAll"), ("platform", "FilterPlatforms"), ("commerce", "FilterCommerce"), ("community", "FilterCommunities")];
+
+    // Live sites hosted on HTS servers (192.168.1.206 behind the Caddy edge on 192.168.1.210).
+    // Projects without a presentable public page use a branded monogram instead of a screenshot.
+    private sealed record Project(string Index, string Title, string Brand, string Url, string? Image, string? Alt, string Monogram,
+        string Type, string Description, string Headline, string Status, string Theme, string Category, string Service);
+
     private static readonly Project[] Projects = [
-        new("01", "Almeida Construction", "almeida®", "almeida.studio", "images/project-construction.png", "ProjectAlmeidaAlt", "ProjectCorporate", "ProjectAlmeidaDescription", "ProjectAlmeidaHeadline", "theme-sand", "business", "business"),
-        new("02", "Performance Workshop", "PERFORMANCE/", "performance.auto", "images/project-workshop.png", "ProjectWorkshopAlt", "ProjectBooking", "ProjectWorkshopDescription", "ProjectWorkshopHeadline", "theme-lilac", "booking", "custom"),
-        new("03", "Shield Security", "SHIELD®", "shield.security", "images/project-security.png", "ProjectShieldAlt", "ProjectCorporate", "ProjectShieldDescription", "ProjectShieldHeadline", "theme-sage", "business", "business"),
-        new("04", "Ribeiro Consulting", "ribeiro.", "ribeiro.consulting", "images/project-consulting.png", "ProjectRibeiroAlt", "ProjectLanding", "ProjectRibeiroDescription", "ProjectRibeiroHeadline", "theme-peach", "landing", "landing")
+        new("01", "HowToSoftware", "howtosoftware", "https://howtoosoftware.com/", "images/project-howtoosoftware.webp", "ProjectHowtoAlt", "hts",
+            "ProjectTypePublishing", "ProjectHowtoDescription", "ProjectHowtoHeadline", "ProjectStatusLive", "theme-violet", "platform", "custom"),
+        new("02", "HTS Game Hosting", "HTS / GAMES", "https://host.howto.software/", "images/project-hts-hosting.webp", "ProjectHostingAlt", "HTS",
+            "ProjectTypeHosting", "ProjectHostingDescription", "ProjectHostingHeadline", "ProjectStatusLive", "theme-night", "commerce", "custom"),
+        new("03", "Mark's Baseball Cards", "mark's", "https://marks-baseballcards.com/", "images/project-marks-baseball-cards.webp", "ProjectMarksAlt", "’91",
+            "ProjectTypeCollection", "ProjectMarksDescription", "ProjectMarksHeadline", "ProjectStatusLive", "theme-cards", "commerce", "website"),
+        new("04", "Unorthodox Ways", "UNORTHODOX WAYS", "https://unorthodox-ways.com/", "images/project-unorthodox-ways.webp", "ProjectUnorthodoxAlt", "UW",
+            "ProjectTypeCommunity", "ProjectUnorthodoxDescription", "ProjectUnorthodoxHeadline", "ProjectStatusLive", "theme-ember", "community", "business"),
+        new("05", "Linktura", "linktura", "https://linktura.org/", null, null, "L",
+            "ProjectTypeAffiliate", "ProjectLinkturaDescription", "ProjectLinkturaHeadline", "ProjectStatusSignIn", "theme-teal", "platform", "custom"),
+        new("06", "Legacy Asset Group", "LEGACY ASSET GROUP", "https://legacy-asset-group.com/", null, null, "LAG",
+            "ProjectTypePortfolio", "ProjectLegacyDescription", "ProjectLegacyHeadline", "ProjectStatusInDevelopment", "theme-sage", "community", "business")
     ];
 }

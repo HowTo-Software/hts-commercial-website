@@ -15,7 +15,7 @@ HTS must assess applicable privacy obligations for its audience and hosting arra
 | Skiper UI | Original public samples and adaptation record in [frontend-sources.md](../frontend-sources.md); preserve footer attribution |
 | OriginKit | Independently implemented behavior reference; do not claim restricted source was obtained |
 | Manrope | SIL Open Font License in `wwwroot/fonts/OFL.txt` |
-| Existing images and project concepts | Retain provenance; concepts must not imply real clients or commercial outcomes |
+| Existing images and project showcase | Retain provenance. Showcase entries must be real sites on HTS-managed servers, using their own homepage screenshots; describe status truthfully (live, sign-in or in development) without inventing commercial outcomes |
 | `best-document` | Documentation structure adapted; its LICENSE is an unfilled license-selection prompt |
 
 No general MIT or other project license is asserted. HTS must decide distribution rights before granting reuse terms. A dependency's license does not license the whole application.

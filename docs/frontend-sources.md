@@ -44,7 +44,7 @@ Para substituir a implementação por uma adaptação do código original, será
 
 ## Assets e fontes
 
-As imagens já incluídas no projeto foram reaproveitadas. Os projetos são apresentados como conceitos demonstrativos, sem alegações de clientes ou resultados reais.
+As imagens já incluídas no projeto foram reaproveitadas. A seção "Ideas in action" (Possibilidades na prática) apresenta sites reais em operação nos servidores da HTS. As imagens `wwwroot/images/project-*.webp` são capturas das páginas iniciais desses sites (1440×900, outubro de 2026). Linktura e Legacy Asset Group usam monogramas, porque a página pública é login ou provisória. As imagens conceituais antigas de oficina, segurança e consultoria foram removidas; `project-construction.png` continua no hero.
 
 Fonte Manrope variável hospedada localmente, obtida do [repositório oficial Google Fonts](https://github.com/google/fonts/tree/main/ofl/manrope). Licença SIL Open Font License em wwwroot/fonts/OFL.txt. Nenhum CDN é necessário em tempo de execução.
 
