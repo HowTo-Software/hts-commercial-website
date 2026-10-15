@@ -1,0 +1,39 @@
+@inject IStringLocalizer<AppStrings> L
+
+<div class="project-preview-art @Project.Theme" data-preview-kind="@(HasImage ? "screenshot" : "brand")">
+    <div class="project-browser-bar" aria-hidden="true">
+        <span class="project-browser-dots"><i></i><i></i><i></i></span>
+        <span>@Project.Domain</span>
+        <UiIcon Name="diagonal" />
+    </div>
+    <div class="project-preview-media">
+        @if (HasImage)
+        {
+            <img src="@Project.Image" alt="@(Project.Alt is null ? Project.Title : L[Project.Alt].Value)"
+                 width="1440" height="900" loading="lazy" decoding="async" @onerror="() => _imageFailed = true" />
+        }
+        else
+        {
+            <div class="project-brand-preview">
+                <span class="project-brand-name">@Project.Brand</span>
+                <span class="project-brand-monogram" aria-hidden="true">@Project.Monogram</span>
+                <p>@L[Project.Headline]</p>
+                <span class="project-brand-note">@L["ProjectBrandPreview"]</span>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public PortfolioProject Project { get; set; } = null!;
+    private string? _image;
+    private bool _imageFailed;
+    private bool HasImage => !string.IsNullOrEmpty(Project.Image) && !_imageFailed;
+
+    protected override void OnParametersSet()
+    {
+        if (_image == Project.Image) return;
+        _image = Project.Image;
+        _imageFailed = false;
+    }
+}

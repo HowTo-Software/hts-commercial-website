@@ -134,6 +134,8 @@
 
     document.addEventListener("focusin", event => {
         if (!(event.target instanceof Element)) return;
+        const appearance = document.querySelector(".appearance-menu[open]");
+        if (appearance && !appearance.contains(event.target)) appearance.removeAttribute("open");
         let ancestor = event.target;
         while (ancestor) {
             if (ancestor.matches("[data-reveal]")) reveal(ancestor, true);
@@ -156,6 +158,8 @@
                 event.clientY < rect.top || event.clientY > rect.bottom) event.target.close();
         }
         const menu = document.querySelector(".mobile-menu[open]");
+        const appearance = document.querySelector(".appearance-menu[open]");
+        if (appearance && !appearance.contains(event.target)) appearance.removeAttribute("open");
         if (menu && (!menu.contains(event.target) || event.target.closest(".mobile-menu-panel a"))) {
             menu.removeAttribute("open");
         }
@@ -170,6 +174,11 @@
 
     document.addEventListener("keydown", event => {
         if (event.key !== "Escape") return;
+        const appearance = document.querySelector(".appearance-menu[open]");
+        if (appearance) {
+            appearance.removeAttribute("open");
+            appearance.querySelector("summary")?.focus();
+        }
         const menu = document.querySelector(".mobile-menu[open]");
         if (menu) {
             menu.removeAttribute("open");
@@ -237,6 +246,13 @@
     });
 
     window.hts = {
+        projectIndexCanActivate(source, triggerId) {
+            const trigger = document.getElementById(triggerId);
+            // Compact layouts expand on click/tap, never on incidental mouse hover.
+            if (source === "hover") return finePointer.matches && window.matchMedia("(min-width: 851px)").matches
+                && trigger?.closest(".project-index-row")?.matches(":hover") === true;
+            return trigger === document.activeElement && trigger?.matches(":focus-visible") === true;
+        },
         focusInvalidForm() {
             const invalid = document.querySelector("#quote .invalid, #quote [aria-invalid='true']");
             if (invalid) {

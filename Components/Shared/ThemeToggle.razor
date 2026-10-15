@@ -1,8 +1,13 @@
 @inject IStringLocalizer<AppStrings> L
 
-<button type="button" class="theme-toggle" data-theme-toggle
+<button type="button" class="theme-toggle @(ShowText ? "theme-toggle-text" : "")" data-theme-toggle
         data-light-label="@L["SwitchToLight"]" data-dark-label="@L["SwitchToDark"]"
         aria-label="@L["SwitchToDark"]" title="@L["SwitchToDark"]">
     <UiIcon Name="moon" Class="theme-icon-moon" />
     <UiIcon Name="sun" Class="theme-icon-sun" />
+    @if (ShowText) { <span data-theme-label>@L["SwitchToDark"]</span> }
 </button>
+
+@code {
+    [Parameter] public bool ShowText { get; set; }
+}

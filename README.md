@@ -50,7 +50,7 @@ The application currently has **no request-delivery API, database, email deliver
 
 The motion direction extends the existing frontend with a gently floating hero preview, restrained decorative highlights, a moving capabilities band, slow service-art orbits, staged section/card entrances and short wizard-step feedback. Text, inputs and actions must remain stable and usable; no animation library, remote asset or additional frontend runtime is required.
 
-Visible animation controls beside the hero preview and on the capabilities band share one persistent pause/resume preference (`hts-motion`), with the operating system's reduced-motion preference taking priority. Continuous scenes pause outside the viewport and while the tab is hidden. The capabilities band also pauses for hover/focus; its repeated visual copy is hidden from assistive technology, and the paused/reduced-motion view exposes the complete original content in a static wrapping layout.
+The header's Appearance menu groups theme selection and the global animation control. Pause/resume retains its persistent preference (`hts-motion`), with the operating system's reduced-motion preference taking priority. Continuous scenes pause outside the viewport and while the tab is hidden. The capabilities band also pauses for hover/focus; its repeated visual copy is hidden from assistive technology, and the paused/reduced-motion view exposes the complete original content in a static wrapping layout.
 
 Without JavaScript, the fallback keeps page content and capability labels visible; it does not replace the interactive Blazor runtime. Wizard navigation, validation feedback and download still require JavaScript and a live server connection.
 
@@ -64,6 +64,7 @@ Motion QA passed a fresh Release build, 37 isolated controller checks, 19 browse
 | `Components/Pages/Home.razor` | One-page composition |
 | `Components/Shared/QuoteForm.razor` | Guided request flow, validation, review and export |
 | `Components/Shared/MotionToggle.razor` | Reusable localized global animation control |
+| `Components/Shared/AppearanceMenu.razor` | Header disclosure containing theme and animation preferences |
 | `Models/QuoteRequest.cs` | Request fields and validation |
 | `Models/ProjectBrief.cs` | Draft scoped to the current Blazor circuit |
 | `Models/BriefOptions.cs` | Allowed wizard choice values and localization keys |

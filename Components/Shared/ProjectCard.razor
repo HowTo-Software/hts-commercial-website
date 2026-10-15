@@ -1,66 +1,74 @@
 @inject IStringLocalizer<AppStrings> L
 @inject ProjectBrief Brief
+@inject IJSRuntime JS
 
-<article class="project-card" data-reveal style="--reveal-delay: @(RevealDelay)ms">
-    <button class="project-visual @Theme" type="button" data-open-dialog="@DialogId" aria-label="@(L["ViewProject"] + ": " + Title)" aria-haspopup="dialog">
-        <span class="project-visual-label">@Status <span>@Index / HTS</span></span>
-        <span class="project-mini-browser">
-            <span class="mini-browser-chrome"><span>● ● ●</span><span>@Domain</span></span>
-            <span class="project-mini-site">
-                <span class="mini-site-brand">@DisplayBrand <span>↗</span></span>
-                <span class="mini-site-headline">@Headline</span>
-                @if (HasImage)
-                {
-                    <img src="@Image" alt="@ImageAlt" width="1440" height="900" loading="lazy" />
-                }
-                else
-                {
-                    <span class="mini-site-mark" aria-hidden="true">@Monogram</span>
-                }
-                <span class="mini-site-footer">@L["DesignDevelopment"] <span>HTS /</span></span>
-            </span>
-        </span>
-        <span class="project-view-badge">@L["ViewProject"] <UiIcon Name="diagonal" /></span>
-    </button>
-    <div class="project-caption"><div><p>@Subtitle</p><h3><button type="button" class="project-title-button" data-open-dialog="@DialogId" aria-haspopup="dialog">@Title</button></h3></div><a class="circle-button" href="@Url" target="_blank" rel="noopener" aria-label="@($"{L["VisitSite"]}: {Title} {L["OpensNewTab"]}")"><UiIcon Name="diagonal" /></a></div>
-    <dialog id="@DialogId" class="project-dialog" aria-labelledby="@(DialogId + "-title")">
-        <div class="dialog-top"><span class="eyebrow">@Status / @Index</span><button type="button" class="circle-button" data-close-dialog aria-label="@L["ClosePreview"]"><UiIcon Name="close" /></button></div>
-        @if (HasImage)
-        {
-            <img src="@Image" alt="@ImageAlt" width="1440" height="900" loading="lazy" />
-        }
-        else
-        {
-            <div class="dialog-mark @Theme" aria-hidden="true"><span>@Monogram</span><span>@Domain</span></div>
-        }
+<article class="project-index-row @(Active ? "is-active" : "")" data-project-id="@Project.Index" @onpointerenter="OnPointerEnter">
+    <div class="project-index-line">
+        <button class="project-index-trigger" type="button" id="@($"project-trigger-{Project.Index}")"
+                aria-pressed="@(Active ? "true" : "false")" aria-expanded="@(Active ? "true" : "false")"
+                aria-controls="@($"project-mobile-{Project.Index} project-preview")" @onclick="Select" @onfocus="OnFocus">
+            <span class="project-index-number">@Project.Index</span>
+            <span class="project-index-name">@Project.Title</span>
+            <span class="project-index-service">@L[Project.Type]</span>
+        </button>
+        <a class="project-site-link" href="@Project.Url" target="_blank" rel="noopener noreferrer"
+           aria-label="@($"{L["VisitSite"]}: {Project.Title} {L["OpensNewTab"]}")"><UiIcon Name="diagonal" /></a>
+    </div>
+    <div id="@($"project-mobile-{Project.Index}")" class="project-mobile-slot" aria-hidden="@(Active ? "false" : "true")">
+        <div class="project-mobile-inner">
+            @if (Active)
+            {
+                <div class="project-mobile-content">
+                    <div class="project-mobile-media"><ProjectPreview Project="Project" /></div>
+                    <div class="project-mobile-copy">
+                        <span class="project-preview-status">@L[Project.Status]</span>
+                        <p>@L[Project.Description]</p>
+                        <button type="button" class="animated-link" data-open-dialog="@Project.DialogId" aria-haspopup="dialog">
+                            @L["ViewProject"] <UiIcon Name="diagonal" />
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <dialog id="@Project.DialogId" class="project-dialog" aria-labelledby="@(Project.DialogId + "-title")">
+        <div class="dialog-top"><span class="eyebrow">@L[Project.Status] / @Project.Index</span><button type="button" class="circle-button" data-close-dialog aria-label="@L["ClosePreview"]"><UiIcon Name="close" /></button></div>
+        <ProjectPreview Project="Project" />
         <div class="dialog-copy">
-            <p class="eyebrow">@Subtitle</p>
-            <h3 id="@(DialogId + "-title")">@Title</h3>
-            <p>@Description</p>
+            <p class="eyebrow">@L[Project.Type]</p>
+            <h3 id="@(Project.DialogId + "-title")">@Project.Title</h3>
+            <p>@L[Project.Description]</p>
             <p class="project-note">@L["ProjectHostedNotice"]</p>
             <div class="dialog-actions">
-                <a href="@Url" class="button button-orange" target="_blank" rel="noopener">@L["VisitSite"] <span class="visually-hidden">@L["OpensNewTab"]</span><UiIcon Name="diagonal" /></a>
-                <a href="#quote" class="animated-link" data-close-dialog @onclick="() => Brief.SelectService(Service)">@L["WantSimilar"] <UiIcon Name="diagonal" /></a>
+                <a href="@Project.Url" class="button button-orange" target="_blank" rel="noopener noreferrer">@L["VisitSite"] <span class="visually-hidden">@L["OpensNewTab"]</span><UiIcon Name="diagonal" /></a>
+                <a href="#quote" class="animated-link" data-close-dialog @onclick="() => Brief.SelectService(Project.Service)">@L["WantSimilar"] <UiIcon Name="diagonal" /></a>
             </div>
         </div>
     </dialog>
 </article>
 @code {
-    [Parameter, EditorRequired] public string Url { get; set; } = string.Empty;
-    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
-    [Parameter, EditorRequired] public string Subtitle { get; set; } = string.Empty;
-    [Parameter] public string? Image { get; set; }
-    [Parameter] public string ImageAlt { get; set; } = string.Empty;
-    [Parameter] public string Monogram { get; set; } = string.Empty;
-    [Parameter] public string Description { get; set; } = string.Empty;
-    [Parameter] public string Status { get; set; } = string.Empty;
-    [Parameter] public string Theme { get; set; } = string.Empty;
-    [Parameter] public string Index { get; set; } = "01";
-    [Parameter] public string DisplayBrand { get; set; } = string.Empty;
-    [Parameter] public string Headline { get; set; } = string.Empty;
-    [Parameter] public string Service { get; set; } = "business";
-    [Parameter] public int RevealDelay { get; set; }
-    private string DialogId => $"project-{Index}";
-    private bool HasImage => !string.IsNullOrEmpty(Image);
-    private string Domain => Uri.TryCreate(Url, UriKind.Absolute, out var uri) ? uri.Host : Url;
+    [Parameter, EditorRequired] public PortfolioProject Project { get; set; } = null!;
+    [Parameter] public bool Active { get; set; }
+    [Parameter] public EventCallback<string> Selected { get; set; }
+
+    private Task Select() => Selected.InvokeAsync(Project.Index);
+
+    private Task OnPointerEnter(PointerEventArgs args)
+        => args.PointerType == "mouse" ? ActivateFrom("hover") : Task.CompletedTask;
+
+    private Task OnFocus() => ActivateFrom("focus");
+
+    private async Task ActivateFrom(string source)
+    {
+        if (Active) return;
+        try
+        {
+            if (await JS.InvokeAsync<bool>("hts.projectIndexCanActivate", source, $"project-trigger-{Project.Index}"))
+                await Select();
+        }
+        catch (JSDisconnectedException)
+        {
+            // A disconnected circuit no longer needs hover or focus updates.
+        }
+    }
 }

@@ -1,5 +1,19 @@
 # Frontend HTS — fontes e adaptações
 
+## Appearance preferences — Unreleased
+
+**English:** `AppearanceMenu.razor` groups theme and animation actions in a compact native disclosure in the existing header. The hero and capabilities band no longer contain separate animation buttons. Both actions have localized visible labels and comfortable touch targets; Escape returns focus to the trigger, and outside clicks/focus departure close the panel. Existing storage persistence, storage-failure fallback and OS reduced-motion priority remain active. Local Playwright checks covered behavior and 48 open-panel layouts across three languages, two themes and eight widths, plus a project-index regression check. These are local browser results. The requester accepted the preview and authorized publication for pull-request review and later merge; production deployment remains a separate step.
+
+**PT-BR:** `AppearanceMenu.razor` reúne tema e animações em um menu nativo compacto no cabeçalho existente. O hero e a faixa de capacidades deixam de ter botões de animação separados. As duas ações têm textos visíveis traduzidos e áreas de toque confortáveis; Escape devolve o foco ao acionador, e cliques ou foco fora fecham o painel. Permanecem a preferência salva, o funcionamento sem armazenamento e a prioridade de movimento reduzido do sistema. Verificações locais com Playwright cobriram o comportamento e 48 layouts com painel aberto em três idiomas, dois temas e oito larguras, além de uma regressão do índice de projetos. São resultados locais de navegador. O solicitante aceitou a prévia e autorizou a publicação para revisão em pull request e merge posterior; a implantação em produção permanece uma etapa separada.
+
+## Interactive project index — Unreleased
+
+**English:** the user-supplied `hts-interactive-index.html` is the portfolio's visual/interaction reference, adapted to the existing Blazor site rather than published as a standalone page. The existing six projects, categories, URLs, real screenshots and brand fallbacks are preserved. No illustrative site captures, new runtime libraries or unrelated page redesign are introduced. See the complete [implementation notes](phase-2-design/interactive-project-index.md).
+
+**PT-BR:** o arquivo `hts-interactive-index.html`, fornecido pelo usuário, é a referência visual/de interação do portfólio, adaptada ao site Blazor existente em vez de publicada como página independente. Os seis projetos, categorias, URLs, capturas reais e alternativas de marca existentes são preservados. Não são introduzidas capturas ilustrativas de sites, novas bibliotecas de execução ou reformulação de outras seções. Consulte as [notas completas da implementação](phase-2-design/interactive-project-index.md).
+
+## Base histórica do frontend
+
 Reformulação histórica realizada em 2 de outubro de 2026, mantendo Blazor Web App e .NET 8. Assistente e refinamento de movimento atuais estão em Unreleased; esta data não representa uma publicação ou aprovação dessas alterações.
 
 ## Skiper UI: código coletado e adaptado
@@ -38,7 +52,7 @@ Para substituir a implementação por uma adaptação do código original, será
 - Menu mobile usa details, fecha após navegar, ao clicar fora e com Escape.
 - Cabeçalho oferece PT-BR, EN e ES. Traduções incluem conteúdo, mensagens de validação, metadados e download do briefing. A escolha fica em cookie e a troca preserva a seção atual.
 - Tema claro e black com escolha salva no navegador. theme.js aplica a preferência no head, antes do CSS, e atualiza o rótulo do botão no idioma selecionado.
-- Tilt discreto apenas na prévia principal, somente com ponteiro fino.
+- Tilt discreto nas prévias do hero e do índice de projetos, somente com ponteiro fino e respeitando as preferências de movimento.
 - As entradas respeitam prefers-reduced-motion. O conteúdo permanece visível quando o JavaScript não carrega.
 - interactions.js também observa os componentes inseridos por atualizações do Blazor e remove observações dos elementos desmontados.
 
@@ -69,7 +83,7 @@ As verificações desta edição estão em [verification.md](phase-4-testing/ver
 
 The current refinement extends HTS's own CSS/JavaScript motion: a subtle hero preview float, restrained decorative accents, a capabilities marquee, slow service-art orbits, staged card/section entrances and brief wizard-step transitions. Existing Skiper UI adaptations and the independent OriginKit behavior reference retain their attribution. No additional animation library or remote runtime asset is introduced.
 
-`MotionToggle.razor` provides visible global pause/resume controls at the hero and capabilities band, sharing the `hts-motion` preference (`full`/`paused`). The operating system's reduced-motion preference has priority. `data-motion`, `data-page-hidden` and observed `[data-motion-scene]` visibility govern continuous loops, so offscreen scenes and hidden tabs pause. The capabilities track additionally pauses for hover/focus, has one semantic copy and hides decorative repetition from assistive technology. Paused/reduced-motion and no-JavaScript views display the complete original group in a static wrapping layout. The no-script fallback preserves visible content/labels, not interactive wizard functionality; wizard navigation, validation feedback and download require JavaScript and the server circuit.
+`MotionToggle.razor` provides a visible global pause/resume action inside the header's Appearance menu, using the `hts-motion` preference (`full`/`paused`). The operating system's reduced-motion preference has priority. `data-motion`, `data-page-hidden` and observed `[data-motion-scene]` visibility govern continuous loops, so offscreen scenes and hidden tabs pause. The capabilities track additionally pauses for hover/focus, has one semantic copy and hides decorative repetition from assistive technology. Paused/reduced-motion and no-JavaScript views display the complete original group in a static wrapping layout. The no-script fallback preserves visible content/labels, not interactive wizard functionality; wizard navigation, validation feedback and download require JavaScript and the server circuit.
 
 The hero scene is observed on the stable `.hero-showcase` parent, while canvas tilt and the `preview-float` transform remain independent. Switching desktop/mobile preview must retain scene visibility. Preview/filter controls render explicit `aria-pressed` strings; focused reveal content skips its entrance delay immediately.
 
