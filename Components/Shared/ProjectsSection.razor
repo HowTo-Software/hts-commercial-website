@@ -1,22 +1,57 @@
 @inject IStringLocalizer<AppStrings> L
 
-<section id="projects" class="section projects-section">
+<section id="projects" class="section projects-section" aria-labelledby="projects-heading">
     <div class="container">
         <div class="section-heading split-heading">
-            <div><p class="eyebrow"><span class="section-number">01</span>@L["ProjectsEyebrow"]</p><h2><MaskReveal>@L["ProjectsTitle"]</MaskReveal><MaskReveal Delay="70"><span class="muted-heading">@L["ProjectsTitleSecond"]</span></MaskReveal></h2></div>
+            <div><p class="eyebrow"><span class="section-number">01</span>@L["ProjectsEyebrow"]</p><h2 id="projects-heading"><MaskReveal>@L["ProjectsTitle"]</MaskReveal><MaskReveal Delay="70"><span class="muted-heading">@L["ProjectsTitleSecond"]<span class="project-heading-period">.</span></span></MaskReveal></h2></div>
             <p class="heading-aside" data-reveal>@L["ProjectsIntro"]</p>
         </div>
         <div class="project-filters" data-reveal role="group" aria-label="@L["FilterProjects"]">
             @foreach (var filter in Filters)
             {
-                <button type="button" class="@(_filter == filter.Value ? "is-active" : "")" aria-pressed="@(_filter == filter.Value ? "true" : "false")" @onclick="() => _filter = filter.Value">@L[filter.Label]<span>@Projects.Count(p => filter.Value == "all" || p.Category == filter.Value)</span></button>
+                <button type="button" data-project-filter="@filter.Value" class="@(_filter == filter.Value ? "is-active" : "")" aria-pressed="@(_filter == filter.Value ? "true" : "false")" @onclick="() => SelectFilter(filter.Value)">@L[filter.Label]<span>@Projects.Count(p => filter.Value == "all" || p.Category == filter.Value).ToString("00", CultureInfo.InvariantCulture)</span></button>
             }
-            <span class="filter-caption">@L["SelectedWork"] / 2026</span>
+            <span class="filter-caption"><UiIcon Name="diagonal" />@L["ProjectExploreHint"]</span>
         </div>
-        <div class="projects-grid" aria-live="polite" aria-atomic="false">
-            @foreach (var project in Projects.Where(p => _filter == "all" || p.Category == _filter))
+        <div class="project-index-layout" data-tilt data-reveal>
+            <div class="project-index-column">
+                <div class="project-index-head"><span>@L["ProjectIndexTitle"]</span><span>@_visibleProjects.Length.ToString("00", CultureInfo.InvariantCulture) / @L["SelectedWork"]</span></div>
+                <div class="project-index-list">
+                    @foreach (var project in _visibleProjects)
+                    {
+                        <ProjectCard @key="project.Index" Project="project" Active="@(project.Index == _selectedIndex)" Selected="SelectProject" />
+                    }
+                </div>
+                <div class="project-index-foot"><span>HTS / @L["NavProjects"]</span><span>@L["ProjectIndexHint"]</span></div>
+            </div>
+            @if (ActiveProject is { } active)
             {
-                <ProjectCard @key="(project.Index, _filter)" RevealDelay="@((int.Parse(project.Index, CultureInfo.InvariantCulture) - 1) % 2 * 90)" Url="@project.Url" Image="@project.Image" ImageAlt="@(project.Alt is null ? string.Empty : L[project.Alt].Value)" Monogram="@project.Monogram" Title="@project.Title" Subtitle="@L[project.Type]" Description="@L[project.Description]" Status="@L[project.Status]" Theme="@project.Theme" Index="@project.Index" DisplayBrand="@project.Brand" Headline="@L[project.Headline]" Service="@project.Service" />
+                <aside id="project-preview" class="project-preview-area" aria-label="@L["ProjectPreviewLabel"]">
+                    <div class="project-preview-head"><span>@L["ProjectPreviewLabel"]</span><span><b>@SelectionNumber</b> / @_visibleProjects.Length.ToString("00", CultureInfo.InvariantCulture)</span></div>
+                    <div class="project-preview-frame">
+                        <div class="project-preview-stage">
+                            @foreach (var project in _visibleProjects)
+                            {
+                                <div @key="project.Index" class="project-preview-slide @(project.Index == _selectedIndex ? "is-active" : "")" aria-hidden="@(project.Index == _selectedIndex ? "false" : "true")" data-preview-id="@project.Index">
+                                    <ProjectPreview Project="project" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="project-preview-info">
+                        <div class="project-preview-copy" @key="active.Index">
+                            <span class="project-preview-status">@L[active.Status]</span>
+                            <h3>@active.Title</h3>
+                            <p>@L[active.Description]</p>
+                            <button type="button" class="animated-link" data-open-dialog="@active.DialogId" aria-haspopup="dialog">@L["ViewProject"] <UiIcon Name="diagonal" /></button>
+                        </div>
+                        <div class="project-preview-nav">
+                            <button type="button" class="circle-button project-previous" aria-label="@L["PreviousProject"]" @onclick="() => StepSelection(-1)"><UiIcon Name="arrow" /></button>
+                            <button type="button" class="circle-button project-next" aria-label="@L["NextProject"]" @onclick="() => StepSelection(1)"><UiIcon Name="arrow" /></button>
+                        </div>
+                    </div>
+                </aside>
+                <p class="visually-hidden" role="status">@L["ProjectSelectionStatus", active.Title, SelectionNumber, _visibleProjects.Length]</p>
             }
         </div>
         <div class="projects-bottom" data-reveal><span>@L["ProjectsBottom"]</span><a class="animated-link" href="#quote">@L["CreateYours"] <UiIcon Name="diagonal" /></a></div>
@@ -24,14 +59,14 @@
 </section>
 @code {
     private string _filter = "all";
+    private string _selectedIndex = "01";
+    private PortfolioProject[] _visibleProjects = Projects;
+    private PortfolioProject? ActiveProject => _visibleProjects.FirstOrDefault(project => project.Index == _selectedIndex);
+    private string SelectionNumber => (Array.FindIndex(_visibleProjects, project => project.Index == _selectedIndex) + 1).ToString("00", CultureInfo.InvariantCulture);
     private static readonly (string Value, string Label)[] Filters = [("all", "FilterAll"), ("platform", "FilterPlatforms"), ("commerce", "FilterCommerce"), ("community", "FilterCommunities")];
 
-    // Live sites hosted on HTS servers (192.168.1.206 behind the Caddy edge on 192.168.1.210).
-    // Projects without a presentable public page use a branded monogram instead of a screenshot.
-    private sealed record Project(string Index, string Title, string Brand, string Url, string? Image, string? Alt, string Monogram,
-        string Type, string Description, string Headline, string Status, string Theme, string Category, string Service);
-
-    private static readonly Project[] Projects = [
+    // Preserve the existing live-project catalog; unavailable screenshots use honest brand previews.
+    private static readonly PortfolioProject[] Projects = [
         new("01", "HowToSoftware", "howtosoftware", "https://howtoosoftware.com/", "images/project-howtoosoftware.webp", "ProjectHowtoAlt", "hts",
             "ProjectTypePublishing", "ProjectHowtoDescription", "ProjectHowtoHeadline", "ProjectStatusLive", "theme-violet", "platform", "custom"),
         new("02", "HTS Game Hosting", "HTS / GAMES", "https://host.howto.software/", "images/project-hts-hosting.webp", "ProjectHostingAlt", "HTS",
@@ -45,4 +80,25 @@
         new("06", "Legacy Asset Group", "LEGACY ASSET GROUP", "https://legacy-asset-group.com/", null, null, "LAG",
             "ProjectTypePortfolio", "ProjectLegacyDescription", "ProjectLegacyHeadline", "ProjectStatusInDevelopment", "theme-sage", "community", "business")
     ];
+
+    private void SelectProject(string index)
+    {
+        if (_visibleProjects.Any(project => project.Index == index)) _selectedIndex = index;
+    }
+
+    private void SelectFilter(string filter)
+    {
+        if (!Filters.Any(item => item.Value == filter)) return;
+        _filter = filter;
+        _visibleProjects = Projects.Where(project => filter == "all" || project.Category == filter).ToArray();
+        if (!_visibleProjects.Any(project => project.Index == _selectedIndex))
+            _selectedIndex = _visibleProjects.FirstOrDefault()?.Index ?? string.Empty;
+    }
+
+    private void StepSelection(int direction)
+    {
+        if (_visibleProjects.Length == 0) return;
+        var position = Array.FindIndex(_visibleProjects, project => project.Index == _selectedIndex);
+        _selectedIndex = _visibleProjects[(position + direction + _visibleProjects.Length) % _visibleProjects.Length].Index;
+    }
 }

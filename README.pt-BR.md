@@ -36,7 +36,7 @@ A seleção de um serviço continua preenchendo o briefing. Manutenção abre o 
 
 O refinamento amplia a animação existente com flutuação suave da prévia principal, detalhes decorativos discretos, faixa de capacidades em movimento, órbitas lentas na arte dos serviços, entradas graduais de seções/cards e transições curtas entre etapas do briefing. Textos, campos e ações devem continuar estáveis; não há nova biblioteca de animação ou dependência de CDN.
 
-Controles visíveis junto à prévia principal e na faixa de capacidades pausam/retomam as animações e compartilham a preferência `hts-motion`. A redução de movimento escolhida no sistema operacional tem prioridade. Cenas contínuas param fora da área visível ou quando a aba está oculta. A faixa também pausa no hover/foco; a cópia visual repetida é ignorada por leitores de tela, e a versão pausada/reduzida apresenta o conteúdo original em uma disposição estática com quebra de linha.
+O menu Aparência do cabeçalho reúne a escolha de tema e o controle global de animações. A pausa/retomada mantém a preferência persistida `hts-motion`. A redução de movimento escolhida no sistema operacional tem prioridade. Cenas contínuas param fora da área visível ou quando a aba está oculta. A faixa também pausa no hover/foco; a cópia visual repetida é ignorada por leitores de tela, e a versão pausada/reduzida apresenta o conteúdo original em uma disposição estática com quebra de linha.
 
 Sem JavaScript, o fallback mantém o conteúdo da página e os textos da faixa visíveis; ele não substitui o Blazor interativo. Navegação do assistente, retorno de validação e download precisam de JavaScript e conexão ativa com o servidor.
 

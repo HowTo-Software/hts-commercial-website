@@ -52,8 +52,8 @@
   <data name="WhyReliable" xml:space="preserve"><value>Suporte confiável</value></data>
   <data name="WhyReliableDesc" xml:space="preserve"><value>Estamos ao seu lado antes, durante e depois do projeto.</value></data>
   <data name="WhyQuote" xml:space="preserve"><value>Tecnologia a serviço de quem constrói o amanhã.</value></data>
-  <data name="ProjectsEyebrow" xml:space="preserve"><value>Possibilidades na prática</value></data>
-  <data name="ProjectsTitle" xml:space="preserve"><value>Design que se vê.</value></data>
+  <data name="ProjectsEyebrow" xml:space="preserve"><value>Nosso portfólio</value></data>
+  <data name="ProjectsTitle" xml:space="preserve"><value>Ideias que viraram</value></data>
   <data name="ProjectsIntro" xml:space="preserve"><value>Sites e plataformas reais em operação hoje nos nossos servidores, de publicações e lojas a comunidades e SaaS.</value></data>
   <data name="ViewAllProjects" xml:space="preserve"><value>Ver todos os projetos</value></data>
   <data name="QuoteEyebrow" xml:space="preserve"><value>Seu próximo capítulo</value></data>
@@ -109,7 +109,7 @@
   <data name="BandTechnology" xml:space="preserve"><value>Manutenção e evolução</value></data>
   <data name="BandStrategy" xml:space="preserve"><value>Backend e integrações</value></data>
   <data name="BandPersonality" xml:space="preserve"><value>Hospedagem e publicação</value></data>
-  <data name="ProjectsTitleSecond" xml:space="preserve"><value>Cuidado que se sente.</value></data>
+  <data name="ProjectsTitleSecond" xml:space="preserve"><value>projetos reais</value></data>
   <data name="FilterProjects" xml:space="preserve"><value>Filtrar projetos</value></data>
   <data name="FilterAll" xml:space="preserve"><value>Todos</value></data>
   <data name="ClosePreview" xml:space="preserve"><value>Fechar prévia</value></data>
@@ -347,4 +347,13 @@ https://outro-exemplo.com</value></data>
   <data name="PauseAnimations" xml:space="preserve"><value>Pausar animações</value></data>
   <data name="ResumeAnimations" xml:space="preserve"><value>Retomar animações</value></data>
   <data name="ReducedAnimations" xml:space="preserve"><value>Movimento reduzido ativado no seu dispositivo</value></data>
+  <data name="ProjectIndexTitle" xml:space="preserve"><value>Índice de projetos</value></data>
+  <data name="ProjectPreviewLabel" xml:space="preserve"><value>Visualização do projeto</value></data>
+  <data name="ProjectExploreHint" xml:space="preserve"><value>Passe o mouse ou selecione para explorar</value></data>
+  <data name="ProjectIndexHint" xml:space="preserve"><value>Selecione um projeto para visualizar</value></data>
+  <data name="ProjectBrandPreview" xml:space="preserve"><value>Prévia da marca</value></data>
+  <data name="PreviousProject" xml:space="preserve"><value>Projeto anterior</value></data>
+  <data name="NextProject" xml:space="preserve"><value>Próximo projeto</value></data>
+  <data name="ProjectSelectionStatus" xml:space="preserve"><value>{0}, projeto {1} de {2} nesta seleção.</value></data>
+  <data name="AppearanceSettings" xml:space="preserve"><value>Aparência</value></data>
 </root>

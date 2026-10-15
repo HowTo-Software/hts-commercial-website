@@ -13,6 +13,8 @@
         if (!label) return;
         button.setAttribute("aria-label", label);
         button.setAttribute("title", label);
+        const visibleLabel = button.querySelector("[data-theme-label]");
+        if (visibleLabel && visibleLabel.textContent !== label) visibleLabel.textContent = label;
     }
 
     function syncMotionControl(button) {

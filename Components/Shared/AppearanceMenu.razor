@@ -1,0 +1,14 @@
+@inject IStringLocalizer<AppStrings> L
+
+<details class="appearance-menu">
+    <summary class="appearance-toggle" aria-label="@L["AppearanceSettings"]" title="@L["AppearanceSettings"]">
+        <UiIcon Name="moon" Class="theme-icon-moon" />
+        <UiIcon Name="sun" Class="theme-icon-sun" />
+        <UiIcon Name="chevron" Class="appearance-caret" />
+    </summary>
+    <div class="appearance-panel">
+        <p class="appearance-heading">@L["AppearanceSettings"]</p>
+        <ThemeToggle ShowText="true" />
+        <MotionToggle ShowText="true" />
+    </div>
+</details>
